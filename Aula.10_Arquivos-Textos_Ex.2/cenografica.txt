@@ -1,0 +1,6 @@
+cubo    3.5
+quadrado    1.5
+círculo 2.7
+triângulo   2.0 2.5 3.1
+cilindro    3.1 7.5
+

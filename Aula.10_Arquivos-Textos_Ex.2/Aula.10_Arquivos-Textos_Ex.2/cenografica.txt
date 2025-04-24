@@ -1,0 +1,136 @@
+cubo        1.0
+cubo        1.5
+cubo        2.0
+cubo        2.5
+cubo        3.0
+quadrado    0.5
+quadrado    1.0
+quadrado    1.5
+quadrado    2.0
+quadrado    2.5
+círculo     0.8
+círculo     1.2
+círculo     1.6
+círculo     2.0
+círculo     2.4
+triângulo   1.0 1.0 1.0
+triângulo   1.5 1.5 1.5
+triângulo   2.0 2.0 2.0
+triângulo   2.0 2.5 3.0
+triângulo   3.0 4.0 5.0
+cilindro    1.0 2.0
+cilindro    1.5 3.0
+cilindro    2.0 4.0
+cilindro    2.5 5.0
+cilindro    3.0 6.0
+pentágono   1.0 0.69
+pentágono   1.5 1.03
+pentágono   2.0 1.38
+pentágono   2.5 1.72
+pentágono   3.0 2.06
+hexágono    0.8
+hexágono    1.2
+hexágono    1.6
+hexágono    2.0
+hexágono    2.4
+heptágono   1.0 1.04
+heptágono   1.5 1.56
+heptágono   2.0 2.08
+heptágono   2.5 2.60
+heptágono   3.0 3.11
+octógono    1.0 1.21
+octógono    1.5 1.81
+octógono    2.0 2.41
+octógono    2.5 3.02
+octógono    3.0 3.62
+pentágono   3.5 2.41
+pentágono   4.0 2.75
+pentágono   4.5 3.09
+hexágono    2.8
+hexágono    3.2
+hexágono    3.6
+heptágono   3.5 3.64
+heptágono   4.0 4.16
+octógono    3.5 4.23
+octógono    4.0 4.83
+paralelepipedo 1.0 2.0 3.0
+paralelepipedo 1.5 2.5 3.5
+paralelepipedo 2.0 3.0 4.0
+paralelepipedo 2.5 3.5 4.5
+paralelepipedo 3.0 4.0 5.0
+trapézio    3.0 2.0 1.5
+trapézio    4.0 3.0 2.0
+trapézio    5.0 3.5 2.5
+trapézio    6.0 4.0 3.0
+trapézio    7.0 5.0 4.0
+paralelepipedo 1.2 2.2 3.2
+paralelepipedo 1.8 2.8 3.8
+paralelepipedo 2.4 3.4 4.4
+paralelepipedo 3.1 4.1 5.1
+paralelepipedo 3.7 4.7 5.7
+trapézio    3.5 2.5 1.8
+trapézio    4.5 3.5 2.2
+trapézio    5.5 4.0 3.0
+trapézio    6.5 5.0 4.0
+trapézio    7.5 6.0 5.0
+paralelepipedo 1.1 1.1 1.1
+paralelepipedo 2.2 2.2 2.2
+paralelepipedo 3.3 3.3 3.3
+paralelepipedo 4.4 4.4 4.4
+paralelepipedo 5.5 5.5 5.5
+trapézio    4.0 2.0 1.0
+trapézio    5.0 3.0 2.0
+trapézio    6.0 4.0 3.0
+trapézio    7.0 5.0 4.0
+trapézio    8.0 6.0 5.0
+triângulo   0.3 0.4 0.5
+triângulo   1.0 1.5 2.0
+triângulo   5.0 5.0 8.0
+triângulo   7.0 7.0 7.0
+triângulo   10.0 11.0 12.0
+cilindro    0.5 10.0
+cilindro    1.0 15.0
+cilindro    5.0 1.0
+cilindro    10.0 0.5
+cilindro    15.0 1.0
+pentágono   0.5 0.34
+pentágono   10.0 6.88
+pentágono   0.1 0.07
+pentágono   20.0 13.76
+pentágono   0.01 0.007
+hexágono    0.1
+hexágono    0.5
+hexágono    10.0
+hexágono    50.0
+hexágono    100.0
+heptágono   0.5 0.52
+heptágono   1.0 1.04
+heptágono   5.0 5.19
+heptágono   10.0 10.38
+heptágono   20.0 20.76
+octógono    0.3 0.36
+octógono    0.7 0.84
+octógono    7.0 8.45
+octógono    70.0 84.53
+octógono    0.07 0.085
+trapézio    0.5 0.3 0.2
+trapézio    1.0 0.5 0.3
+trapézio    10.0 8.0 5.0
+trapézio    100.0 80.0 50.0
+trapézio    0.1 0.08 0.05
+paralelepipedo 0.5 0.5 0.5
+paralelepipedo 0.1 0.2 0.3
+paralelepipedo 10.0 20.0 30.0
+paralelepipedo 100.0 200.0 300.0
+paralelepipedo 0.01 0.02 0.03
+cubo        0.1
+cubo        0.5
+cubo        10.0
+cubo        100.0
+cubo        0.01
+quadrado    0.1
+quadrado    0.5
+quadrado    10.0
+quadrado    100.0
+quadrado    0.01
+fim
