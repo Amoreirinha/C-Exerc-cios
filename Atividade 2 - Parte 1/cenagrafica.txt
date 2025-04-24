@@ -1,0 +1,22 @@
+triângulo	5	1	2
+triângulo	9	8	9
+triângulo	8	7	8
+triângulo	10	5	4
+triângulo	4	4	2
+triângulo	4	8	4
+triângulo	5	2	3
+triângulo	1	5	6
+triângulo	6	8	5
+triângulo	9	4	7
+heptágono	2	2.0765
+heptágono	2	2.0765
+heptágono	6	6.2295
+heptágono	10	10.3825
+heptágono	2	2.0765
+heptágono	4	4.153
+heptágono	5	5.19125
+heptágono	10	10.3825
+heptágono	2	2.0765
+heptágono	2	2.0765
+heptágono	1	1.03825
+fim
