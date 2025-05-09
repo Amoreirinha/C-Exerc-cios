@@ -22,18 +22,19 @@ using namespace std;
 /*
  * 
  */
-void lerarquivo(vector<float> alturas){
+void encontrarprimeiraaltura() {
     // Declaração do vetor
     vector<float> alturas; // Vetor dinâmico
 
     // Declaração e inicialização de variáveis
-    float valor;
+    float valor, alturaprocurada;
+    int posicao;
 
     ifstream arquivo_alturas("alturas.txt");
 
     if (!arquivo_alturas.is_open()) {
         cout << "\nErro: Arquivo não encontrado.\n";
-        return 1;
+        return;
     }
 
     // Leitura dos valores
@@ -47,7 +48,21 @@ void lerarquivo(vector<float> alturas){
         alturas.push_back(valor); // Adiciona o valor ao vetor
     }
     
-    return alturas;
+    cout << "Qual altura gostaria de encontrar sua primeira ocorrência:\n" ;
+    cin >> alturaprocurada;
+
+    posicao = 0;
+    while (true) {
+        if (alturas[posicao] == alturaprocurada) {
+            cout << "A primeira ocorrência da altura " << alturaprocurada << " é na posição " << posicao + 1 << endl;
+            break;
+        } else {
+            posicao++;
+        }
+    }
+    
+    arquivo_alturas.close();
+
 }
 
 void mostraralturas() {
@@ -128,14 +143,28 @@ void geraaltura() {
 
 void media() {
     // Declaração do vetor
-    vector<float> alturas = lerarquivo; // Vetor dinâmico
+    vector<float> alturas; // Vetor dinâmico
 
     // Declaração e inicialização de variáveis
-    float soma = 0, media;
-    int contmedia = 0;
+    float soma = 0, media, valor;
 
-    for (float altura : alturas) {
-        soma += altura;
+    ifstream arquivo_alturas("alturas.txt");
+
+    if (!arquivo_alturas.is_open()) {
+        cout << "\nErro: Arquivo não encontrado.\n";
+        return;
+    }
+
+    // Leitura dos valores
+    while (true) {
+        arquivo_alturas >> valor;
+
+        if (valor == 0) {
+            break;
+        }
+
+        alturas.push_back(valor); // Adiciona o valor ao vetor
+        soma += valor;
     }
 
     //Media
@@ -149,8 +178,8 @@ void mediaanalise() {
     vector<float> acimamedias;
 
     // Declaração e inicialização de variáveis
-    float soma = 0, media, valor, altin;
-    int contmedia = 0, contmaioraltin = 0, contaltin = 0, contmenoraltin = 0;
+    float soma = 0, media, valor;
+    int contmedia = 0;
 
     ifstream arquivo_alturas("alturas.txt");
 
@@ -287,11 +316,11 @@ void faixavalores() {
 
 void menu() {
     int choice;
-    cout << "Selecione a ação a ser feita:\n\t1 - Gerar alturas\n\t2 - Calcular Média\n\t3 - Analisar alturas de acordo com uma altura específica\n\t4 - Analisar alturas de acordo com uma faixa de alturas específica\n\t5 - Analisar alturas de acordo com a média\n\nDigite sua escolha:\n";
+    cout << "Selecione a ação a ser feita:\n\t1 - Gerar alturas\n\t2 - Calcular Média\n\t3 - Analisar alturas de acordo com uma altura específica\n\t4 - Analisar alturas de acordo com uma faixa de alturas específica\n\t5 - Analisar alturas de acordo com a média\n\t6 - Encontrar a primera ocorrência de uma altura específica\n\nDigite sua escolha:\n";
     cin >> choice;
-    while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5) {
+    while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6) {
         cout << "\n\nVALOR INVÁLIDO INSERIDO\n\n";
-        cout << "Selecione a ação a ser feita:\n\t1 - Gerar alturas\n\t2 - Calcular Média\n\t3 - Analisar alturas de acordo com uma altura específica\n\t4 - Analisar alturas de acordo com uma faixa de alturas específica\n\t5 - Analisar alturas de acordo com a média\n\nDigite sua escolha:\n";
+        cout << "Selecione a ação a ser feita:\n\t1 - Gerar alturas\n\t2 - Calcular Média\n\t3 - Analisar alturas de acordo com uma altura específica\n\t4 - Analisar alturas de acordo com uma faixa de alturas específica\n\t5 - Analisar alturas de acordo com a média\n\t6 - Encontrar a primera ocorrência de uma altura específica\n\nDigite sua escolha:\n";
         cin >> choice;
     }
     if (choice == 1) {
@@ -304,12 +333,12 @@ void menu() {
         faixavalores();
     } else if (choice == 5) {
         mediaanalise();
+    } else if (choice == 6) {
+        encontrarprimeiraaltura();
     }
 }
 
 int main(int argc, char** argv) {
-    
-    lerarquivo();
 
     menu();
 
