@@ -21,9 +21,9 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    float alturas[1000000], num, soma = 0, media, altin, maior, menor;
+    float alturas[1000000], alturasordenadas[1000000], num, soma = 0, media, altin, maior, menor, porcentagem, moda;
     const int TAM = 1000000;
-    int SWAP, contmedia, contmediamaior, contmediamenor, choice, contmaioraltin = 0, contaltin = 0, contmenoraltin = 0, contmaior = 0, contigual = 0, contmenor = 0;
+    int SWAP, contmedia, contmediamaior, contmediamenor, choice, contmaioraltin = 0, contaltin = 0, contmenoraltin = 0, contmaior = 0, contigual = 0, contmenor = 0, posiI, posiJ, menoraltura, freqatual = 1, freqmax = 1;
     bool loop = true;
     string loopquest;
     choice = 0;
@@ -42,6 +42,20 @@ int main(int argc, char** argv) {
 
     SWAP = 0;
 
+    //Ordenação das alturas por ordenação por seleção 
+    for (posiI = 0; posiI < TAM - 1; posiI++) {
+        menoraltura = posiI;
+
+        for (posiJ = posiI + 1; posiJ < TAM; posiJ++) {
+            if (alturas[posiJ] < alturas[menoraltura]) {
+                menoraltura = posiJ;
+            }
+        }
+        alturasordenadas[posiI] = alturas[menoraltura];
+    }
+
+    SWAP = 0;
+
     alturas_arquivo_leitura.close();
 
     cout << "Bem vindo ao sistema de análise e geração de alturas";
@@ -49,12 +63,12 @@ int main(int argc, char** argv) {
         switch (choice) {
             case 0:
                 //Menu
-                cout << "\nSelecione a ação a ser realizada:\n\t1 - Gerar alturas\n\t2 - Calcular Média\n\t3 - Análise referente a média\n\t4 - Visualizar Alturas\n\t5 - Análise referente a uma altura especificada\n\t6 - Análise por uma faixa de valores especificados" << endl;
+                cout << "\nSelecione a ação a ser realizada:\n\t1 - Gerar alturas\n\t2 - Calcular Média\n\t3 - Análise referente a média\n\t4 - Visualizar Alturas\n\t5 - Análise referente a uma altura especificada\n\t6 - Análise por uma faixa de valores especificados\n\t7 - Ordenação das alturas\n\t8 - Mediana\n\t9 - Moda\n\t10 - Visualizar Alturas Ordenadas" << endl;
                 cin >> choice;
                 choice++;
-                while (choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6 && choice != 7) {
+                while (choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6 && choice != 7 && choice != 8 && choice != 9 && choice != 10 && choice != 11) {
                     cout << "\n\nValor Inválido Inserido!!\n\n";
-                    cout << "\nSelecione a ação a ser realizada:\n\t1 - Gerar alturas\n\t2 - Calcular Média\n\t3 - Análise referente a média\n\t4 - Visualizar Alturas\n\t5 - Análise referente a uma altura especificada\n\t6 - Análise por uma faixa de valores especificados" << endl;
+                    cout << "\nSelecione a ação a ser realizada:\n\t1 - Gerar alturas\n\t2 - Calcular Média\n\t3 - Análise referente a média\n\t4 - Visualizar Alturas\n\t5 - Análise referente a uma altura especificada\n\t6 - Análise por uma faixa de valores especificados\n\t7 - Ordenação das alturas\n\t8 - Mediana\n\t9 - Moda\n\t10 - Visualizar Alturas Ordenadas" << endl;
                     cin >> choice;
                     choice++;
                 }
@@ -203,10 +217,12 @@ int main(int argc, char** argv) {
                     }
                 }
 
+                porcentagem = (contaltin * 100.0) / TAM;
 
                 cout << "Existem " << contmaioraltin << " alturas maiores que " << altin << endl;
                 cout << "Existem " << contmenoraltin << " alturas menores que " << altin << endl;
                 cout << "Existem " << contaltin << " alturas iguais que " << altin << endl;
+                cout << "A altura " << altin << " representa " << porcentagem << "% do total das alturas.\n";
                 for (SWAP = 0; SWAP < TAM; SWAP++) {
                     if (alturas[SWAP] == altin) {
                         cout << "A primeira ocorrência da altura " << altin << " é na posição " << SWAP + 1 << endl;
@@ -224,7 +240,8 @@ int main(int argc, char** argv) {
                 choice = 1; //Quest Menu
 
                 break;
-            case 6:
+
+            case 7:
                 //Análise por uma faixa de valores especificados
                 cout << "\nAnálise por uma faixa de valores especificados\n";
 
@@ -242,15 +259,101 @@ int main(int argc, char** argv) {
                         contigual++;
                     }
                 }
+                porcentagem = (contigual * 100.0) / TAM;
                 cout << "Existem " << contmaior << " alturas maiores que " << maior << endl;
                 cout << "Existem " << contmenor << " alturas menores que " << menor << endl;
                 cout << "Existem " << contigual << " alturas entre " << menor << " e " << maior << endl;
+                cout << "As alturas entre " << menor << " e " << maior << " representam " << porcentagem << "% do total do documento.\n";
 
                 choice = 1; //Quest Menu
 
+                break;
+
+            case 8:
+                //Ordenação das alturas por ordenação por seleção 
+                cout << "\nOrdenação das alturas\n\nRealizando ordenação ...\n\n";
+                for (posiI = 0; posiI < TAM - 1; posiI++) {
+                    menoraltura = posiI;
+
+                    for (posiJ = posiI + 1; posiJ < TAM; posiJ++) {
+                        if (alturas[posiJ] < alturas[menoraltura]) {
+                            menoraltura = posiJ;
+                        }
+                    }
+                    alturasordenadas[posiI] = alturas[menoraltura];
+                }
+                cout << "Realizada a ordenação das alturas\n";
+
+                //Exibição dos valores                
+                cout << endl;
+                for (SWAP = 0; SWAP < TAM; SWAP++) {
+                    cout << "A altura " << (SWAP + 1) << "° valor é " << alturasordenadas[SWAP] << endl;
+                }
+
+                SWAP = 0;
+                cout << "Gostaria de Visualizar as alturas ordenadas? Digite 's' para SIM e 'n' para NÃO:\n";
+                cin >> loopquest;
+
+                while (loopquest != "s" && loopquest != "n") {
+                    cout << "\n\nVALOR INVÁLIDO INSERIDO\n\n";
+                    cout << "Gostaria de Visualizar as alturas ordenadas? Digite 's' para SIM e 'n' para NÃO:\n";
+                cin >> loopquest;
+                }
+
+                if (loopquest == "s") {
+                    choice = 11; //Quest Ver valores Ordenados
+                } else {
+                    choice = 1; //Quest Menu
+                }
+
+                break;
+
+            case 9:
+                //Cálculo de mediana
+                cout << "\nCálculo Mediana\n\n";
+                cout << "A mediana da lista atual de alturas é " << (alturasordenadas[TAM / 2] + alturasordenadas[(TAM / 2) + 1]) / 2 << endl;
+
+                choice = 1; //Quest Menu
+                break;
+
+            case 10:
+                //Cálculo de moda
+                cout << "\nCálculo Moda\n\n";
+
+                for (posiI = 1; posiI < TAM; posiI++) {
+                    if (alturasordenadas[posiI] == alturasordenadas[posiI - 1]) {
+                        freqatual++;
+                    } else {
+                        freqatual = 1;
+                    }
+
+                    if (freqatual > freqmax) {
+                        freqmax = freqatual;
+                        moda = alturasordenadas[posiI];
+                    }
+                }
+
+                if (freqmax == 1) {
+                    cout << "Não há moda (todos os valores são únicos).\n";
+                } else {
+                    cout << "Moda: " << moda << " (aparece " << freqmax << " vezes).\n";
+                }
+
+                choice = 1; //Quest Menu
+                break;
+                
+            case 11:                
+                //Exibição dos valores ordenados               
+                cout << endl;
+                for (SWAP = 0; SWAP < TAM; SWAP++) {
+                    cout << "A altura " << (SWAP + 1) << "° valor é " << alturasordenadas[SWAP] << endl;
+                }
+
+                SWAP = 0;
+                choice = 1; //Quest Menu
+                
                 break;
         }
     }
     return 0;
 }
-
