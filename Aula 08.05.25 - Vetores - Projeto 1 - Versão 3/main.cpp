@@ -42,16 +42,30 @@ int main(int argc, char** argv) {
 
     SWAP = 0;
 
-    //Ordenação das alturas por ordenação por seleção 
+    // Ordenação das alturas por ordenação por seleção
+    cout << "\nOrdenação das alturas\n\nRealizando ordenação ...\n\n";
+
+    // Faz uma cópia do array original para não modificar o original diretamente
+    for (posiI = 0; posiI < TAM; posiI++) {
+        alturasordenadas[posiI] = alturas[posiI];
+    }
+
+    // Algoritmo de seleção no array alturasordenadas
     for (posiI = 0; posiI < TAM - 1; posiI++) {
         menoraltura = posiI;
 
         for (posiJ = posiI + 1; posiJ < TAM; posiJ++) {
-            if (alturas[posiJ] < alturas[menoraltura]) {
+            if (alturasordenadas[posiJ] < alturasordenadas[menoraltura]) {
                 menoraltura = posiJ;
             }
         }
-        alturasordenadas[posiI] = alturas[menoraltura];
+
+        // Realiza a troca (swap) no array alturasordenadas
+        if (menoraltura != posiI) {
+            float temp = alturasordenadas[posiI];
+            alturasordenadas[posiI] = alturasordenadas[menoraltura];
+            alturasordenadas[menoraltura] = temp;
+        }
     }
 
     SWAP = 0;
@@ -270,17 +284,30 @@ int main(int argc, char** argv) {
                 break;
 
             case 8:
-                //Ordenação das alturas por ordenação por seleção 
+                // Ordenação das alturas por ordenação por seleção
                 cout << "\nOrdenação das alturas\n\nRealizando ordenação ...\n\n";
+
+                // Faz uma cópia do array original para não modificar o original diretamente
+                for (posiI = 0; posiI < TAM; posiI++) {
+                    alturasordenadas[posiI] = alturas[posiI];
+                }
+
+                // Algoritmo de seleção no array alturasordenadas
                 for (posiI = 0; posiI < TAM - 1; posiI++) {
                     menoraltura = posiI;
 
                     for (posiJ = posiI + 1; posiJ < TAM; posiJ++) {
-                        if (alturas[posiJ] < alturas[menoraltura]) {
+                        if (alturasordenadas[posiJ] < alturasordenadas[menoraltura]) {
                             menoraltura = posiJ;
                         }
                     }
-                    alturasordenadas[posiI] = alturas[menoraltura];
+
+                    // Realiza a troca (swap) no array alturasordenadas
+                    if (menoraltura != posiI) {
+                        float temp = alturasordenadas[posiI];
+                        alturasordenadas[posiI] = alturasordenadas[menoraltura];
+                        alturasordenadas[menoraltura] = temp;
+                    }
                 }
                 cout << "Realizada a ordenação das alturas\n";
 
@@ -297,7 +324,7 @@ int main(int argc, char** argv) {
                 while (loopquest != "s" && loopquest != "n") {
                     cout << "\n\nVALOR INVÁLIDO INSERIDO\n\n";
                     cout << "Gostaria de Visualizar as alturas ordenadas? Digite 's' para SIM e 'n' para NÃO:\n";
-                cin >> loopquest;
+                    cin >> loopquest;
                 }
 
                 if (loopquest == "s") {
@@ -341,8 +368,8 @@ int main(int argc, char** argv) {
 
                 choice = 1; //Quest Menu
                 break;
-                
-            case 11:                
+
+            case 11:
                 //Exibição dos valores ordenados               
                 cout << endl;
                 for (SWAP = 0; SWAP < TAM; SWAP++) {
@@ -351,7 +378,7 @@ int main(int argc, char** argv) {
 
                 SWAP = 0;
                 choice = 1; //Quest Menu
-                
+
                 break;
         }
     }
