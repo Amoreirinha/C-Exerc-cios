@@ -67,12 +67,12 @@ int main(int argc, char** argv) {
     while (loop == true) {
         switch (choice) {
             case 0:
-                cout << "\nSelecione a ação a ser feita:\n\t1-Inverta os valores de um vetor (1° com o último, 2° com o penúltimo)\n\t2-Adicione um valor o todos os elementos\n\t3-Adicione um valor a todos os elementos não divisíveis por três\n\t4-Remova do vetor a 1ª ocorrência de um vetor\n";
+                cout << "\nSelecione a ação a ser feita:\n\t1-Inverta os valores de um vetor (1° com o último, 2° com o penúltimo)\n\t2-Adicione um valor o todos os elementos\n\t3-Adicione um valor a todos os elementos não divisíveis por três\n\t4-Remova do vetor a 1ª ocorrência de um vetor\n\t5-Remova do vetor todas as ocorrências de um valor\n";
                 cin >> choice;
                 choice++;
-                while (choice != 2 && choice != 3 && choice != 4 && choice != 5) {
+                while (choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6) {
                     cout << "Valor digitado inválido\n\n";
-                    cout << "\nSelecione a ação a ser feita:\n\t1-Inverta os valores de um vetor (1° com o último, 2° com o penúltimo)\n\t2-Adicione um valor o todos os elementos\n\t3-Adicione um valor a todos os elementos não divisíveis por três\n\t4-Remova do vetor a 1ª ocorrência de um vetor\n";
+                    cout << "\nSelecione a ação a ser feita:\n\t1-Inverta os valores de um vetor (1° com o último, 2° com o penúltimo)\n\t2-Adicione um valor o todos os elementos\n\t3-Adicione um valor a todos os elementos não divisíveis por três\n\t4-Remova do vetor a 1ª ocorrência de um vetor\n\t5-Remova do vetor todas as ocorrências de um valor\n";
                     cin >> choice;
                     choice++;
                 }
@@ -144,23 +144,25 @@ int main(int argc, char** argv) {
                 //Remova do vetor a 1ª ocorrência de um vetor
                 cout << "\nRemova do vetor a 1ª ocorrência de um vetor\n\nDigite o número a ter sua primeira ocorrência removida:\n";
                 cin >> numremove;
+                removed = false;
+
+                // Procurar a primeira ocorrência
                 for (i = 0; i < TAM; i++) {
                     if (numremove == vetor[i]) {
-                        vetor[i] = vetor[i + 1];
-                        j = i + 1;
+                        // Encontrou o elemento, marcar posição e sair do loop
                         removed = true;
                         break;
-                    } else if (numremove == vetor[i] && i == TAM){
-                        vetor[i]=0;
-                        j = i + 1;
-                        removed = true;
                     }
                 }
-                if (removed == true) {
-                    for (i = j; i < TAM -1; i++) {
-                        vetor[i] = vetor[i + 1];
+
+                if (removed) {
+                    // Deslocar os elementos seguintes para trás
+                    for (j = i; j < TAM - 1; j++) {
+                        vetor[j] = vetor[j + 1];
                     }
+                    // Colocar zero no último elemento
                     vetor[TAM - 1] = 0;
+
                     cout << "\nPrimeira ocorrência de " << numremove << " removida\n";
                     for (i = 0; i < TAM; i++) {
                         cout << vetor[i] << endl;
@@ -168,6 +170,40 @@ int main(int argc, char** argv) {
                 } else {
                     cout << "\nValor não encontrado\n";
                 }
+                choice = 1; //Quest Menu 
+                break;
+
+            case 6:
+                // Remova do vetor todas as ocorrências de um valor
+                cout << "\nRemova do vetor todas as ocorrências de um valor\n";
+                cout << "\nDigite o número a ter sua primeira ocorrência removida:\n";
+                cin >> numremove;
+                int size=1;
+                
+                i=0;
+                while(i < TAM){
+                    if (vetor[i] == numremove) {
+                        removed=true;
+                        for (j = i; j < TAM-1; j++) {
+                            vetor[j] = vetor[j + 1];
+                        }
+                    } else {
+                        i++;
+                    }
+                    if(removed==true){
+                        size++;
+                    }
+                    removed=false;
+                }
+                
+                for(size=TAM-size; size<TAM ;size++){
+                    vetor[size]=0;
+                }
+                
+                for (i = 0; i < TAM; i++) {
+                    cout << vetor[i] << endl;
+                }
+
                 choice = 1; //Quest Menu 
                 break;
 
