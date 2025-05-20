@@ -9,6 +9,13 @@
  *
  * Created on May 18, 2025, 2:31 PM
  * 
+ * Joaquim Pedro do Nascimento Moreira de Jesus
+ * 2025.1.08.014
+ * 
+ * AED's I - Prática
+ * Prof. Paulo Alexandre Bressan
+ * 
+ * 
  * Objetivo: Realizar operações em um vetor de valores inteiros.
  * 
  * Descrição: Desenvolver um projeto em C/C++ que permita:
@@ -35,7 +42,7 @@ int main(int argc, char** argv) {
     // Declaração de constantes e variáveis
     const int TAM = 100; // Tamanho máximo do vetor
     int vetor[TAM]; // Vetor principal do programa
-    
+
     // Variáveis para controle do programa
     int choice = 0; // Armazena a escolha do menu
     int valor; // Valor temporário para várias operações
@@ -46,11 +53,11 @@ int main(int argc, char** argv) {
     int i, j; // Índices para loops
     int valormax, valormin; // Limites para valores aleatórios
     int elementospreenchidos; // Controla quantos elementos estão no vetor
-    
+
     // Flags de controle
     bool loop = true; // Controla o loop principal
     bool geravetorcomespaco = true; // Controla geração de vetor com espaços
-    
+
     string quest; // Armazena respostas do usuário
 
     // Inicializa o gerador de números aleatórios
@@ -62,7 +69,7 @@ int main(int argc, char** argv) {
     cin >> valormin;
     cout << "Selecione o maior valor inteiro a ser gerado para o vetor:\n";
     cin >> valormax;
-    
+
     // Validação dos valores mínimo e máximo
     while (valormin > valormax) {
         cout << "ERROR!\n\nValor mínimo digitado maior que o valor máximo";
@@ -99,7 +106,7 @@ int main(int argc, char** argv) {
                         "\t6. Remover todos os valores repetidos, mantendo apenas uma ocorrência de cada.\n";
                 cin >> choice;
                 choice++;
-                
+
                 // Validação da escolha do menu
                 while (choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6 && choice != 7) {
                     cout << "\n\nERROR - Valor inválido inserido!!\n\n";
@@ -140,7 +147,7 @@ int main(int argc, char** argv) {
                 cout << "\033[2J\033[1;1H";
                 cout << "\n1. Contar quantas vezes um valor específico aparece no vetor.\n\nDigite o valor a ser procurado:\n";
                 cin >> valor;
-                
+
                 // Validação do valor inserido
                 while (valor < valormin) {
                     cout << "\n\nERROR - O Valor inserido é menor que o menor valor especificado na geração dos valores do vetor\n";
@@ -167,7 +174,7 @@ int main(int argc, char** argv) {
                 } else {
                     cout << "\nO valor " << valor << " aparece " << contvalor << " vezes no vetor, sendo ele recorrente em " << (contvalor * 100) / TAM << "% do vetor.\n";
                 }
-                choice = 1; // Retorna à opção de menu/sair
+                choice = 8; // Ver o vetor
                 break;
 
             case 3:
@@ -224,7 +231,7 @@ int main(int argc, char** argv) {
                     cout << "\nExistem " << contmaior << " valores no vetor maiores do que " << intervalomaior << ".\nIsso corresponde a " << (contmaior * 100) / TAM << "% do vetor.\n\n";
                 }
 
-                choice = 1; // Retorna à opção de menu/sair
+                choice = 8; // Ver o vetor
                 break;
 
             case 4:
@@ -232,7 +239,7 @@ int main(int argc, char** argv) {
                 cout << "\033[2J\033[1;1H";
                 cout << "3. Buscar a primeira ocorrência de um valor e retornar sua posição.\n\nDigite o valor a ser procurado:\n";
                 cin >> valor;
-                
+
                 // Validação do valor inserido
                 while (valor < valormin) {
                     cout << "\n\nERROR - O Valor inserido é menor que o menor valor especificado na geração dos valores do vetor\n";
@@ -261,7 +268,7 @@ int main(int argc, char** argv) {
                     cout << "\nA primeira ocorrência do valor " << valor << " é na " << posivalor << "ª posição do vetor.\n";
                 }
 
-                choice = 1; // Retorna à opção de menu/sair
+                choice = 8; // Ver o vetor
                 break;
 
             case 5:
@@ -269,7 +276,7 @@ int main(int argc, char** argv) {
                 cout << "\033[2J\033[1;1H";
                 cout << "4. Excluir a primeira ocorrência de um valor (se existir), reorganizando o vetor sem deixar espaços vazios.\n\nDigite o valor a ser excluído:\n";
                 cin >> valor;
-                
+
                 // Validação do valor inserido
                 while (valor < valormin) {
                     cout << "\n\nERROR - O Valor inserido é menor que o menor valor especificado na geração dos valores do vetor\n";
@@ -324,7 +331,7 @@ int main(int argc, char** argv) {
                 cout << "\033[2J\033[1;1H";
                 cout << "5. Inserir um valor em uma posição específica (caso o vetor não esteja cheio).\n";
                 geravetorcomespaco = true;
-                
+
                 // Verifica se o vetor está cheio
                 while (geravetorcomespaco) {
                     if (elementospreenchidos == TAM) {
@@ -332,21 +339,21 @@ int main(int argc, char** argv) {
                         quest = "x";
                         cout << "O vetor está completamente preenchido.\n\nGostaria de gerar um novo vetor não completamente preenchido? Digite 's' para SIM e 'n' para não:\n";
                         cin >> quest;
-                        
+
                         // Validação da resposta
                         while (quest != "s" && quest != "n") {
                             cout << "\n\nERROR - Valor inválido inserido!\n";
                             cout << "O vetor está completamente preenchido.\n\nGostaria de gerar um novo vetor não completamente preenchido? Digite 's' para SIM e 'n' para não:\n";
                             cin >> quest;
                         }
-                        
+
                         if (quest == "s") {
                             // Geração de novo vetor com espaço
                             cout << "Selecione o menor valor inteiro a ser gerado para o vetor:\n";
                             cin >> valormin;
                             cout << "Selecione o maior valor inteiro a ser gerado para o vetor:\n";
                             cin >> valormax;
-                            
+
                             // Validação dos novos limites
                             while (valormin > valormax) {
                                 cout << "ERROR!\n\nValor mínimo digitado maior que o valor máximo";
@@ -370,7 +377,7 @@ int main(int argc, char** argv) {
                         // Processo de inserção no vetor
                         cout << "\nDigite o valor a ser inserido:\n";
                         cin >> valor;
-                        
+
                         // Validação do valor inserido
                         while (valor < valormin) {
                             cout << "\n\nERROR - O Valor inserido é menor que o menor valor especificado na geração dos valores do vetor\n";
@@ -421,13 +428,13 @@ int main(int argc, char** argv) {
                 // Operação 6: Remover valores duplicados
                 cout << "\033[2J\033[1;1H";
                 cout << "6. Remover todos os valores repetidos, mantendo apenas uma ocorrência de cada.\n";
-                cout << "Atenção! Os espaços vazios ocasionados pela remoção serão representados pelo valor especial " << valormax+1 << " que está fora do nosso intervalo de geração do vetor\n";
-                
+                cout << "Atenção! Os espaços vazios ocasionados pela remoção serão representados pelo valor especial " << valormax + 1 << " que está fora do nosso intervalo de geração do vetor\n";
+
                 // Processo de remoção de duplicatas
                 for (i = 0; i < TAM; i++) {
                     for (j = 0; j < TAM; j++) {
-                        if (vetor[i] == vetor[j] && i != j && vetor[i] != valormax+1){
-                            vetor[j] = valormax+1; // Marca duplicatas com valor especial
+                        if (vetor[i] == vetor[j] && i != j && vetor[i] != valormax + 1) {
+                            vetor[j] = valormax + 1; // Marca duplicatas com valor especial
                         }
                     }
                 }
@@ -435,13 +442,41 @@ int main(int argc, char** argv) {
                 // Exibição do vetor sem duplicatas
                 cout << "\n\nRemovido repetições do vetor!\nNovo vetor:\n";
                 for (i = 0; i < TAM; i++) {
-                    if(vetor[i] == valormax+1){
+                    if (vetor[i] == valormax + 1) {
                         cout << "\t" << i + 1 << "° - " << endl;
                     } else {
                         cout << "\t" << i + 1 << "° - " << vetor[i] << endl;
-                    }                    
+                    }
                 }
 
+                choice = 1; // Retorna à opção de menu/sair
+                break;
+
+            case 8:
+                // Opção ver ou não o vetor
+                quest = "x";
+                cout << "\n\nGostaria de ver o vetor? Digite 's' para SIM e 'n' para NÃO:\n";
+                cin >> quest;
+
+                // Validação da resposta
+                while (quest != "s" && quest != "n") {
+                    cout << "\n\nVALOR INVÁLIDO INSERIDO\n\n";
+                    cout << "\n\nGostaria de ver o vetor? Digite 's' para SIM e 'n' para NÃO:\n";
+                    cin >> quest;
+                }
+
+                if (quest == "s") {
+                    // Exibição do vetor              
+                    cout << "\n\nVetor:\n";
+                    for (i = 0; i < TAM; i++) {
+                        if (vetor[i] == valormax + 1) {
+                            cout << "\t" << i + 1 << "° - " << endl;
+                        } else {
+                            cout << "\t" << i + 1 << "° - " << vetor[i] << endl;
+                        }
+                    }
+                }
+                
                 choice = 1; // Retorna à opção de menu/sair
                 break;
         }
