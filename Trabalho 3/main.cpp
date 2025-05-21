@@ -53,6 +53,7 @@ int main(int argc, char** argv) {
     int i, j; // Índices para loops
     int valormax, valormin; // Limites para valores aleatórios
     int elementospreenchidos; // Controla quantos elementos estão no vetor
+    int posivalornulo; // Guarda a posição dos valores especiais representativos de nulo (valormax + 1)
 
     // Flags de controle
     bool loop = true; // Controla o loop principal
@@ -72,7 +73,7 @@ int main(int argc, char** argv) {
 
     // Validação dos valores mínimo e máximo
     while (valormin > valormax) {
-        cout << "ERROR!\n\nValor mínimo digitado maior que o valor máximo";
+        cout << "ERROR!\n\nValor mínimo digitado maior que o valor máximo.\n\n";
         cout << "Selecione o menor valor inteiro a ser gerado para o vetor:\n";
         cin >> valormin;
         cout << "Selecione o maior valor inteiro a ser gerado para o vetor:\n";
@@ -200,12 +201,37 @@ int main(int argc, char** argv) {
                     cin >> intervalomaior;
                 }
 
+                // Validação intervalo mínimo sempre menor que intervalo máximo
+
+                while (intervalomenor > intervalomaior) {
+                    cout << "\n\nERROR - o valor inserido para o menor intervalo é maior do que o valor inserido para o valor de maior intervalo\n\n";
+                    cout << "Digite o menor valor do intervalo a ser procurado : \n";
+                    cin >> intervalomenor;
+
+                    // Validação do intervalo mínimo
+                    while (intervalomenor < valormin) {
+                        cout << "\n\nERROR - O Valor inserido é menor que o menor valor especificado na geração dos valores do vetor\n";
+                        cout << "\nDigite o menor valor do intervalo a ser procurado:\n";
+                        cin >> intervalomenor;
+                    }
+
+                    cout << "\nDigite o maior valor do intervalo a ser procurado:\n";
+                    cin >> intervalomaior;
+
+                    // Validação do intervalo máximo
+                    while (intervalomaior > valormax) {
+                        cout << "\n\nERROR - O Valor inserido é maior que o maior valor especificado na geração dos valores do vetor\n";
+                        cout << "\nDigite o maior valor do intervalo a ser procurado:\n";
+                        cin >> intervalomaior;
+                    }
+                }
+
                 // Contagem de valores dentro, abaixo e acima do intervalo
                 contigual = contmaior = contmenor = 0;
                 for (i = 0; i < TAM; i++) {
                     if (vetor[i] >= intervalomenor && vetor[i] <= intervalomaior) {
                         contigual++;
-                    } else if (vetor[i] > intervalomaior) {
+                    } else if (vetor[i] > intervalomaior && vetor[i] != valormax + 1) {
                         contmaior++;
                     } else if (vetor[i] < intervalomenor) {
                         contmenor++;
@@ -311,6 +337,21 @@ int main(int argc, char** argv) {
                     vetor[TAM - 1] = ((rand() % (valormax - valormin + 1)) + valormin);
                 }
 
+                // Preenche os espaços vazios do vetor se houver
+                for (i = 0; i < TAM; i++) {
+                    if (vetor[i] == valormax + 1) {
+                        // Preenchimento da posição com novo valor aleatório
+                        vetor[i] = ((rand() % (valormax - valormin + 1)) + valormin);
+
+                        // Garante que o novo valor não seja igual ao removido
+                        while (vetor[i] == valor) {
+                            vetor[i] = ((rand() % (valormax - valormin + 1)) + valormin);
+
+                        }
+                        elementospreenchidos++;
+                    }
+                }
+
                 // Exibição dos resultados
                 if (posivalor == -1) {
                     cout << "Não há ocorrência do valor " << valor << " no vetor.\n";
@@ -318,12 +359,7 @@ int main(int argc, char** argv) {
                     cout << "\nA primeira ocorrência do valor " << valor << " era na " << posivalor << "ª posição do vetor e foi removida.\nNovo vetor:\n";
                 }
 
-                // Exibição do vetor atualizado
-                for (i = 0; i < TAM; i++) {
-                    cout << "\t" << i + 1 << "° - " << vetor[i] << endl;
-                }
-
-                choice = 1; // Retorna à opção de menu/sair
+                choice = 8; // Vai para a opção ver vetor
                 break;
 
             case 6:
@@ -356,7 +392,7 @@ int main(int argc, char** argv) {
 
                             // Validação dos novos limites
                             while (valormin > valormax) {
-                                cout << "ERROR!\n\nValor mínimo digitado maior que o valor máximo";
+                                cout << "ERROR!\n\nValor mínimo digitado maior que o valor máximo\n\n";
                                 cout << "Selecione o menor valor inteiro a ser gerado para o vetor:\n";
                                 cin >> valormin;
                                 cout << "Selecione o maior valor inteiro a ser gerado para o vetor:\n";
@@ -370,10 +406,11 @@ int main(int argc, char** argv) {
                                 vetor[i] = valor;
                                 elementospreenchidos++;
                             }
+                            vetor[TAM - 1] = valormax + 1; // Preenche a última posição com o valor representativo de nulo (valormax+1)                      
                         } else if (quest == "n") {
                             geravetorcomespaco = false;
                         }
-                    } else if (elementospreenchidos != TAM) {
+                    } else if (elementospreenchidos < TAM) {
                         // Processo de inserção no vetor
                         cout << "\nDigite o valor a ser inserido:\n";
                         cin >> valor;
@@ -404,24 +441,30 @@ int main(int argc, char** argv) {
                         }
 
                         // Deslocamento dos elementos para abrir espaço
-                        for (i = TAM - 1; i > posivalor; i--) {
-                            vetor[i] = vetor[i - 1];
+                        if (vetor[posivalor] == valormax + 1) {
+                            vetor[posivalor] = valor;
+                            elementospreenchidos++;
+                        } else {
+                            for (i = posivalor; i < TAM; i++) {
+                                if (vetor[i] == valormax + 1) {
+                                    posivalornulo = i;
+                                    break;
+                                } else {
+                                    posivalornulo = TAM -1;
+                                }
+                            }
+                            for (i = posivalornulo; i > posivalor; i--) {
+                                vetor[i] = vetor[i - 1];
+                            }
+                            // Inserção do novo valor
+                            vetor[posivalor] = valor;
+                            elementospreenchidos++;
                         }
-
-                        // Inserção do novo valor
-                        vetor[posivalor] = valor;
-
                         geravetorcomespaco = false;
-
-                        // Exibição do vetor atualizado
-                        cout << "\n\nValor inserido corretamente!\nNovo vetor:\n";
-                        for (i = 0; i < TAM; i++) {
-                            cout << "\t" << i + 1 << "° - " << vetor[i] << endl;
-                        }
                     }
                 }
 
-                choice = 1; // Retorna à opção de menu/sair
+                choice = 8; // Vai à opção ver vetor
                 break;
 
             case 7:
@@ -435,6 +478,7 @@ int main(int argc, char** argv) {
                     for (j = 0; j < TAM; j++) {
                         if (vetor[i] == vetor[j] && i != j && vetor[i] != valormax + 1) {
                             vetor[j] = valormax + 1; // Marca duplicatas com valor especial
+                            elementospreenchidos--;
                         }
                     }
                 }
@@ -476,7 +520,7 @@ int main(int argc, char** argv) {
                         }
                     }
                 }
-                
+
                 choice = 1; // Retorna à opção de menu/sair
                 break;
         }
