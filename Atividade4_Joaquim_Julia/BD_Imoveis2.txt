@@ -1,0 +1,202 @@
+Tipo Finalidade Endereço Bairro Cidade Área Valor IPTU Quartos Suítes Banheiros Vagas Cozinha Sala Varanda Área_de_serviço Piso Conservação Armários Ar-condicionado Aquecedor Ventilador
+Sala temporada Rua_A_1 "Bela Vista" CidadeB 102 3816 2230 0 0 3 4 não não não não cerâmica bom não sim não sim
+Casa temporada Rua_B_2 "Bela Vista" CidadeA 159 4618 1534 2 0 1 2 sim sim não não porcelanato ótimo não não sim sim
+Casa locação Rua_C_3 "Vila Nova" CidadeA 180 2037 2092 2 0 1 1 não sim sim sim cimento bom sim sim sim sim
+Casa temporada Rua_D_4 Industrial CidadeA 221 1259 1922 4 3 3 3 sim sim não sim cerâmica ótimo sim sim não não
+Apartamento locação Rua_E_5 "Bela Vista" CidadeB 63 1902 3140 0 0 2 4 sim sim não sim porcelanato bom sim sim sim sim
+Sala temporada Rua_F_6 "Vila Nova" CidadeC 250 4031 4266 0 0 3 1 não não não não porcelanato bom não sim sim sim
+Casa venda Rua_G_7 "Bela Vista" CidadeB 212 495877 1934 2 1 2 4 não não sim sim madeira bom não não não não
+Sala venda Rua_H_8 "Bela Vista" CidadeA 212 448638 4071 0 0 2 3 não não não não cimento regular sim sim não sim
+Apartamento venda Rua_I_9 Industrial CidadeB 163 777080 580 0 0 1 4 não sim sim sim madeira bom sim sim sim não
+Sala temporada Rua_J_10 "Jardim América" CidadeC 66 1348 3357 0 0 2 0 não não não não madeira ótimo não sim sim não
+Apartamento venda Rua_K_11 "Vila Nova" CidadeA 51 115307 4713 1 1 3 1 não sim sim não cimento ótimo não sim sim sim
+Apartamento locação Rua_L_12 "Bela Vista" CidadeC 64 1707 503 5 0 2 0 não não sim não porcelanato ótimo sim não sim sim
+Casa locação Rua_M_13 "Bela Vista" CidadeB 219 1305 2384 3 1 3 0 não não sim não cimento ótimo sim sim sim não
+Sala locação Rua_N_14 "Bela Vista" CidadeA 201 1862 959 0 0 4 2 não não não não cimento ótimo sim não não não
+Sala venda Rua_O_15 "Vila Nova" CidadeA 182 317641 3592 0 0 1 1 não não não não madeira ótimo sim não não não
+Apartamento locação Rua_P_16 "Bela Vista" CidadeC 190 4400 2031 4 0 1 1 sim não não sim madeira regular não não não sim
+Casa venda Rua_Q_17 "Bela Vista" CidadeC 171 739487 364 4 0 1 2 sim não sim sim cimento regular não sim não não
+Casa locação Rua_R_18 "Bela Vista" CidadeC 64 1376 1742 0 0 2 2 sim sim não sim madeira regular sim não não não
+Casa temporada Rua_S_19 Industrial CidadeC 103 1475 1093 2 0 4 1 sim sim sim sim madeira ótimo sim não não não
+Casa venda Rua_T_20 "Jardim América" CidadeA 77 116513 4463 4 2 4 1 não sim não não cerâmica ótimo sim não sim não
+Apartamento venda Rua_U_21 "Bela Vista" CidadeB 182 242021 2761 1 0 3 1 não não sim sim madeira regular sim sim não sim
+Apartamento locação Rua_V_22 Centro CidadeA 187 2971 2574 2 0 4 3 sim não sim não cimento bom sim não não não
+Casa temporada Rua_W_23 Industrial CidadeB 58 2743 3616 4 2 1 2 não não sim sim cimento regular não não não sim
+Apartamento temporada Rua_X_24 "Bela Vista" CidadeA 205 4126 4082 4 4 4 2 não não sim não porcelanato bom sim sim não sim
+Apartamento temporada Rua_Y_25 Industrial CidadeA 81 961 4822 1 1 3 3 não não sim não cimento regular sim sim não sim
+Sala locação Rua_Z_26 "Bela Vista" CidadeB 60 3269 4710 0 0 3 2 não não não não cimento bom não sim não sim
+Apartamento locação Rua_A_27 Centro CidadeC 207 3747 4513 1 0 4 0 não não não sim porcelanato bom sim sim não sim
+Casa temporada Rua_B_28 Industrial CidadeA 250 1123 2209 4 0 3 3 não sim não sim cimento ótimo sim sim sim não
+Apartamento venda Rua_C_29 "Vila Nova" CidadeB 176 549319 1615 2 2 2 3 sim não sim sim cerâmica regular não não sim sim
+Apartamento venda Rua_D_30 "Bela Vista" CidadeA 153 75890 2152 1 0 4 4 não sim não não porcelanato regular sim não sim sim
+Sala temporada Rua_E_31 "Vila Nova" CidadeC 150 906 3478 0 0 4 3 não não não não porcelanato regular sim não sim sim
+Casa venda Rua_F_32 "Vila Nova" CidadeA 127 224043 250 1 1 1 3 não sim não sim cimento ótimo não não sim sim
+Apartamento locação Rua_G_33 "Vila Nova" CidadeC 65 4941 3006 0 0 2 4 não sim não não porcelanato bom sim não não não
+Apartamento venda Rua_H_34 "Vila Nova" CidadeC 113 226254 3064 2 1 2 4 sim não sim não madeira ótimo sim não sim não
+Sala venda Rua_I_35 Centro CidadeA 112 486539 1813 0 0 4 4 não não não não cerâmica bom não não não sim
+Casa temporada Rua_J_36 "Vila Nova" CidadeA 75 1068 4284 2 0 3 0 sim não sim não madeira regular não sim sim não
+Sala temporada Rua_K_37 Industrial CidadeA 186 1339 2121 0 0 4 3 não não não não porcelanato regular não sim sim sim
+Apartamento locação Rua_L_38 "Jardim América" CidadeC 145 3479 3219 2 1 4 0 não não sim sim cerâmica bom sim não sim não
+Apartamento temporada Rua_M_39 "Bela Vista" CidadeA 115 1815 4071 5 5 1 1 sim não sim não porcelanato bom não sim não não
+Sala temporada Rua_N_40 Industrial CidadeA 194 1751 1481 0 0 2 0 não não não não madeira ótimo não não sim sim
+Apartamento locação Rua_O_41 Centro CidadeB 164 2182 1722 2 2 4 3 sim não sim não cerâmica regular não sim sim sim
+Casa temporada Rua_P_42 Industrial CidadeB 172 2165 3422 2 0 2 4 não não sim não madeira regular não sim sim não
+Sala venda Rua_Q_43 Centro CidadeA 189 305956 4346 0 0 1 3 não não não não porcelanato bom sim não sim sim
+Casa locação Rua_R_44 Centro CidadeB 141 3217 3771 0 0 1 4 sim sim sim não madeira ótimo sim sim não não
+Apartamento locação Rua_S_45 Centro CidadeA 209 4271 648 1 1 4 3 sim sim sim sim porcelanato ótimo não não não sim
+Sala temporada Rua_T_46 "Jardim América" CidadeB 59 4715 1684 0 0 3 3 não não não não porcelanato regular sim sim não não
+Sala venda Rua_U_47 "Vila Nova" CidadeB 150 22924 3430 0 0 3 4 não não não não madeira bom sim não sim sim
+Casa venda Rua_V_48 "Vila Nova" CidadeB 153 564552 3667 3 2 4 1 não não sim sim porcelanato bom não não não não
+Casa locação Rua_W_49 "Jardim América" CidadeB 162 4914 2810 0 0 2 0 não sim sim sim cimento ótimo sim sim não não
+Casa venda Rua_X_50 Centro CidadeB 112 84758 4227 2 0 2 1 sim não sim não cimento regular não não não não
+Casa venda Rua_Y_51 "Vila Nova" CidadeA 80 271371 1909 5 2 1 2 sim não não sim cerâmica ótimo sim não não não
+Apartamento venda Rua_Z_52 "Bela Vista" CidadeC 178 450991 4323 1 0 4 1 sim sim sim não porcelanato regular sim sim sim não
+Sala locação Rua_A_53 Centro CidadeC 126 4157 2809 0 0 3 4 não não não não porcelanato ótimo não sim não não
+Sala venda Rua_B_54 "Jardim América" CidadeC 88 244052 1206 0 0 1 2 não não não não cimento ótimo sim sim sim sim
+Apartamento venda Rua_C_55 Centro CidadeA 153 166414 415 2 1 2 1 não sim sim sim cerâmica ótimo não sim sim sim
+Casa temporada Rua_D_56 Centro CidadeA 213 1883 1850 2 2 4 4 sim sim não não porcelanato regular sim sim não sim
+Casa venda Rua_E_57 "Bela Vista" CidadeC 207 793859 1577 0 0 3 0 sim sim sim sim cerâmica bom sim sim não sim
+Sala venda Rua_F_58 "Vila Nova" CidadeA 74 16089 2841 0 0 1 3 não não não não cerâmica bom sim sim sim sim
+Apartamento temporada Rua_G_59 Industrial CidadeB 89 4341 4509 1 1 2 0 sim sim não não cimento ótimo sim sim não não
+Sala locação Rua_H_60 "Bela Vista" CidadeA 83 939 1031 0 0 4 4 não não não não cimento regular não sim sim sim
+Casa temporada Rua_I_61 Centro CidadeC 98 2948 2386 4 1 1 3 não não sim sim cerâmica regular não não não não
+Apartamento venda Rua_J_62 "Jardim América" CidadeC 102 57153 1927 0 0 3 4 não sim sim não porcelanato ótimo sim sim sim sim
+Apartamento venda Rua_K_63 Industrial CidadeC 195 636800 1380 5 1 2 1 sim não não não madeira ótimo não sim sim sim
+Casa temporada Rua_L_64 Industrial CidadeA 91 1352 4973 3 2 3 3 não não sim sim cimento ótimo sim sim não sim
+Apartamento venda Rua_M_65 "Bela Vista" CidadeB 132 772705 2944 3 0 1 4 não sim sim não cerâmica ótimo sim não sim não
+Sala temporada Rua_N_66 "Vila Nova" CidadeB 200 1586 4994 0 0 1 1 não não não não madeira ótimo sim não sim não
+Apartamento locação Rua_O_67 Industrial CidadeC 174 3955 2443 0 0 4 2 não não sim sim cimento bom não não não não
+Apartamento temporada Rua_P_68 "Vila Nova" CidadeA 41 1286 4787 3 2 3 0 não não sim não madeira ótimo não não sim sim
+Apartamento temporada Rua_Q_69 "Bela Vista" CidadeB 247 2958 3614 1 0 1 2 sim não não sim cerâmica bom não sim sim sim
+Sala locação Rua_R_70 "Vila Nova" CidadeA 101 3836 3114 0 0 4 1 não não não não madeira regular não não não sim
+Casa temporada Rua_S_71 "Bela Vista" CidadeA 202 1897 2219 0 0 4 1 não não sim não cimento regular não não sim sim
+Apartamento locação Rua_T_72 "Vila Nova" CidadeB 47 4200 597 4 4 3 2 sim não sim sim cimento regular não sim não não
+Apartamento locação Rua_U_73 "Jardim América" CidadeC 222 2553 885 2 1 4 4 não não não sim madeira regular não sim sim não
+Apartamento locação Rua_V_74 Industrial CidadeC 131 2185 1237 1 0 3 4 sim sim sim não cimento bom não sim sim sim
+Casa venda Rua_W_75 "Jardim América" CidadeA 92 569389 961 5 3 4 0 sim não sim sim porcelanato bom sim não sim sim
+Sala locação Rua_X_76 Industrial CidadeC 159 1057 626 0 0 2 3 não não não não cimento ótimo não sim sim sim
+Casa venda Rua_Y_77 "Vila Nova" CidadeA 70 234331 3316 1 1 4 3 sim não não sim cimento regular não não sim sim
+Sala venda Rua_Z_78 Industrial CidadeB 57 200219 3253 0 0 2 2 não não não não cimento bom não não sim não
+Casa venda Rua_A_79 "Jardim América" CidadeC 238 400436 4678 3 2 1 2 não sim não sim cimento ótimo sim sim não sim
+Sala locação Rua_B_80 Industrial CidadeB 200 1735 2660 0 0 2 4 não não não não porcelanato bom não não não não
+Apartamento locação Rua_C_81 "Jardim América" CidadeA 148 1581 1847 5 5 2 3 não não não não porcelanato ótimo sim não não não
+Apartamento venda Rua_D_82 "Bela Vista" CidadeB 218 39241 427 4 0 2 1 sim sim não sim porcelanato ótimo não sim sim não
+Apartamento venda Rua_E_83 "Vila Nova" CidadeA 79 538329 1669 2 0 2 1 sim sim não sim porcelanato bom não sim sim sim
+Casa locação Rua_F_84 "Vila Nova" CidadeA 154 3145 3097 3 1 2 1 não não sim não cimento bom sim sim sim sim
+Sala venda Rua_G_85 Industrial CidadeC 220 542406 4505 0 0 1 2 não não não não porcelanato bom sim sim sim sim
+Casa venda Rua_H_86 Industrial CidadeC 129 612672 1819 0 0 1 4 não não sim não madeira regular não não não não
+Apartamento locação Rua_I_87 "Jardim América" CidadeB 112 1840 3810 0 0 1 3 não sim não sim cimento ótimo sim sim sim sim
+Apartamento temporada Rua_J_88 "Vila Nova" CidadeA 61 2448 4029 2 0 2 3 não sim sim não madeira bom sim não não sim
+Sala locação Rua_K_89 Centro CidadeC 183 2722 2709 0 0 4 1 não não não não cimento ótimo não sim não sim
+Casa locação Rua_L_90 "Vila Nova" CidadeC 205 817 399 2 2 4 2 sim sim sim sim cimento regular sim sim não não
+Apartamento venda Rua_M_91 "Jardim América" CidadeC 40 67987 2347 0 0 2 3 sim não não sim madeira bom sim sim sim não
+Sala venda Rua_N_92 "Jardim América" CidadeA 50 566767 443 0 0 4 2 não não não não porcelanato bom não sim não sim
+Apartamento venda Rua_O_93 "Bela Vista" CidadeC 85 459245 2008 0 0 1 2 não não não sim madeira ótimo sim não sim sim
+Sala locação Rua_P_94 "Bela Vista" CidadeA 115 2371 2005 0 0 2 3 não não não não cimento ótimo sim sim sim sim
+Apartamento locação Rua_Q_95 "Bela Vista" CidadeC 83 2768 1383 5 3 2 4 não sim não sim cerâmica bom não não não não
+Sala locação Rua_R_96 Industrial CidadeC 158 4542 359 0 0 3 2 não não não não madeira bom não não não sim
+Apartamento temporada Rua_S_97 Industrial CidadeA 106 4337 3548 5 0 2 0 não não sim não madeira regular não não sim sim
+Casa locação Rua_T_98 Centro CidadeA 85 4796 4675 0 0 2 0 não sim não não cerâmica regular sim sim não não
+Casa locação Rua_U_99 Industrial CidadeB 224 3756 4728 1 1 2 3 sim não sim sim madeira regular sim sim não não
+Sala temporada Rua_V_100 "Vila Nova" CidadeA 228 2074 3500 0 0 4 0 não não não não madeira ótimo não não não sim
+Casa locação Rua_W_101 "Jardim América" CidadeB 246 3049 1235 3 1 3 3 não não sim não cimento regular sim não sim não
+Sala locação Rua_X_102 "Vila Nova" CidadeB 206 3289 4687 0 0 4 2 não não não não cerâmica ótimo sim sim não não
+Casa venda Rua_Y_103 "Bela Vista" CidadeB 96 341684 3816 3 0 4 2 sim não não sim cimento ótimo sim não não não
+Casa locação Rua_Z_104 Centro CidadeA 105 913 339 4 3 4 3 não sim sim sim cimento regular não sim não sim
+Apartamento temporada Rua_A_105 "Vila Nova" CidadeC 158 2631 2921 5 1 4 0 sim sim sim sim porcelanato bom sim sim não sim
+Sala temporada Rua_B_106 Industrial CidadeC 60 4457 3841 0 0 2 3 não não não não porcelanato regular não não não não
+Sala temporada Rua_C_107 "Jardim América" CidadeC 155 3839 1767 0 0 2 0 não não não não cimento ótimo não não não sim
+Sala venda Rua_D_108 Industrial CidadeC 223 383232 727 0 0 3 1 não não não não madeira bom não sim não sim
+Apartamento locação Rua_E_109 "Jardim América" CidadeA 200 3733 1121 2 1 4 2 sim não sim não madeira regular sim sim não não
+Casa venda Rua_F_110 Centro CidadeC 63 776524 3319 3 3 1 1 não sim sim não porcelanato regular sim não sim sim
+Casa locação Rua_G_111 Centro CidadeB 191 1957 2921 2 1 4 0 não não não não porcelanato regular não sim sim sim
+Sala venda Rua_H_112 "Bela Vista" CidadeC 223 778324 1016 0 0 1 2 não não não não cerâmica regular sim não não não
+Casa locação Rua_I_113 "Vila Nova" CidadeB 46 1808 907 5 4 4 3 sim não sim não madeira ótimo não sim sim não
+Sala locação Rua_J_114 "Jardim América" CidadeB 100 4375 2115 0 0 1 1 não não não não madeira bom sim sim sim sim
+Casa venda Rua_K_115 "Jardim América" CidadeC 47 266977 1164 0 0 1 3 sim sim sim sim madeira ótimo não não sim sim
+Casa locação Rua_L_116 "Vila Nova" CidadeA 41 1778 3079 5 5 3 3 sim sim não sim cerâmica ótimo não sim não sim
+Sala temporada Rua_M_117 "Jardim América" CidadeA 53 1149 1043 0 0 2 1 não não não não cimento regular sim não sim sim
+Sala venda Rua_N_118 Industrial CidadeA 245 162656 2559 0 0 2 0 não não não não cimento regular sim sim não sim
+Apartamento temporada Rua_O_119 "Jardim América" CidadeC 94 3951 3552 2 2 2 0 sim sim não não cerâmica regular sim não sim não
+Casa locação Rua_P_120 Centro CidadeA 227 2157 4572 2 1 4 0 sim sim não sim madeira ótimo sim sim sim não
+Sala locação Rua_Q_121 Industrial CidadeC 222 4992 893 0 0 2 3 não não não não cimento bom sim não não sim
+Casa temporada Rua_R_122 Industrial CidadeC 44 3050 2586 4 4 4 3 sim sim sim não cerâmica regular sim sim não não
+Apartamento venda Rua_S_123 Centro CidadeC 91 72238 1774 4 2 4 2 não sim sim não madeira regular não sim sim não
+Casa temporada Rua_T_124 Centro CidadeC 60 1935 3586 0 0 2 0 não sim não não porcelanato bom sim sim não sim
+Sala venda Rua_U_125 "Jardim América" CidadeA 235 410834 314 0 0 4 2 não não não não madeira ótimo sim não não sim
+Sala venda Rua_V_126 "Jardim América" CidadeC 233 366530 4132 0 0 2 3 não não não não cerâmica regular não sim sim sim
+Sala temporada Rua_W_127 "Bela Vista" CidadeB 128 4673 100 0 0 2 2 não não não não cimento regular sim não sim sim
+Sala locação Rua_X_128 "Jardim América" CidadeA 85 4344 2737 0 0 4 3 não não não não porcelanato ótimo não não não não
+Sala venda Rua_Y_129 "Jardim América" CidadeC 49 359832 757 0 0 2 0 não não não não cimento ótimo não sim não não
+Apartamento locação Rua_Z_130 Centro CidadeA 197 2753 3339 2 0 2 1 sim não não não porcelanato ótimo sim sim sim não
+Sala venda Rua_A_131 "Jardim América" CidadeB 166 214682 1863 0 0 2 2 não não não não cimento bom sim não não não
+Apartamento locação Rua_B_132 "Vila Nova" CidadeC 203 1399 3229 3 1 2 4 sim sim sim sim cerâmica ótimo sim não sim sim
+Sala temporada Rua_C_133 "Jardim América" CidadeB 231 822 2752 0 0 2 2 não não não não madeira regular sim sim sim sim
+Apartamento temporada Rua_D_134 Industrial CidadeB 132 1918 506 1 1 3 1 sim sim sim não cerâmica regular não não não não
+Casa venda Rua_E_135 Centro CidadeB 46 76227 1581 4 0 3 1 não sim não não madeira ótimo sim sim sim não
+Casa venda Rua_F_136 "Bela Vista" CidadeB 239 190273 161 5 4 3 2 sim não sim sim cimento regular sim sim não não
+Casa temporada Rua_G_137 "Bela Vista" CidadeC 144 3899 1457 5 5 4 0 sim sim sim não madeira regular não sim não sim
+Casa temporada Rua_H_138 "Vila Nova" CidadeC 55 3764 3041 5 5 1 0 sim sim não sim cimento regular sim não sim sim
+Casa temporada Rua_I_139 Centro CidadeA 154 3902 2648 2 2 1 4 sim sim sim sim cimento bom sim não sim não
+Casa venda Rua_J_140 "Bela Vista" CidadeA 48 21797 1980 1 0 1 4 sim sim sim não madeira regular sim não não não
+Casa temporada Rua_K_141 Centro CidadeB 93 3459 457 2 1 4 2 sim sim sim sim madeira ótimo não sim não sim
+Casa locação Rua_L_142 "Jardim América" CidadeB 240 1134 2794 0 0 3 2 não não sim sim cerâmica regular não não sim sim
+Apartamento temporada Rua_M_143 "Vila Nova" CidadeB 72 3341 713 0 0 3 1 não sim sim não cerâmica regular sim sim sim não
+Sala temporada Rua_N_144 Centro CidadeC 52 1260 1004 0 0 1 0 não não não não porcelanato bom sim sim não não
+Apartamento venda Rua_O_145 "Jardim América" CidadeC 100 409834 4001 1 1 4 0 não sim sim sim porcelanato regular sim sim não não
+Apartamento venda Rua_P_146 "Vila Nova" CidadeC 229 620703 1718 2 0 4 2 não sim sim não madeira ótimo sim sim não sim
+Casa locação Rua_Q_147 Centro CidadeB 248 806 3510 2 0 3 0 sim sim não sim madeira bom sim não não sim
+Casa locação Rua_R_148 "Vila Nova" CidadeB 185 2488 4075 1 0 4 4 não sim não sim cimento regular não não sim sim
+Sala venda Rua_S_149 "Bela Vista" CidadeB 241 265416 1784 0 0 3 1 não não não não cimento regular não não sim não
+Sala venda Rua_T_150 Industrial CidadeB 178 525304 2313 0 0 3 1 não não não não cimento bom sim não sim sim
+Casa temporada Rua_U_151 Centro CidadeB 126 2966 1194 4 2 3 3 não não sim sim porcelanato ótimo não sim não não
+Casa locação Rua_V_152 "Vila Nova" CidadeB 163 4272 312 0 0 3 0 não não não sim porcelanato ótimo não sim sim sim
+Sala venda Rua_W_153 Centro CidadeC 53 631299 733 0 0 1 3 não não não não cimento regular sim sim sim não
+Sala temporada Rua_X_154 "Jardim América" CidadeC 95 2786 1440 0 0 3 1 não não não não cimento regular sim sim não sim
+Casa temporada Rua_Y_155 "Jardim América" CidadeC 241 1529 1471 1 1 1 3 não sim sim sim cimento ótimo sim sim não não
+Sala locação Rua_Z_156 Centro CidadeC 226 1402 4351 0 0 3 0 não não não não cerâmica ótimo sim não sim não
+Sala temporada Rua_A_157 "Vila Nova" CidadeB 124 2994 4160 0 0 4 0 não não não não cerâmica bom sim não sim sim
+Casa venda Rua_B_158 Centro CidadeA 188 313093 2281 0 0 1 4 não não não não porcelanato ótimo não sim sim sim
+Sala locação Rua_C_159 Centro CidadeC 180 3564 3342 0 0 1 2 não não não não madeira bom sim sim sim sim
+Sala venda Rua_D_160 Industrial CidadeB 62 548690 383 0 0 4 0 não não não não madeira ótimo sim sim não não
+Sala temporada Rua_E_161 Centro CidadeC 116 2131 4641 0 0 2 1 não não não não cerâmica ótimo sim não sim não
+Sala locação Rua_F_162 "Bela Vista" CidadeB 69 2284 3666 0 0 4 0 não não não não madeira bom sim sim não sim
+Casa locação Rua_G_163 "Vila Nova" CidadeA 149 3458 3928 0 0 3 0 não sim não sim madeira regular não sim sim não
+Apartamento temporada Rua_H_164 Centro CidadeB 150 2896 4314 3 0 1 4 sim sim não não cimento bom não não não sim
+Apartamento venda Rua_I_165 Industrial CidadeA 53 77546 4686 4 2 2 0 não não sim não madeira bom não sim não sim
+Casa locação Rua_J_166 "Bela Vista" CidadeA 140 2093 1687 4 0 3 2 não não sim sim cerâmica ótimo sim sim não sim
+Sala locação Rua_K_167 "Bela Vista" CidadeC 119 3549 4917 0 0 3 1 não não não não porcelanato bom não não sim não
+Casa locação Rua_L_168 Centro CidadeB 165 4683 1502 4 2 4 1 sim sim sim sim cimento ótimo não não sim não
+Apartamento locação Rua_M_169 Centro CidadeA 59 1647 3853 3 2 3 3 não não sim não madeira ótimo sim não não não
+Sala temporada Rua_N_170 Industrial CidadeC 153 1138 691 0 0 2 3 não não não não cimento bom sim não sim sim
+Apartamento temporada Rua_O_171 "Bela Vista" CidadeC 182 1606 371 4 4 4 3 não não sim não cimento bom sim não não não
+Sala venda Rua_P_172 "Jardim América" CidadeB 51 50443 4315 0 0 4 1 não não não não madeira ótimo sim sim não sim
+Casa temporada Rua_Q_173 "Bela Vista" CidadeA 81 2703 508 1 1 4 3 sim não sim sim madeira regular não não não não
+Sala temporada Rua_R_174 "Jardim América" CidadeA 112 2773 4060 0 0 2 0 não não não não porcelanato bom sim sim sim sim
+Casa temporada Rua_S_175 "Vila Nova" CidadeB 50 1327 2427 1 1 3 3 sim sim não não cimento bom sim não não não
+Sala locação Rua_T_176 "Vila Nova" CidadeA 112 3630 3335 0 0 2 3 não não não não cerâmica bom não não sim sim
+Apartamento temporada Rua_U_177 Industrial CidadeB 233 3280 418 4 2 3 2 sim sim sim sim cerâmica regular não não não não
+Apartamento venda Rua_V_178 "Jardim América" CidadeB 43 104372 4741 3 1 2 1 não não sim sim porcelanato regular não sim sim sim
+Apartamento locação Rua_W_179 "Bela Vista" CidadeB 69 1825 3389 1 0 2 3 sim não sim não cerâmica ótimo não sim não não
+Casa temporada Rua_X_180 Industrial CidadeA 211 3739 1281 0 0 4 1 não sim sim sim porcelanato bom não não sim não
+Casa temporada Rua_Y_181 "Bela Vista" CidadeB 152 2536 3636 2 2 3 2 sim sim não não cerâmica bom não não sim sim
+Sala venda Rua_Z_182 "Vila Nova" CidadeA 62 341017 115 0 0 1 0 não não não não madeira bom sim sim sim sim
+Apartamento temporada Rua_A_183 "Vila Nova" CidadeA 78 1608 3700 0 0 1 0 sim sim não sim porcelanato ótimo não não não sim
+Apartamento venda Rua_B_184 Industrial CidadeB 106 367331 1267 4 2 1 1 sim sim não não cerâmica regular sim não sim sim
+Casa locação Rua_C_185 Industrial CidadeC 228 1017 2605 2 0 1 2 sim sim não não madeira ótimo não sim sim não
+Sala venda Rua_D_186 Centro CidadeC 123 179609 1335 0 0 1 0 não não não não porcelanato bom não não sim não
+Casa temporada Rua_E_187 Centro CidadeC 100 3971 2534 2 0 1 0 não não não não porcelanato bom sim não sim sim
+Casa temporada Rua_F_188 "Bela Vista" CidadeB 158 3582 4395 3 1 1 3 sim não não sim cerâmica regular não sim não sim
+Sala temporada Rua_G_189 Centro CidadeC 153 4698 186 0 0 3 4 não não não não cimento ótimo sim não sim não
+Casa temporada Rua_H_190 "Bela Vista" CidadeC 247 2160 3604 3 3 4 0 não sim sim não cimento bom sim não não não
+Sala temporada Rua_I_191 "Bela Vista" CidadeA 207 4116 1138 0 0 3 4 não não não não madeira ótimo sim não não não
+Sala temporada Rua_J_192 Centro CidadeA 52 4430 3884 0 0 2 1 não não não não madeira bom não sim não sim
+Casa venda Rua_K_193 "Jardim América" CidadeC 108 202094 2956 1 0 1 1 sim não sim não cimento bom sim sim não não
+Casa locação Rua_L_194 "Jardim América" CidadeC 186 4201 4799 0 0 2 0 não não não não cimento ótimo não não não não
+Apartamento temporada Rua_M_195 Industrial CidadeC 216 2526 128 5 0 1 2 não não sim não cimento regular não sim sim sim
+Apartamento venda Rua_N_196 "Jardim América" CidadeA 78 665956 788 3 0 1 4 sim sim não não madeira regular não sim não sim
+Casa venda Rua_O_197 "Jardim América" CidadeA 217 198386 1206 5 1 2 3 não sim sim não porcelanato bom não sim sim não
+Casa temporada Rua_P_198 Industrial CidadeB 120 4665 459 2 0 1 4 sim não sim não cerâmica ótimo não sim não não
+Apartamento venda Rua_Q_199 Industrial CidadeB 187 757634 1371 2 1 1 1 sim não não não madeira bom não não não sim
+Casa temporada Rua_R_200 "Bela Vista" CidadeB 174 3122 734 4 3 3 4 não sim sim não madeira regular não não não não
+fim
