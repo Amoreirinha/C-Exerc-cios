@@ -122,6 +122,9 @@ int main() {
 
     int num_imoveis = 0; // Contador de imóveis lidos
     int i; // Variável de controle para loops
+    int choice = 0; // Variável para armazenar a escolha do usuário no menu
+    string resposta; // Variável para armazenar a resposta do usuário
+    bool continuar = true; // Variável para controlar o loop principal  
 
     // Leitura do arquivo de imóveis
     ifstream arquivo("BD_Imoveis2.txt");
@@ -179,16 +182,98 @@ int main() {
 
     limparTela(); // Limpa a tela para melhor visualização
     // Exibe os dados dos imóveis lidos
-    cout << "Lista de Imóveis:\n";
-    for (int i = 0; i < num_imoveis; i++) {
-        cout << "Imóvel " << (i + 1) << ": " << imoveis[i].tipo << ", "
-             << imoveis[i].finalidade << ", "
-             << imoveis[i].endereco << ", "
-             << imoveis[i].bairro << ", "
-             << imoveis[i].cidade << ", "
-             << imoveis[i].area << " m², "
-             << "Valor: R$" << imoveis[i].valor << endl;
-    }
 
+    while(continuar) {
+        switch(choice) {
+            case 0:
+                // Menu de opções
+                limparTela(); // Limpa a tela antes de exibir o menu
+                cout << "Menu de Opções:" << endl;
+                cout << "1. Visualizar Lista de Imóveis" << endl;
+                cout << "2. Inclusão de um novo imóvel" << endl;
+                cout << "3. Busca de imóveis por faixa de valores" << endl;
+                cout << "4. Busca de imóveis por características" << endl;
+                cout << "5. Relatório estatístico" << endl;
+                cout << "Escolha uma opção: ";
+                cin >> choice; // Lê a escolha do usuário
+                while(choice < 1 || choice > 5) { // Valida a escolha
+                    limparTela(); // Limpa a tela para melhor visualização
+                    cout << "ERROR - Opção inválida.\nPor favor, escolha uma opção entre 1 e 5.\n\n";
+                    cout << "Menu de Opções:" << endl;
+                    cout << "1. Visualizar Lista de Imóveis" << endl;
+                    cout << "2. Inclusão de um novo imóvel" << endl;
+                    cout << "3. Busca de imóveis por faixa de valores" << endl;
+                    cout << "4. Busca de imóveis por características" << endl;
+                    cout << "5. Relatório estatístico" << endl;
+                    cout << "Escolha uma opção: ";
+                    cin >> choice; // Lê a escolha do usuário
+                }
+                choice++; // Incrementa a escolha para corresponder ao índice do vetor de opções
+                break;
+
+            case 1:
+                //Voltar para o menu principal ou sair do programa
+                cout << "\n\nDeseja voltar ao menu principal? Digite 's' para SIM ou 'n' para NÃO: ";
+                cin >> resposta;
+                if (resposta == "s" || resposta == "S") {
+                    choice = 0; // Reseta a escolha para voltar ao menu
+                    limparTela(); // Limpa a tela para reiniciar o menu
+                } else if (resposta == "n" || resposta == "N") {
+                    continuar = false; // Encerra o loop e o programa
+                } else {
+                    while (resposta != "s" && resposta != "S" && resposta != "n" && resposta != "N") {
+                        cout << "Opção inválida. Digite 's' para SIM ou 'n' para NÃO: ";
+                        cin >> resposta; // Solicita novamente a resposta
+                    }
+                    if (resposta == "s" || resposta == "S") {
+                        choice = 0; // Reseta a escolha para voltar ao menu
+                        limparTela(); // Limpa a tela para reiniciar o menu
+                    } else if (resposta == "n" || resposta == "N") {
+                        continuar = false; // Encerra o loop e o programa
+                    }
+                }
+                break;
+
+            case 2:
+                // Exibe a lista de imóveis
+                cout << "Lista de Imóveis:\n";
+                for (i = 0; i < num_imoveis; i++) {
+                    cout << "Imóvel " << (i + 1) << ": " << imoveis[i].tipo << ", "
+                        << imoveis[i].finalidade << ", "
+                        << imoveis[i].endereco << ", "
+                        << imoveis[i].bairro << ", "
+                        << imoveis[i].cidade << ", "
+                        << imoveis[i].area << " m², "
+                        << "Valor: R$" << imoveis[i].valor << endl;
+                }
+                choice = 1; // Reseta a escolha para voltar ao menu
+                break;
+
+            case 3:
+                // Inclusão de um novo imóvel
+                choice = 1; // Reseta a escolha para voltar ao menu
+                break;
+
+            case 4:
+                // Busca de imóveis por faixa de valores
+                choice = 1; // Reseta a escolha para voltar ao menu
+                break;
+
+            case 5:
+                // Busca de imóveis por características
+                choice = 1; // Reseta a escolha para voltar ao menu
+                break;
+
+            case 6:
+                // Relatório estatístico
+                choice = 1; // Reseta a escolha para voltar ao menu
+                break;
+
+        }
+    }   
+
+    limparTela(); // Limpa a tela antes de encerrar o programa
+    // Mensagem de encerramento
+    cout << "\n\nPrograma encerrado.\n\n";
     return 0;
 }
