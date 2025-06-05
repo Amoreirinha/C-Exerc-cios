@@ -124,7 +124,9 @@ int main() {
     int i; // Variável de controle para loops
     int choice = 0; // Variável para armazenar a escolha do usuário no menu
     string resposta; // Variável para armazenar a resposta do usuário
-    bool continuar = true; // Variável para controlar o loop principal  
+    bool continuar = true; // Variável para controlar o loop principal 
+    float valor_minimo, valor_maximo; // Variáveis para armazenar a faixa de valores para busca
+    bool encontrou = false; // Variável para verificar se algum imóvel foi encontrado na busca
 
     // Leitura do arquivo de imóveis
     ifstream arquivo("BD_Imoveis2.txt");
@@ -251,11 +253,38 @@ int main() {
 
             case 3:
                 // Inclusão de um novo imóvel
+
                 choice = 1; // Reseta a escolha para voltar ao menu
                 break;
 
             case 4:
                 // Busca de imóveis por faixa de valores
+                limparTela(); // Limpa a tela antes de solicitar os valores
+                encontrou = false; // Variável para verificar se algum imóvel foi encontrado na busca
+                cout << "Busca de Imóveis por Faixa de Valores\n";
+                cout << "Digite o valor mínimo: R$";
+                cin >> valor_minimo; // Lê o valor mínimo
+                cout << "Digite o valor máximo: R$";
+                cin >> valor_maximo; // Lê o valor máximo
+                cout << "\nImóveis encontrados na faixa de R$" << valor_minimo << " a R$" << valor_maximo << ":\n";
+                for (i = 0; i < num_imoveis; i++) {
+                    // Verifica se o valor do imóvel está dentro da faixa especificada
+                    if (imoveis[i].valor >= valor_minimo && imoveis[i].valor <= valor_maximo) {
+                        cout << "Imóvel " << (i + 1) << ": " << imoveis[i].tipo << ", "
+                            << imoveis[i].finalidade << ", "
+                            << imoveis[i].endereco << ", "
+                            << imoveis[i].bairro << ", "
+                            << imoveis[i].cidade << ", "
+                            << imoveis[i].area << " m², "
+                            << "Valor: R$" << imoveis[i].valor << endl;
+                            encontrou = true; // Marca que encontrou pelo menos um imóvel
+                    } else if (num_imoveis == 0) {
+                        cout << "Não há imóveis no Banco de Dados.\n";
+                    } else if (!encontrou) {
+                        cout << "Nenhum imóvel encontrado na faixa de R$" << valor_minimo << " a R$" << valor_maximo << ".\n";
+                    }
+                }
+
                 choice = 1; // Reseta a escolha para voltar ao menu
                 break;
 

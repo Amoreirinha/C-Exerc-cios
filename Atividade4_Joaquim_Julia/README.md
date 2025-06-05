@@ -109,6 +109,98 @@ O programa exibirá o menu de opções, e você poderá interagir com ele atrav�
 
 ---
 
+## Explicação do Código-Fonte (main.cpp)
+O arquivo main.cpp contém toda a lógica do programa de gerenciamento de imóveis. A seguir, descrevemos os principais blocos do código para facilitar a compreensão de sua estrutura e funcionamento.
+
+---
+
+## Inclusão de Bibliotecas
+
+```c++
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <string.h>
+#include <cmath>
+```
+
+Essas bibliotecas oferecem funcionalidades essenciais:
+
+* **cstdlib:** Funções utilitárias (como system).
+* **fstream:** Leitura e escrita em arquivos.
+* **iostream:** Entrada e saída de dados pelo console.
+* **string.h:** Manipulação de strings (poderia ser substituída por <string> para uso de std::string).
+* **cmath:** Funções matemáticas, como pow, sqrt, etc.
+
+---
+
+## Função limparTela
+
+```c++
+void limparTela() {
+    cout << "\033[H\033[J";
+}
+```
+
+Utiliza códigos de escape ANSI para limpar o terminal, proporcionando uma melhor experiência visual ao usuário.
+
+---
+
+## Definição da Estrutura imovel
+
+```c++
+struct imovel {
+    string tipo, finalidade, endereco, bairro, cidade;
+    float area, valor, iptu;
+    int quartos, suites, banheiros, vagas;
+    string cozinha, sala, varanda, area_servico;
+    string piso, conservacao;
+    string armarios, ar_condicionado, aquecedor, ventilador;
+};
+```
+
+Cada objeto da estrutura representa um imóvel, com todos os campos refletindo os dados de uma linha do arquivo BD_Imoveis2.txt.
+
+---
+
+## Função Principal ``` main ```
+A função `main()` é responsável por:
+
+* Declarar o vetor de imóveis (imovel imoveis[200]).
+* Chamar funções auxiliares para:
+* Ler dados do arquivo.
+* Apresentar o menu interativo.
+* Executar as opções conforme a escolha do usuário.
+* Gravar os dados atualizados de volta no arquivo.
+
+---
+
+## Funções Auxiliares
+O código está organizado em várias funções auxiliares que realizam tarefas específicas, como:
+
+* **Leitura e escrita no arquivo:** Lê os imóveis do arquivo texto para o vetor e salva as alterações.
+* **Inclusão de imóvel:** Adiciona um novo registro com entrada do usuário.
+* **Filtros de busca:** Permite busca por valor, características, número de quartos, etc.
+* **Relatório estatístico:** Gera estatísticas e percentuais com base nos imóveis cadastrados.
+* **Remoção:** Exclui um imóvel e reorganiza o vetor para evitar espaços vazios.
+
+---
+
+## Manipulação do Arquivo
+A leitura do arquivo ocorre ignorando a primeira linha (cabeçalho) e a última (linha com o campo tipo igual a "fim"). Durante a execução, o vetor é atualizado em tempo real, e os dados são sobrescritos no final da execução para garantir persistência.
+
+---
+
+## Estrutura do Menu
+O menu principal é exibido no terminal, oferecendo ao usuário diversas opções numeradas para interação. Cada escolha leva a uma função correspondente, que realiza a ação desejada (inclusão, busca, estatísticas, listagem etc.).
+
+---
+
+## Considerações Finais
+O código é modular e didático, facilitando futuras manutenções e adições de novas funcionalidades. A utilização de vetores, estruturas e arquivos proporciona uma base sólida para o aprendizado e prática de programação em C++ aplicada a sistemas reais.
+
+---
+
 ## Autores
 
 * **Joaquim Pedro do Nascimento Moreira de Jesus** - Matrícula: 2025.1.08.014
