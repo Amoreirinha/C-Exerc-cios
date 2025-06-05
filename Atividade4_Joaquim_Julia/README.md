@@ -196,6 +196,81 @@ O menu principal é exibido no terminal, oferecendo ao usuário diversas opçõe
 
 ---
 
+## Salvamento Condicional dos Dados
+Ao finalizar o programa, o sistema realiza um processo interativo para confirmar com o usuário se deseja ou não atualizar os dados no arquivo BD_Imoveis2.txt.
+
+```c++
+limparTela(); 
+    cout << "\nDeseja atualizar os dados no arquivo BD_Imoveis2.txt? (s/n): ";
+    cin >> resposta; 
+    while (resposta != "s" && resposta != "S" && resposta != "n" && resposta != "N") {
+        cout << "ERROR - Opção inválida.\n\n";
+        cout << "\nDeseja atualizar os dados no arquivo BD_Imoveis2.txt? (s/n): ";
+        cin >> resposta; 
+    }
+    if (resposta == "s" || resposta == "S") {
+        ofstream arquivo_saida("BD_Imoveis2.txt"); 
+        if (!arquivo_saida.is_open()) {
+            cerr << "Erro ao abrir o arquivo BD_Imoveis2.txt para escrita." << endl;
+            return 1; 
+        }
+        for (i = 0; i < num_imoveis; i++) {
+            arquivo_saida << imoveis[i].tipo << " "
+                          << imoveis[i].finalidade << " "
+                          << imoveis[i].endereco << " "
+                          << imoveis[i].bairro << " "
+                          << imoveis[i].cidade << " "
+                          << imoveis[i].area << " "
+                          << imoveis[i].valor << " "
+                          << imoveis[i].iptu << " "
+                          << imoveis[i].quartos << " "
+                          << imoveis[i].suites << " "
+                          << imoveis[i].banheiros << " "
+                          << imoveis[i].vagas << " "
+                          << imoveis[i].cozinha << " "
+                          << imoveis[i].sala << " "
+                          << imoveis[i].varanda << " "
+                          << imoveis[i].area_servico << " "
+                          << imoveis[i].piso << " "
+                          << imoveis[i].conservacao << " "
+                          << (imoveis[i].armarios_embutidos ? "sim" : "nao") << " "
+                          << (imoveis[i].ar_condicionado ? "sim" : "nao") << " "
+                          << (imoveis[i].aquecedor ? "sim" : "nao") << " "
+                          << (imoveis[i].ventilador ? "sim" : "nao") 
+                          << endl;
+        }
+        arquivo_saida << "fim"; /
+        arquivo_saida.close(); 
+        cout << "\nDados atualizados com sucesso no arquivo BD_Imoveis2.txt.\n";
+    } else {
+        cout << "\nOs dados não foram atualizados no arquivo BD_Imoveis2.txt.\n";
+    }
+    cout << "\n\nPrograma encerrado.\n\n";
+    return 0;
+```
+
+### 🔄 Funcionamento
+1. **Limpeza da tela:** Antes de exibir a pergunta final, a tela é limpa com a função limparTela(), proporcionando uma interface mais limpa para o encerramento.
+2. **Pergunta ao usuário:** O programa exibe a seguinte mensagem no terminal:
+```text
+Deseja atualizar os dados no arquivo BD_Imoveis2.txt? (s/n):
+```
+3. **Validação de entrada:** Se o usuário digitar algo diferente de s, S, n ou N, será informado que a opção é inválida e será solicitado novamente até uma resposta válida ser fornecida.
+4. **Atualização dos dados:**
+* Se o usuário optar por "sim", o programa:
+    * Abre o arquivo BD_Imoveis2.txt em modo de escrita.
+    * Sobrescreve o conteúdo com os dados atualizados dos imóveis.
+    * Conclui o arquivo com a palavra fim, que sinaliza o fim da base de dados.
+    * Informa que a atualização foi realizada com sucesso.
+* Se o usuário escolher "não", o programa apenas exibe uma mensagem informando que os dados não foram alterados.
+
+5. **Encerramento:** Após essa etapa, uma mensagem de encerramento é exibida e o programa termina sua execução.
+
+### 💡 Importante
+Esse mecanismo garante que o usuário tenha controle total sobre a persistência das alterações feitas durante a sessão, evitando alterações acidentais nos dados salvos.
+
+---
+
 ## Considerações Finais
 O código é modular e didático, facilitando futuras manutenções e adições de novas funcionalidades. A utilização de vetores, estruturas e arquivos proporciona uma base sólida para o aprendizado e prática de programação em C++ aplicada a sistemas reais.
 

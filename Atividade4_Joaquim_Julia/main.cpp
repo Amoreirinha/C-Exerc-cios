@@ -364,6 +364,7 @@ int main() {
                           << (imoveis[i].ventilador ? "sim" : "nao") 
                           << endl;
         }
+        arquivo_saida << "fim"; // Adiciona a linha "fim" ao final do arquivo
         arquivo_saida.close(); // Fecha o arquivo após a escrita
         cout << "\nDados atualizados com sucesso no arquivo BD_Imoveis2.txt.\n";
     } else {
