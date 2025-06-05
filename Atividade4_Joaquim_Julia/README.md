@@ -269,6 +269,37 @@ Deseja atualizar os dados no arquivo BD_Imoveis2.txt? (s/n):
 ### 💡 Importante
 Esse mecanismo garante que o usuário tenha controle total sobre a persistência das alterações feitas durante a sessão, evitando alterações acidentais nos dados salvos.
 
+### Utilização de Operador Ternário
+O trecho:
+
+```c++
+(imoveis[i].armarios_embutidos ? "sim" : "nao")
+```
+
+é um operador ternário que serve para simplificar uma estrutura condicional if-else.
+
+#### ✅ O que ele faz:
+Esse código verifica se o campo armarios_embutidos do imóvel atual (imoveis[i]) é true (ou seja, possui armários embutidos). Se for:
+* Retorna `sim`
+* Caso contrário, retorna `nao`
+#### 🔍 Como funciona:
+A sintaxe geral do operador ternário é:
+
+```c++
+(condição) ? valor_se_verdadeiro : valor_se_falso;
+```
+
+No caso do projeto:
+
+```c++
+Condição: imoveis[i].armarios_embutidos
+(campo booleano: true ou false)
+```
+* Se verdadeiro: `sim`
+* Se falso: `nao`
+
+Portanto, essa linha está convertendo o valor booleano para uma representação textual compreensível, que será gravada no arquivo **BD_Imoveis2.txt**.
+
 ---
 
 ## Considerações Finais
