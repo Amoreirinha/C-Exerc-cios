@@ -248,13 +248,13 @@ int main() {
                         << imoveis[i].area << " m², "
                         << "Valor: R$" << imoveis[i].valor << endl;
                 }
-                choice = 1; // Reseta a escolha para voltar ao menu
+                choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
                 break;
 
             case 3:
                 // Inclusão de um novo imóvel
 
-                choice = 1; // Reseta a escolha para voltar ao menu
+                choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
                 break;
 
             case 4:
@@ -264,44 +264,111 @@ int main() {
                 cout << "Busca de Imóveis por Faixa de Valores\n";
                 cout << "Digite o valor mínimo: R$";
                 cin >> valor_minimo; // Lê o valor mínimo
+                // Verifica se o valor mínimo é válido
+                while(valor_minimo < 0) { // Enquanto o valor mínimo for menor que zero
+                    limparTela(); // Limpa a tela para melhor visualização
+                    // Solicita novamente o valor mínimo    
+                    cout << "ERROR - Valor mínimo não pode ser menor do que zero.\n";
+                    cout << "Digite o valor mínimo: R$";
+                    cin >> valor_minimo; // Lê o valor mínimo
+                }               
                 cout << "Digite o valor máximo: R$";
                 cin >> valor_maximo; // Lê o valor máximo
+                while(valor_maximo < valor_minimo) { // Enquanto o valor máximo for menor que o valor mínimo
+                    limparTela(); // Limpa a tela para melhor visualização
+                    // Solicita novamente o valor máximo
+                    cout << "ERROR - Valor máximo não pode ser menor do que o valor mínimo.\n";
+                    cout << "Digite o valor máximo: R$";
+                    cin >> valor_maximo; // Lê o valor máximo
+                }
+                // Exibe os imóveis encontrados na faixa de valores especificada
+                limparTela(); // Limpa a tela para melhor visualização
                 cout << "\nImóveis encontrados na faixa de R$" << valor_minimo << " a R$" << valor_maximo << ":\n";
-                for (i = 0; i < num_imoveis; i++) {
-                    // Verifica se o valor do imóvel está dentro da faixa especificada
-                    if (imoveis[i].valor >= valor_minimo && imoveis[i].valor <= valor_maximo) {
-                        cout << "Imóvel " << (i + 1) << ": " << imoveis[i].tipo << ", "
-                            << imoveis[i].finalidade << ", "
-                            << imoveis[i].endereco << ", "
-                            << imoveis[i].bairro << ", "
-                            << imoveis[i].cidade << ", "
-                            << imoveis[i].area << " m², "
-                            << "Valor: R$" << imoveis[i].valor << endl;
-                            encontrou = true; // Marca que encontrou pelo menos um imóvel
-                    } else if (num_imoveis == 0) {
+                if (num_imoveis == 0) {
                         cout << "Não há imóveis no Banco de Dados.\n";
-                    } else if (!encontrou) {
+                    } else {
+                        for (i = 0; i < num_imoveis; i++) {
+                            // Verifica se o valor do imóvel está dentro da faixa especificada
+                            if (imoveis[i].valor >= valor_minimo && imoveis[i].valor <= valor_maximo) {
+                                cout << "Imóvel " << (i + 1) << ": " << imoveis[i].tipo << ", "
+                                    << imoveis[i].finalidade << ", "
+                                    << imoveis[i].endereco << ", "
+                                    << imoveis[i].bairro << ", "
+                                    << imoveis[i].cidade << ", "
+                                    << imoveis[i].area << " m², "
+                                    << "Valor: R$" << imoveis[i].valor << endl;
+                                    encontrou = true; // Marca que encontrou pelo menos um imóvel
+                            }
+                        }
+                    }
+                if (!encontrou) {
                         cout << "Nenhum imóvel encontrado na faixa de R$" << valor_minimo << " a R$" << valor_maximo << ".\n";
                     }
-                }
 
-                choice = 1; // Reseta a escolha para voltar ao menu
+                choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
                 break;
 
             case 5:
                 // Busca de imóveis por características
-                choice = 1; // Reseta a escolha para voltar ao menu
+                choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
                 break;
 
             case 6:
                 // Relatório estatístico
-                choice = 1; // Reseta a escolha para voltar ao menu
+                choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
                 break;
 
         }
     }   
 
     limparTela(); // Limpa a tela antes de encerrar o programa
+    // Mensagem de encerramento - questiona se deseja atualizar os dados no arquivo BD_Imoveis2.txt
+    cout << "\nDeseja atualizar os dados no arquivo BD_Imoveis2.txt? (s/n): ";
+    cin >> resposta; // Lê a resposta do usuário
+    while (resposta != "s" && resposta != "S" && resposta != "n" && resposta != "N") {
+        cout << "ERROR - Opção inválida.\n\n";
+        cout << "\nDeseja atualizar os dados no arquivo BD_Imoveis2.txt? (s/n): ";
+        cin >> resposta; // Solicita novamente a resposta
+    }
+    if (resposta == "s" || resposta == "S") {
+        // Atualiza os dados no arquivo BD_Imoveis2.txt
+        ofstream arquivo_saida("BD_Imoveis2.txt"); // Abre o arquivo para escrita
+        if (!arquivo_saida.is_open()) {
+            cerr << "Erro ao abrir o arquivo BD_Imoveis2.txt para escrita." << endl;
+            return 1; // Retorna erro se o arquivo não puder ser aberto
+        }
+
+        // Escreve os dados atualizados no arquivo
+        for (i = 0; i < num_imoveis; i++) {
+            arquivo_saida << imoveis[i].tipo << " "
+                          << imoveis[i].finalidade << " "
+                          << imoveis[i].endereco << " "
+                          << imoveis[i].bairro << " "
+                          << imoveis[i].cidade << " "
+                          << imoveis[i].area << " "
+                          << imoveis[i].valor << " "
+                          << imoveis[i].iptu << " "
+                          << imoveis[i].quartos << " "
+                          << imoveis[i].suites << " "
+                          << imoveis[i].banheiros << " "
+                          << imoveis[i].vagas << " "
+                          << imoveis[i].cozinha << " "
+                          << imoveis[i].sala << " "
+                          << imoveis[i].varanda << " "
+                          << imoveis[i].area_servico << " "
+                          << imoveis[i].piso << " "
+                          << imoveis[i].conservacao << " "
+                          << (imoveis[i].armarios_embutidos ? "sim" : "nao") << " "
+                          << (imoveis[i].ar_condicionado ? "sim" : "nao") << " "
+                          << (imoveis[i].aquecedor ? "sim" : "nao") << " "
+                          << (imoveis[i].ventilador ? "sim" : "nao") 
+                          << endl;
+        }
+        arquivo_saida.close(); // Fecha o arquivo após a escrita
+        cout << "\nDados atualizados com sucesso no arquivo BD_Imoveis2.txt.\n";
+    } else {
+        cout << "\nOs dados não foram atualizados no arquivo BD_Imoveis2.txt.\n";
+    }
     // Mensagem de encerramento
     cout << "\n\nPrograma encerrado.\n\n";
     return 0;
