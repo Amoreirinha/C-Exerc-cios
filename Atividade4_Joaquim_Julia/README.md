@@ -191,6 +191,126 @@ A leitura do arquivo ocorre ignorando a primeira linha (cabeçalho) e a última 
 
 ---
 
+## 📥 Leitura dos Dados do Arquivo BD_Imoveis2.txt
+Antes de exibir ou manipular os dados, o programa realiza a leitura inicial do arquivo de imóveis (BD_Imoveis2.txt) para carregar as informações existentes na memória.
+
+```c++
+    ifstream arquivo("BD_Imoveis2.txt");
+    if (!arquivo.is_open()) {
+        cerr << "Erro ao abrir o arquivo BD_Imoveis2.txt" << endl;
+        return 1;
+    }
+    string linha;
+    getline(arquivo, linha);
+    for(i=0; i < MAX_IMOVEIS; i++) {
+        arquivo >> linha;
+        if (linha == "fim") break;
+        imoveis[i].tipo = linha;
+        arquivo >> imoveis[i].finalidade;
+        arquivo >> imoveis[i].endereco;
+        arquivo >> imoveis[i].bairro;
+        arquivo >> imoveis[i].cidade;
+        arquivo >> imoveis[i].area;
+        arquivo >> imoveis[i].valor;
+        arquivo >> imoveis[i].iptu;
+        arquivo >> imoveis[i].quartos;
+        arquivo >> imoveis[i].suites;
+        arquivo >> imoveis[i].banheiros;
+        arquivo >> imoveis[i].vagas;
+        arquivo >> imoveis[i].cozinha;
+        arquivo >> imoveis[i].sala;
+        arquivo >> imoveis[i].varanda;
+        arquivo >> imoveis[i].area_servico;
+        arquivo >> imoveis[i].piso;
+        arquivo >> imoveis[i].conservacao;
+        string armarios, ar_condicionado, aquecedor, ventilador;
+        arquivo >> armarios;
+        imoveis[i].armarios_embutidos = (armarios == "sim");
+        arquivo >> ar_condicionado;
+        imoveis[i].ar_condicionado = (ar_condicionado == "sim");
+        arquivo >> aquecedor;
+        imoveis[i].aquecedor = (aquecedor == "sim");
+        arquivo >> ventilador;
+        imoveis[i].ventilador = (ventilador == "sim");
+        num_imoveis++;
+    }
+    arquivo.close();
+    cout << "Total de imóveis lidos: " << num_imoveis << endl;
+
+    limparTela();
+```
+* **Observação**
+
+    O trecho do código
+    ```c++
+    getline(arquivo, linha);
+    ```
+    lê uma linha inteira do arquivo BD_Imoveis2.txt e armazena o conteúdo na variável linha. No contexto desse código, ela serve para descartar a primeira linha do arquivo, que normalmente contém apenas o cabeçalho (nomes das colunas), evitando que seja processada como um imóvel válido.
+
+    **Resumo:**
+    `getline` lê uma linha completa do arquivo de texto, diferente do operador `>>`, que lê apenas até o próximo espaço.
+
+### Funcionamento:
+1. **Abertura do Arquivo:**
+Utiliza a biblioteca fstream (ifstream) para abrir o arquivo em modo de leitura.
+Se o arquivo não puder ser aberto, o programa exibe uma mensagem de erro e encerra.
+2. **Cabeçalho Ignorado:**
+A primeira linha do arquivo é lida e descartada por conter apenas os nomes das colunas. Isso evita que seja processada como um imóvel válido.
+3. **Leitura das Linhas de Imóveis:**
+Cada linha subsequente do arquivo representa um imóvel.
+A leitura continua até encontrar a palavra-chave fim, que marca o fim dos registros válidos.
+4. **Armazenamento no Vetor de Registros:**
+Cada campo da linha é lido e armazenado na estrutura de dados imovel.
+Os campos booleanos (armarios_embutidos, ar_condicionado, aquecedor, ventilador) são lidos como strings (`sim`/`nao`) e convertidos para valores **`true`** ou **`false`**.
+5. **Controle de Quantidade:**
+O vetor comporta no máximo 200 imóveis, e cada registro lido incrementa o contador num_imoveis.
+6. **Encerramento da Leitura:**
+Após o término da leitura, o arquivo é fechado com segurança.
+O programa então exibe no console a quantidade total de imóveis carregados.
+
+### Exemplo de Uso:
+Se o arquivo contiver 50 imóveis e a linha final for "fim", o console exibirá:
+
+```bash
+Total de imóveis lidos: 50
+```
+### Observações Técnicas
+Utiliza estrutura de repetição for e controle com break para parar na linha "fim".
+
+A conversão de campos `sim` ou `nao` para booleanos é feita com a expressão:
+
+```c++
+imoveis[i].armarios_embutidos = (armarios == "sim");
+```
+
+* **🧠 Como isso funciona, passo a passo:**
+    1. **Leitura da string:**
+        Antes dessa linha, o código já leu o valor do campo como string:
+        ```c++
+        string armarios;
+        arquivo >> armarios;
+        ```
+        Agora, armarios pode conter "sim" ou "nao".
+    2. **Comparação lógica:**
+        ```c++
+        (armarios == "sim")
+        ```
+        Essa expressão compara se o conteúdo da string é exatamente igual a `sim`.
+        * Se for igual, o resultado da comparação é **`true`**.
+        * Se for diferente, o resultado é **`false`**.
+    3. **Atribuição do valor booleano:**
+        O valor **`true`** ou **`false`** é atribuído ao campo:
+        ```c++
+        imoveis[i].armarios_embutidos = (armarios == "sim");
+        ```
+        Assim:
+        * Se o texto no arquivo era `sim`, o campo armarios_embutidos receberá **`true`**.
+        * Se era `nao`, o campo receberá **`false`**.
+
+Essa abordagem garante que todos os imóveis válidos sejam lidos corretamente e que o vetor esteja pronto para as demais operações do sistema.
+
+---
+
 ## Estrutura do Menu
 O menu principal é exibido no terminal, oferecendo ao usuário diversas opções numeradas para interação. Cada escolha leva a uma função correspondente, que realiza a ação desejada (inclusão, busca, estatísticas, listagem etc.).
 
