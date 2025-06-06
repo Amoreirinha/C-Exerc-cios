@@ -427,9 +427,8 @@ O código é modular e didático, facilitando futuras manutenções e adições 
 
 ---
 
-## Autores
+## Autor
 
 * **Joaquim Pedro do Nascimento Moreira de Jesus** - Matrícula: 2025.1.08.014
-* **Júlia Rocha** - Matrícula: 2025.1.08.015
 
 ---
