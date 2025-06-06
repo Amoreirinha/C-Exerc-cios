@@ -134,7 +134,7 @@ int main() {
     string busca_str; // Variável para armazenar a string de busca
     float busca_float; // Variável para armazenar o valor de busca
     int busca_int; // Variável para armazenar o número de quartos ou suítes na busca
-    bool busca_bool; // Variável para armazenar a resposta booleano (sim/não) 
+    bool busca_bool; // Variável para armazenar a resposta booleano (sim/não)
 
     // Leitura do arquivo de imóveis
     ifstream arquivo("BD_Imoveis2.txt");
@@ -204,17 +204,21 @@ int main() {
                 cout << "3. Busca de imóveis por faixa de valores" << endl;
                 cout << "4. Busca de imóveis por características" << endl;
                 cout << "5. Relatório estatístico" << endl;
+                cout << "6. Visualizar um único imóvel" << endl;
+                cout << "7. Edição de um imóvel" << endl;
                 cout << "Escolha uma opção: ";
                 cin >> choice; // Lê a escolha do usuário
-                while(choice < 1 || choice > 5) { // Valida a escolha
+                while(choice < 1 || choice > 7) { // Valida a escolha
                     limparTela(); // Limpa a tela para melhor visualização
-                    cout << "ERROR - Opção inválida.\nPor favor, escolha uma opção entre 1 e 5.\n\n";
+                    cout << "ERROR - Opção inválida.\nPor favor, escolha uma opção entre 1 e 7.\n\n";
                     cout << "Menu de Opções:" << endl;
                     cout << "1. Visualizar Lista de Imóveis" << endl;
                     cout << "2. Inclusão de um novo imóvel" << endl;
                     cout << "3. Busca de imóveis por faixa de valores" << endl;
                     cout << "4. Busca de imóveis por características" << endl;
                     cout << "5. Relatório estatístico" << endl;
+                    cout << "6. Visualizar um único imóvel" << endl;
+                    cout << "7. Edição de um imóvel" << endl;
                     cout << "Escolha uma opção: ";
                     cin >> choice; // Lê a escolha do usuário
                 }
@@ -466,6 +470,15 @@ int main() {
                     // Piso do imóvel
                     cout << "Tipo de piso: ";
                     cin >> imoveis[num_imoveis].piso;
+                    for (size_t j = 0; j < imoveis[num_imoveis].piso.length(); j++) {
+                        if (imoveis[num_imoveis].piso[j] == ' ') {
+                            imoveis[num_imoveis].piso[j] = '_';
+                        } else {
+                            imoveis[num_imoveis].piso[j] = tolower(imoveis[num_imoveis].piso[j]);
+                        }
+                    }
+
+                    // Estado de conservação do imóvel
                     cout << "Estado de conservação: (péssimo, ruim, regular, bom, ótimo, novo) ";                    
                     cin >> imoveis[num_imoveis].conservacao;
                     while(imoveis[num_imoveis].conservacao != "péssimo" && imoveis[num_imoveis].conservacao != "ruim" && 
@@ -609,11 +622,30 @@ int main() {
                 cout << "21. Ventilador\n";
                 cout << "Escolha o número da característica para pesquisar: ";
                 cin >> caract;
+                while(caract < 1 || caract > 21) { // Valida a escolha da característica
+                    limparTela(); // Limpa a tela para melhor visualização
+                    cout << "ERROR - Opção inválida. Por favor, escolha um número entre 1 e 21.\n";
+                    cout << "Escolha o número da característica para pesquisar: ";
+                    cin >> caract; // Lê novamente a escolha da característica
+                }
                 encontrou = false;
                 switch(caract) {
                     case 1:
                         cout << "Digite o tipo: ";
                         cin >> busca_str;
+                        // Formata a string de busca para comparação
+                        for (size_t j = 0; j < busca_str.length(); j++) {
+                            if (busca_str[j] == ' ') {
+                                busca_str[j] = '_'; // Substitui espaços por sublinhados
+                            } else {
+                                busca_str[j] = tolower(busca_str[j]); // Converte para minúsculas
+                            }
+                        }
+                        // Transforma a primeira letra em maiúscula
+                        if (!busca_str.empty()) {
+                            busca_str[0] = toupper(busca_str[0]);
+                        }
+                        
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].tipo == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -623,6 +655,12 @@ int main() {
                     case 2:
                         cout << "Digite a finalidade: ";
                         cin >> busca_str;
+                        while (busca_str != "venda" && busca_str != "locação" && busca_str != "temporada") {
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Finalidade inválida. Digite 'venda', 'locação' ou 'temporada'.\n";
+                            cout << "Digite a finalidade: ";
+                            cin >> busca_str; // Lê novamente a finalidade
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].finalidade == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -632,6 +670,13 @@ int main() {
                     case 3:
                         cout << "Digite o endereço: ";
                         cin >> busca_str;
+                        // Formata a string de busca para comparação
+                        // Formata a string de busca para comparação
+                        for (size_t j = 0; j < busca_str.length(); j++) {
+                            if (busca_str[j] == ' ') {
+                                busca_str[j] = '_'; // Substitui espaços por sublinhados
+                            } 
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].endereco == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -641,6 +686,12 @@ int main() {
                     case 4:
                         cout << "Digite o bairro: ";
                         cin >> busca_str;
+                        // Formata a string de busca para comparação
+                        for (size_t j = 0; j < busca_str.length(); j++) {
+                            if (busca_str[j] == ' ') {
+                                busca_str[j] = '_'; // Substitui espaços por sublinhados
+                            } 
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].bairro == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -650,6 +701,12 @@ int main() {
                     case 5:
                         cout << "Digite a cidade: ";
                         cin >> busca_str;
+                        // Formata a string de busca para comparação
+                        for (size_t j = 0; j < busca_str.length(); j++) {
+                            if (busca_str[j] == ' ') {
+                                busca_str[j] = '_'; // Substitui espaços por sublinhados
+                            } 
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].cidade == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -659,6 +716,12 @@ int main() {
                     case 6:
                         cout << "Digite a área (m²): ";
                         cin >> busca_float;
+                        while(busca_float <= 0) { // Verifica se a área é válida
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Área inválida. A área deve ser maior que zero.\n";
+                            cout << "Digite a área (m²): ";
+                            cin >> busca_float; // Lê novamente a área
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].area == busca_float) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -668,6 +731,12 @@ int main() {
                     case 7:
                         cout << "Digite o valor do IPTU: ";
                         cin >> busca_float;
+                        while(busca_float < 0) { // Verifica se o valor do IPTU é válido
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Valor do IPTU inválido. O valor deve ser maior ou igual a zero.\n";
+                            cout << "Digite o valor do IPTU: ";
+                            cin >> busca_float; // Lê novamente o valor do IPTU
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].iptu == busca_float) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -677,6 +746,13 @@ int main() {
                     case 8:
                         cout << "Digite o número de quartos: ";
                         cin >> busca_int;
+                        while(busca_int < 0) { // Verifica se o número de quartos é válido
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Número de quartos inválido. O número deve ser maior ou igual a zero.\n";
+                            cout << "Digite o número de quartos: ";
+                            cin >> busca_int; // Lê novamente o número de quartos
+                        }
+                        
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].quartos == busca_int) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -686,6 +762,12 @@ int main() {
                     case 9:
                         cout << "Digite o número de suítes: ";
                         cin >> busca_int;
+                        while(busca_int < 0) { // Verifica se o número de suítes é válido
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Número de suítes inválido. O número deve ser maior ou igual a zero.\n";
+                            cout << "Digite o número de suítes: ";
+                            cin >> busca_int; // Lê novamente o número de suítes
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].suites == busca_int) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -695,6 +777,12 @@ int main() {
                     case 10:
                         cout << "Digite o número de banheiros: ";
                         cin >> busca_int;
+                        while(busca_int < 0) { // Verifica se o número de banheiros é válido
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Número de banheiros inválido. O número deve ser maior ou igual a zero.\n";
+                            cout << "Digite o número de banheiros: ";
+                            cin >> busca_int; // Lê novamente o número de banheiros
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].banheiros == busca_int) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -704,6 +792,12 @@ int main() {
                     case 11:
                         cout << "Digite o número de vagas: ";
                         cin >> busca_int;
+                        while(busca_int < 0) { // Verifica se o número de vagas é válido
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Número de vagas inválido. O número deve ser maior ou igual a zero.\n";
+                            cout << "Digite o número de vagas: ";
+                            cin >> busca_int; // Lê novamente o número de vagas
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].vagas == busca_int) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -713,6 +807,12 @@ int main() {
                     case 12:
                         cout << "Possui cozinha? (sim/não): ";
                         cin >> busca_str;
+                        while(busca_str != "sim" && busca_str != "não") { // Verifica se a resposta é válida
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                            cout << "Possui cozinha? (sim/não): ";
+                            cin >> busca_str; // Lê novamente se possui cozinha
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].cozinha == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -722,6 +822,12 @@ int main() {
                     case 13:
                         cout << "Possui sala? (sim/não): ";
                         cin >> busca_str;
+                        while(busca_str != "sim" && busca_str != "não") { // Verifica se a resposta é válida
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                            cout << "Possui sala? (sim/não): ";
+                            cin >> busca_str; // Lê novamente se possui sala
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].sala == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -731,6 +837,12 @@ int main() {
                     case 14:
                         cout << "Possui varanda? (sim/não): ";
                         cin >> busca_str;
+                        while(busca_str != "sim" && busca_str != "não") { // Verifica se a resposta é válida
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                            cout << "Possui varanda? (sim/não): ";
+                            cin >> busca_str; // Lê novamente se possui varanda
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].varanda == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -740,6 +852,12 @@ int main() {
                     case 15:
                         cout << "Possui área de serviço? (sim/não): ";
                         cin >> busca_str;
+                        while(busca_str != "sim" && busca_str != "não") { // Verifica se a resposta é válida
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                            cout << "Possui área de serviço? (sim/não): ";
+                            cin >> busca_str; // Lê novamente se possui área de serviço
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].area_servico == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -749,6 +867,14 @@ int main() {
                     case 16:
                         cout << "Digite o tipo de piso: ";
                         cin >> busca_str;
+                        // Formata a string de busca para comparação
+                        for (size_t j = 0; j < busca_str.length(); j++) {
+                            if (busca_str[j] == ' ') {
+                                busca_str[j] = '_'; // Substitui espaços por sublinhados
+                            } else {
+                                busca_str[j] = tolower(busca_str[j]); // Converte para minúsculas
+                            }
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].piso == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -758,6 +884,14 @@ int main() {
                     case 17:
                         cout << "Digite o estado de conservação: ";
                         cin >> busca_str;
+                        while(busca_str != "péssimo" && busca_str != "ruim" && 
+                              busca_str != "regular" && busca_str != "bom" && 
+                              busca_str != "ótimo" && busca_str != "novo") {
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Estado de conservação inválido. Digite 'péssimo', 'ruim', 'regular', 'bom', 'ótimo' ou 'novo'.\n";
+                            cout << "Digite o estado de conservação: ";
+                            cin >> busca_str; // Lê novamente o estado de conservação
+                        }
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].conservacao == busca_str) {
                                 cout << "Imóvel " << (i+1) << ": " << imoveis[i].tipo << ", " << imoveis[i].finalidade << ", " << imoveis[i].endereco << endl;
@@ -767,6 +901,12 @@ int main() {
                     case 18:
                         cout << "Possui armários embutidos? (sim/não): ";
                         cin >> busca_str;
+                        while(busca_str != "sim" && busca_str != "não") { // Verifica se a resposta é válida
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                            cout << "Possui armários embutidos? (sim/não): ";
+                            cin >> busca_str; // Lê novamente se possui armários embutidos
+                        }
                         busca_bool = (busca_str == "sim");
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].armarios_embutidos == busca_bool) {
@@ -777,6 +917,12 @@ int main() {
                     case 19:
                         cout << "Possui ar-condicionado? (sim/não): ";
                         cin >> busca_str;
+                        while(busca_str != "sim" && busca_str != "não") { // Verifica se a resposta é válida
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                            cout << "Possui ar-condicionado? (sim/não): ";
+                            cin >> busca_str; // Lê novamente se possui ar-condicionado
+                        }
                         busca_bool = (busca_str == "sim");
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].ar_condicionado == busca_bool) {
@@ -787,6 +933,12 @@ int main() {
                     case 20:
                         cout << "Possui aquecedor? (sim/não): ";
                         cin >> busca_str;
+                        while(busca_str != "sim" && busca_str != "não") { // Verifica se a resposta é válida
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                            cout << "Possui aquecedor? (sim/não): ";
+                            cin >> busca_str; // Lê novamente se possui aquecedor
+                        }
                         busca_bool = (busca_str == "sim");
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].aquecedor == busca_bool) {
@@ -797,6 +949,12 @@ int main() {
                     case 21:
                         cout << "Possui ventilador? (sim/não): ";
                         cin >> busca_str;
+                        while(busca_str != "sim" && busca_str != "não") { // Verifica se a resposta é válida
+                            limparTela(); // Limpa a tela para melhor visualização
+                            cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                            cout << "Possui ventilador? (sim/não): ";
+                            cin >> busca_str; // Lê novamente se possui ventilador
+                        }
                         busca_bool = (busca_str == "sim");
                         for (i = 0; i < num_imoveis; i++)
                             if (imoveis[i].ventilador == busca_bool) {
@@ -804,8 +962,6 @@ int main() {
                                 encontrou = true;
                             }
                         break;
-                    default:
-                        cout << "Opção inválida.\n";
                 }
                 if (!encontrou) {
                     cout << "Nenhum imóvel encontrado com essa característica.\n";
@@ -818,8 +974,356 @@ int main() {
                 choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
                 break;
 
-        }
-    }   
+            case 7:
+                // Visualizar um único imóvel
+                limparTela(); // Limpa a tela antes de solicitar o número do imóvel 
+                cout << "Visualizar Imóvel\n";
+                cout << "Digite o número do imóvel (1 a " << num_imoveis << "): ";
+                cin >> i; // Lê o número do imóvel
+                i--; // Ajusta o índice para começar de 0
+                while(i < 0 || i >= num_imoveis) { // Verifica se o número do imóvel é válido
+                    limparTela(); // Limpa a tela para melhor visualização
+                    cout << "ERROR - Número de imóvel inválido. Digite um número entre 1 e " << num_imoveis << ".\n";
+                    cout << "Digite o número do imóvel (1 a " << num_imoveis << "): ";
+                    cin >> i; // Lê novamente o número do imóvel
+                    i--; // Ajusta o índice para começar de 0
+                }
+                    // Exibe os detalhes do imóvel selecionado
+                    cout << "\nDetalhes do Imóvel " << (i + 1) << ":\n";
+                    cout << "Tipo: " << imoveis[i].tipo << endl;
+                    cout << "Finalidade: " << imoveis[i].finalidade << endl;
+                    cout << "Endereço: " << imoveis[i].endereco << endl;
+                    cout << "Bairro: " << imoveis[i].bairro << endl;
+                    cout << "Cidade: " << imoveis[i].cidade << endl;
+                    cout << "Área: " << imoveis[i].area << " m²" << endl;
+                    cout << "Valor: R$" << imoveis[i].valor << endl;
+                    cout << "IPTU: R$" << imoveis[i].iptu << endl;
+                    cout << "Quartos: " << imoveis[i].quartos << endl;
+                    cout << "Suítes: " << imoveis[i].suites << endl;
+                    cout << "Banheiros: " << imoveis[i].banheiros << endl;
+                    cout << "Vagas de garagem: " << imoveis[i].vagas << endl;
+                    cout << "Cozinha: " << imoveis[i].cozinha << endl;
+                    cout << "Sala: " << imoveis[i].sala << endl;
+                    cout << "Varanda: " << imoveis[i].varanda << endl;
+                    cout << "Área de serviço: " << imoveis[i].area_servico<< endl;
+                    cout  <<"Piso: "<<imoveis[i].piso<<endl;
+                    cout  <<"Estado de conservação: "<<imoveis[i].conservacao<<endl;
+                    cout  <<"Armários embutidos: "<<(imoveis[i].armarios_embutidos ? "sim" : "não")<<endl;
+                    cout  <<"Ar-condicionado: "<<(imoveis[i].ar_condicionado ? "sim" : "não")<<endl;
+                    cout  <<"Aquecedor: "<<(imoveis[i].aquecedor ? "sim" : "não")<<endl;
+                    cout  <<"Ventilador: "<<(imoveis[i].ventilador ? "sim" : "não")<<endl;          
+                
+                choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
+                break;
+
+            case 8:
+                // Editar Imóvel
+                limparTela(); // Limpa a tela antes de solicitar o número do imóvel
+                cout << "Editar Imóvel\n";
+                cout << "Digite o número do imóvel (1 a " << num_imoveis << "): ";
+                cin >> i; // Lê o número do imóvel
+                i--; // Ajusta o índice para começar de 0
+                while(i < 0 || i >= num_imoveis) { // Verifica se o número do imóvel é válido
+                    limparTela(); // Limpa a tela para melhor visualização
+                    cout << "ERROR - Número de imóvel inválido. Digite um número entre 1 e " << num_imoveis << ".\n";
+                    cout << "Digite o número do imóvel (1 a " << num_imoveis << "): ";
+                    cin >> i; // Lê novamente o número do imóvel
+                    i--; // Ajusta o índice para começar de 0
+                }
+                // Exibe os detalhes do imóvel selecionado
+                cout << "\nDetalhes do Imóvel " << (i + 1) << ":\n";
+                cout << "Tipo: " << imoveis[i].tipo << endl;
+                cout << "Finalidade: " << imoveis[i].finalidade << endl;
+                cout << "Endereço: " << imoveis[i].endereco << endl;
+                cout << "Bairro: " << imoveis[i].bairro << endl;
+                cout << "Cidade: " << imoveis[i].cidade << endl;
+                cout << "Área: " << imoveis[i].area << " m²" << endl;
+                cout << "Valor: R$" << imoveis[i].valor << endl;
+                cout << "IPTU: R$" << imoveis[i].iptu << endl;
+                cout << "Quartos: " << imoveis[i].quartos << endl;
+                cout << "Suítes: " << imoveis[i].suites << endl;
+                cout << "Banheiros: " << imoveis[i].banheiros << endl;
+                cout << "Vagas de garagem: " << imoveis[i].vagas << endl;
+                cout << "Cozinha: " << imoveis[i].cozinha << endl;
+                cout << "Sala: " << imoveis[i].sala << endl;
+                cout << "Varanda: " << imoveis[i].varanda << endl;
+                cout << "Área de serviço: " << imoveis[i].area_servico<< endl;
+                cout  <<"Piso: "<<imoveis[i].piso<<endl;
+                cout  <<"Estado de conservação: "<<imoveis[i].conservacao<<endl;
+                cout  <<"Armários embutidos: "<<(imoveis[i].armarios_embutidos ? "sim" : "não")<<endl;
+                cout  <<"Ar-condicionado: "<<(imoveis[i].ar_condicionado ? "sim" : "não")<<endl;
+                cout  <<"Aquecedor: "<<(imoveis[i].aquecedor ? "sim" : "não")<<endl;
+                cout  <<"Ventilador: "<<(imoveis[i].ventilador ? "sim" : "não")<<endl;  
+
+                // Solicita ao usuário as novas informações do imóvel
+                cout << "\nDigite as novas informações do imóvel:\n";
+                cout << "Digite o tipo do imóvel (Casa, Apartamento, Sala, etc.): ";
+                    cin >> tipo_temp; // Lê o tipo do imóvel
+                     // Este laço percorre cada caractere da string endereco_temp
+                    // Coloca a primeira letra como maiúscula e o restante como minúscula
+                    if (!tipo_temp.empty()) {
+                        tipo_temp[0] = toupper(tipo_temp[0]);
+                        for (size_t j = 1; j < tipo_temp.length(); j++) {
+                            tipo_temp[j] = tolower(tipo_temp[j]);
+                        }
+                    }
+                    // Substitui espaços por sublinhados
+                    for (size_t j = 0; j < tipo_temp.length(); j++) {
+                        if (tipo_temp[j] == ' ') {
+                            tipo_temp[j] = '_';
+                        }
+                    }
+                    imoveis[i].tipo = tipo_temp; // Armazena o tipo do imóvel
+
+                    // Finalidade do imóvel
+                    cout << "Digite a finalidade (venda, locação, temporada): ";
+                    cin >> imoveis[i].finalidade; // Lê a finalidade do imóvel
+                    while(imoveis[i].finalidade != "venda" && imoveis[i].finalidade != "locação" && imoveis[i].finalidade != "temporada") {
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Finalidade inválida. Digite 'venda', 'locação' ou 'temporada'.\n";
+                        cout << "Digite a finalidade (venda, locação, temporada): ";
+                        cin >> imoveis[i].finalidade; // Lê a finalidade do imóvel
+                    }
+
+                    // Endereço do imóvel
+                    cout << "Digite o endereço: ";
+                    cin >> endereco_temp; // Lê o endereço temporariamente
+                    // Este laço percorre cada caractere da string endereco_temp
+                    // Formata o endereço: primeira letra maiúscula, demais minúsculas, espaços por sublinhado
+                    if (!endereco_temp.empty()) {
+                        endereco_temp[0] = toupper(endereco_temp[0]);
+                        for (size_t j = 1; j < endereco_temp.length(); j++) {
+                            endereco_temp[j] = tolower(endereco_temp[j]);
+                        }
+                    }
+                    for (size_t j = 0; j < endereco_temp.length(); j++) {
+                        if (endereco_temp[j] == ' ') {
+                            endereco_temp[j] = '_';
+                        }
+                    }
+                    imoveis[i].endereco = endereco_temp; // Lê o endereço completo
+
+                    // Bairro
+                    string bairro_temp;
+                    cout << "Digite o bairro: ";
+                    cin >> bairro_temp;
+                    if (!bairro_temp.empty()) {
+                        bairro_temp[0] = toupper(bairro_temp[0]);
+                        for (size_t j = 1; j < bairro_temp.length(); j++) {
+                            bairro_temp[j] = tolower(bairro_temp[j]);
+                        }
+                    }
+                    for (size_t j = 0; j < bairro_temp.length(); j++) {
+                        if (bairro_temp[j] == ' ') {
+                            bairro_temp[j] = '_';
+                        }
+                    }
+                    imoveis[i].bairro = bairro_temp;
+
+                    // Cidade
+                    string cidade_temp;
+                    cout << "Digite a cidade: ";
+                    cin >> cidade_temp;
+                    if (!cidade_temp.empty()) {
+                        cidade_temp[0] = toupper(cidade_temp[0]);
+                        for (size_t j = 1; j < cidade_temp.length(); j++) {
+                            cidade_temp[j] = tolower(cidade_temp[j]);
+                        }
+                    }
+                    for (size_t j = 0; j < cidade_temp.length(); j++) {
+                        if (cidade_temp[j] == ' ') {
+                            cidade_temp[j] = '_';
+                        }
+                    }
+                    imoveis[i].cidade = cidade_temp;
+
+                    // Área do imóvel
+                    cout << "Digite a área em m²: ";
+                    cin >> imoveis[i].area; // Lê a área do imóvel
+                    while(imoveis[i].area <= 0) { // Enquanto a área for menor ou igual a zero
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Área inválida. A área deve ser maior que zero.\n";
+                        cout << "Digite a área em m²: ";
+                        cin >> imoveis[i].area; // Lê novamente a área do imóvel
+                    }
+
+                    // Valor do imóvel
+                    cout << "Digite o valor: R$";
+                    cin >> imoveis[i].valor; // Lê o valor do imóvel
+                    while(imoveis[i].valor <= 0) { // Enquanto o valor for menor ou igual a zero
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Valor inválido. O valor deve ser maior que zero.\n";
+                        cout << "Digite o valor: R$";
+                        cin >> imoveis[i].valor; // Lê novamente o valor do imóvel
+                    }
+
+                    // IPTU do imóvel
+                    cout << "Digite o valor do IPTU: R$";
+                    cin >> imoveis[i].iptu; // Lê o valor do IPTU
+                    while(imoveis[i].iptu < 0) { // Enquanto o valor do IPTU for menor que zero
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Valor do IPTU inválido. O valor deve ser maior ou igual a zero.\n";
+                        cout << "Digite o valor do IPTU: R$";
+                        cin >> imoveis[i].iptu; // Lê novamente o valor do IPTU
+                    }
+
+                    // Características do imóvel
+                    cout << "Digite o número de quartos: ";
+                    cin >> imoveis[i].quartos; // Lê o número de quartos
+                    while(imoveis[i].quartos < 0) { // Enquanto o número de quartos for menor que zero
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Número de quartos inválido. O número deve ser maior ou igual a zero.\n";
+                        cout << "Digite o número de quartos: ";
+                        cin >> imoveis[i].quartos; // Lê novamente o número de quartos
+                    }
+
+                    // Lê o número de suítes
+                    cout << "Digite o número de suítes: ";
+                    cin >> imoveis[i].suites; // Lê o número de suítes
+                    while(imoveis[i].suites < 0) { // Enquanto o número de suítes for menor que zero
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Número de suítes inválido. O número deve ser maior ou igual a zero.\n";
+                        cout << "Digite o número de suítes: ";
+                        cin >> imoveis[i].suites; // Lê novamente o número de suítes
+                    }
+
+                    // Lê o número de banheiros
+                    cout << "Digite o número de banheiros: ";
+                    cin >> imoveis[i].banheiros; // Lê o número de banheiros
+                    while(imoveis[i].banheiros < 0) { // Enquanto o número de banheiros for menor que zero
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Número de banheiros inválido. O número deve ser maior ou igual a zero.\n";
+                        cout << "Digite o número de banheiros: ";
+                        cin >> imoveis[i].banheiros; // Lê novamente o número de banheiros
+                    }
+
+                    // Lê o número de vagas de garagem
+                    cout << "Digite o número de vagas de garagem: ";
+                    cin >> imoveis[i].vagas; // Lê o número de vagas de garagem
+                    while(imoveis[i].vagas < 0) { // Enquanto o número de vagas for menor que zero
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Número de vagas inválido. O número deve ser maior ou igual a zero.\n";
+                        cout << "Digite o número de vagas de garagem: ";
+                        cin >> imoveis[i].vagas; // Lê novamente o número de vagas de garagem
+                    }
+
+                    // Características adicionais do imóvel
+                    // Cozinha
+                    cout << "Possui cozinha? (sim/não): ";
+                    cin >> imoveis[i].cozinha; // Lê se possui cozinha
+                    while(imoveis[i].cozinha != "sim" && imoveis[i].cozinha != "não") {
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                        cout << "Possui cozinha? (sim/não): ";
+                        cin >> imoveis[i].cozinha; // Lê novamente se possui cozinha
+                    }
+
+                    // Sala
+                    cout << "Possui sala? (sim/não): ";
+                    cin >> imoveis[i].sala; // Lê
+                    while(imoveis[i].sala != "sim" && imoveis[i].sala != "não") {
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                        cout << "Possui sala? (sim/não): ";
+                        cin >> imoveis[i].sala; // Lê novamente se possui sala
+                    }
+
+                    // Varanda
+                    cout << "Possui varanda? (sim/não): ";
+                    cin >> imoveis[i].varanda;
+                    while(imoveis[i].varanda != "sim" && imoveis[i].varanda != "não") {
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                        cout << "Possui varanda? (sim/não): ";
+                        cin >> imoveis[i].varanda; // Lê novamente se possui varanda
+                    }
+
+                    // Área de serviço
+                    cout << "Possui área de serviço? (sim/não): ";
+                    cin >> imoveis[i].area_servico;
+                    while(imoveis[i].area_servico != "sim" && imoveis[i].area_servico != "não") {
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                        cout << "Possui área de serviço? (sim/não): ";
+                        cin >> imoveis[i].area_servico; // Lê novamente se possui área de serviço
+                    }
+
+                    // Piso do imóvel
+                    cout << "Tipo de piso: ";
+                    cin >> imoveis[i].piso;
+                    for (size_t j = 0; j < imoveis[i].piso.length(); j++) {
+                        if (imoveis[i].piso[j] == ' ') {
+                            imoveis[i].piso[j] = '_';
+                        } else {
+                            imoveis[i].piso[j] = tolower(imoveis[i].piso[j]);
+                        }
+                    }
+
+                    // Estado de conservação do imóvel
+                    cout << "Estado de conservação: (péssimo, ruim, regular, bom, ótimo, novo) ";
+                    cin >> imoveis[i].conservacao;
+                    while(imoveis[i].conservacao != "péssimo" && imoveis[i].conservacao != "ruim" && 
+                          imoveis[i].conservacao != "regular" && imoveis[i].conservacao != "bom" && 
+                          imoveis[i].conservacao != "ótimo" && imoveis[i].conservacao != "novo") {
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Estado de conservação inválido. Digite 'péssimo', 'ruim', 'regular', 'bom', 'ótimo' ou 'novo'.\n";
+                        cout << "Estado de conservação: (péssimo, ruim, regular, bom, ótimo, novo) ";
+                        cin >> imoveis[i].conservacao; // Lê novamente o estado de conservação
+                    }
+                    
+                    // Características adicionais (armários, ar-condicionado, aquecedor, ventilador)
+                    // Armários embutidos
+                    cout << "Possui armários embutidos? (sim/não): ";
+                    cin >> temp_bool;
+                    while(temp_bool != "sim" && temp_bool != "não") { // Enquanto a resposta não for válida
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                        cout << "Possui armários embutidos? (sim/não): ";
+                        cin >> temp_bool; // Lê novamente se possui armários embutidos
+                    }
+                    imoveis[i].armarios_embutidos = (temp_bool == "sim");
+
+                    // Ar-condicionado
+                    cout << "Possui ar-condicionado? (sim/não): ";
+                    cin >> temp_bool;
+                    while(temp_bool != "sim" && temp_bool != "não") { // Enquanto a resposta não for válida
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                        cout << "Possui ar-condicionado? (sim/não): ";
+                        cin >> temp_bool; // Lê novamente se possui ar-condicionado
+                    }
+                    imoveis[i].ar_condicionado = (temp_bool == "sim");
+
+                    // Aquecedor
+                    cout << "Possui aquecedor? (sim/não): ";
+                    cin >> temp_bool;
+                    while(temp_bool != "sim" && temp_bool != "não") { // Enquanto a resposta não for válida
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                        cout << "Possui aquecedor? (sim/não): ";
+                        cin >> temp_bool; // Lê novamente se possui aquecedor
+                    }
+                    imoveis[i].aquecedor = (temp_bool == "sim");
+
+                    // Ventilador
+                    cout << "Possui ventilador? (sim/não): ";
+                    cin >> temp_bool;
+                    while(temp_bool != "sim" && temp_bool != "não") { // Enquanto a resposta não for válida
+                        limparTela(); // Limpa a tela para melhor visualização
+                        cout << "ERROR - Resposta inválida. Digite 'sim' ou 'não'.\n";
+                        cout << "Possui ventilador? (sim/não): ";
+                        cin >> temp_bool; // Lê novamente se possui ventilador
+                    }
+                    imoveis[i].ventilador = (temp_bool == "sim");
+
+                cout << "\nImóvel editado com sucesso!\n"; // Mensagem de sucesso
+                choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
+                break;
+
+
+            }
+
+    }
 
     limparTela(); // Limpa a tela antes de encerrar o programa
     // Mensagem de encerramento - questiona se deseja atualizar os dados no arquivo BD_Imoveis2.txt
