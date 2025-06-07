@@ -1,0 +1,46 @@
+Relatório Estatístico
+
+Número total de imóveis cadastrados: 200
+Média de valores dos imóveis: R$122383
+Imóvel mais caro: Casa, Valor: R$793859, Endereço: Rua_E_57
+Imóvel mais barato: Casa, Valor: R$806, Endereço: Rua_Q_147
+
+Porcentagem de tipos de imóveis:
+Casa: 36%
+Apartamento: 30%
+Sala: 33%
+Kitnet: 0%
+Sobrado: 0%
+Variados: 0%
+
+Porcentagem de finalidades dos imóveis:
+Venda: 34%
+Locação: 32%
+Temporada: 34%
+
+Porcentagem de imóveis com características adicionais:
+Armários embutidos: 54%
+Ar-condicionado: 53%
+Aquecedor: 49%
+Ventilador: 54%
+
+Porcentagem de imóveis com cômodos específicos:
+Cozinha: 33%
+Sala: 35%
+Varanda: 41%
+Área de serviço: 33%
+
+Porcentagem de estados de conservação dos imóveis:
+Péssimo: 0%
+Ruim: 0%
+Regular: 33%
+Bom: 32%
+Ótimo: 35%
+Novo: 0%
+
+Porcentagem de tipos de piso:
+Cerâmica: 18%
+Madeira: 28%
+Piso frio: 0%
+Piso quente: 0%
+Vários: 53%
