@@ -87,7 +87,24 @@ using namespace std;
 
  void limparTela() {
     // Limpa a tela do console
-    cout << "\033[H\033[J"; // ANSI escape code para limpar a tela
+    cout << "\033[H\033[J"; // ANSI escape code para limpar a tela5
+}
+
+string barradeporcentagem(float valor){
+    string barra = "█"; // Caractere usado para preencher a barra
+    string vazio = "░"; // Caractere usado para representar o espaço vazio
+    int tamanho = 100; // Tamanho total da barra
+    int preenchimento = static_cast<int>(valor); // Calcula o preenchimento da barra
+    string resultado = "[";
+    for (int i = 0; i < tamanho; i++) {
+        if (i < preenchimento) {
+            resultado += barra; // Adiciona o caractere de preenchimento
+        } else {
+            resultado += vazio; // Adiciona o caractere vazio
+        }
+    }
+    resultado += "]"; // Fecha a barra5
+    return resultado;
 }
 
 int main() {
@@ -971,6 +988,175 @@ int main() {
 
             case 6:
                 // Relatório estatístico
+                limparTela(); // Limpa a tela antes de exibir o relatório
+                cout << "Relatório Estatístico\n\n\n";
+                if (num_imoveis == 0) {
+                    cout << "Não há imóveis cadastrados.\n";
+                } else {
+                    // Exibe o número total de imóveis
+                    cout << "\nNúmero total de imóveis cadastrados: " << num_imoveis << endl;
+
+                    // Calcula e exibe a média de valores dos imóveis
+                    float soma_valores = 0;
+                    for (i = 0; i < num_imoveis; i++) {
+                        soma_valores += imoveis[i].valor;
+                    }
+                    float media_valores = soma_valores / num_imoveis;
+                    cout << "\nMédia de valores dos imóveis: R$" << media_valores << endl;
+
+                    // Exibe o imóvel mais caro
+                    int index_mais_caro = 0;
+                    for (i = 1; i < num_imoveis; i++) {
+                        if (imoveis[i].valor > imoveis[index_mais_caro].valor) {
+                            index_mais_caro = i;
+                        }
+                    }
+                    cout << "\nImóvel mais caro: " << imoveis[index_mais_caro].tipo 
+                         << ", Valor: R$" << imoveis[index_mais_caro].valor 
+                         << ", Endereço: " << imoveis[index_mais_caro].endereco << endl;
+
+                    // Exibe o imóvel mais barato
+                    int index_mais_barato = 0;
+                    for (i = 1; i < num_imoveis; i++) {
+                        if (imoveis[i].valor < imoveis[index_mais_barato].valor) {
+                            index_mais_barato = i;
+                        }
+                    }
+                    cout << "\nImóvel mais barato: " << imoveis[index_mais_barato].tipo 
+                         << ", Valor: R$" << imoveis[index_mais_barato].valor 
+                         << ", Endereço: " << imoveis[index_mais_barato].endereco << endl;
+
+                    // Porcentagem de tipos de imóveis
+                    int tipo_casa = 0, tipo_apartamento = 0, tipo_sala = 0, tipo_kitnet = 0, tipo_sobrado = 0, tipo_variados = 0;
+                    for (i = 0; i < num_imoveis; i++) {
+                        if (imoveis[i].tipo == "Casa") {
+                            tipo_casa++;
+                        } else if (imoveis[i].tipo == "Apartamento") {
+                            tipo_apartamento++;
+                        } else if (imoveis[i].tipo == "Sala") {
+                            tipo_sala++;
+                        } else if (imoveis[i].tipo == "Kitnet") {
+                            tipo_kitnet++;
+                        } else if (imoveis[i].tipo == "Sobrado") {
+                            tipo_sobrado++;
+                        } else {
+                            tipo_variados++;
+                        }
+                    }
+                    cout << "\n\nPorcentagem de tipos de imóveis:\n";
+                    cout << "Casa: " << (tipo_casa * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(tipo_casa * 100 / num_imoveis) << endl << endl ;
+                    cout << "Apartamento: " << (tipo_apartamento * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(tipo_apartamento * 100 / num_imoveis) << endl << endl ;
+                    cout << "Sala: " << (tipo_sala * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(tipo_sala * 100 / num_imoveis) << endl << endl ;
+                    cout << "Kitnet: " << (tipo_kitnet * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(tipo_kitnet * 100 / num_imoveis) << endl << endl ;
+                    cout << "Sobrado: " << (tipo_sobrado * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(tipo_sobrado * 100 / num_imoveis) << endl << endl ;
+                    cout << "Variados: " << (tipo_variados * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(tipo_variados * 100 / num_imoveis) << endl << endl ;
+
+                    cout << "\n\nPorcentagem de finalidades dos imóveis:\n";
+                    int finalidade_venda = 0, finalidade_locacao = 0, finalidade_temporada = 0;
+                    for (i = 0; i < num_imoveis; i++) {
+                        if (imoveis[i].finalidade == "venda") {
+                            finalidade_venda++;
+                        } else if (imoveis[i].finalidade == "locação") {
+                            finalidade_locacao++;
+                        } else if (imoveis[i].finalidade == "temporada") {
+                            finalidade_temporada++;
+                        }
+                    }
+                    cout << "Venda: " << (finalidade_venda * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(finalidade_venda * 100 / num_imoveis) << endl << endl ;
+                    cout << "Locação: " << (finalidade_locacao * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(finalidade_locacao * 100 / num_imoveis) << endl << endl ;
+                    cout << "Temporada: " << (finalidade_temporada * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(finalidade_temporada * 100 / num_imoveis) << endl << endl ;
+
+                    cout << "\n\nPorcentagem de imóveis com características adicionais:\n";
+                    int armarios_embutidos = 0, ar_condicionado = 0, aquecedor = 0, ventilador = 0;
+                    for (i = 0; i < num_imoveis; i++) {
+                        if (imoveis[i].armarios_embutidos) {
+                            armarios_embutidos++;
+                        }
+                        if (imoveis[i].ar_condicionado) {
+                            ar_condicionado++;
+                        }
+                        if (imoveis[i].aquecedor) {
+                            aquecedor++;
+                        }
+                        if (imoveis[i].ventilador) {
+                            ventilador++;
+                        }
+                    }
+                    cout << "Armários embutidos: " << (armarios_embutidos * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(armarios_embutidos * 100 / num_imoveis) << endl << endl;
+                    cout << "Ar-condicionado: " << (ar_condicionado * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(ar_condicionado * 100 / num_imoveis) << endl << endl;
+                    cout << "Aquecedor: " << (aquecedor * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(aquecedor * 100 / num_imoveis) << endl << endl;
+                    cout << "Ventilador: " << (ventilador * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(ventilador * 100 / num_imoveis) << endl << endl;
+
+                    cout << "\n\nPorcentagem de imóveis com cômodos específicos:\n";
+                    int cozinha = 0, sala = 0, varanda = 0, area_servico = 0;
+                    for (i = 0; i < num_imoveis; i++) {
+                        if (imoveis[i].cozinha == "sim") {
+                            cozinha++;
+                        }
+                        if (imoveis[i].sala == "sim") {
+                            sala++;
+                        }
+                        if (imoveis[i].varanda == "sim") {
+                            varanda++;
+                        }
+                        if (imoveis[i].area_servico == "sim") {
+                            area_servico++;
+                        }
+                    }
+                    cout << "Cozinha: " << (cozinha * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(cozinha * 100 / num_imoveis) << endl << endl;
+                    cout << "Sala: " << (sala * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(sala * 100 / num_imoveis) << endl << endl;
+                    cout << "Varanda: " << (varanda * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(varanda * 100 / num_imoveis) << endl << endl;
+                    cout << "Área de serviço: " << (area_servico * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(area_servico * 100 / num_imoveis) << endl << endl;
+                    
+                    cout << "\n\nPorcentagem de estados de conservação dos imóveis:\n";
+                    int conservacao_pessimo = 0, conservacao_ruim = 0, conservacao_regular = 0, conservacao_bom = 0, conservacao_otimo = 0, conservacao_novo = 0;
+                    for (i = 0; i < num_imoveis; i++) {
+                        if (imoveis[i].conservacao == "péssimo") {
+                            conservacao_pessimo++;
+                        } else if (imoveis[i].conservacao == "ruim") {
+                            conservacao_ruim++;
+                        } else if (imoveis[i].conservacao == "regular") {
+                            conservacao_regular++;
+                        } else if (imoveis[i].conservacao == "bom") {
+                            conservacao_bom++;
+                        } else if (imoveis[i].conservacao == "ótimo") {
+                            conservacao_otimo++;
+                        } else if (imoveis[i].conservacao == "novo") {
+                            conservacao_novo++;
+                        }
+                    }
+
+                    cout << "Péssimo: " << (conservacao_pessimo * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(conservacao_pessimo * 100 / num_imoveis) << endl << endl;
+                    cout << "Ruim: " << (conservacao_ruim * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(conservacao_ruim * 100 / num_imoveis) << endl << endl;
+                    cout << "Regular: " << (conservacao_regular * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(conservacao_regular * 100 / num_imoveis) << endl << endl;
+                    cout << "Bom: " << (conservacao_bom * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(conservacao_bom * 100 / num_imoveis) << endl << endl;
+                    cout << "Ótimo: " << (conservacao_otimo * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(conservacao_otimo * 100 / num_imoveis) << endl << endl;
+                    cout << "Novo: " << (conservacao_novo * 100 / num_imoveis) << "%\n";
+                    cout << barradeporcentagem(conservacao_novo * 100 / num_imoveis) << endl << endl;
+
+                }
                 choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
                 break;
 
