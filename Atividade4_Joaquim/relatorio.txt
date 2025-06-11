@@ -1,46 +1,67 @@
 Relatório Estatístico
 
-Número total de imóveis cadastrados: 200
-Média de valores dos imóveis: R$122383
-Imóvel mais caro: Casa, Valor: R$793859, Endereço: Rua_E_57
-Imóvel mais barato: Casa, Valor: R$806, Endereço: Rua_Q_147
+Número total de imóveis cadastrados: 112
+Média de valores dos imóveis: R$215845
+Média de área dos imóveis: 875 m²
+Média de IPTU dos imóveis: R$763
+Média de quartos dos imóveis: 1
+Média de suítes dos imóveis: 0
+Média de banheiros dos imóveis: 1
+Média de vagas dos imóveis: 1
+Imóvel mais caro: galpão, Valor: R$1.3e+06, Endereço: Avenida_Industrial_II
+Imóvel mais barato: casa, Valor: R$300, Endereço: Avenida_Beira_Lago
 
 Porcentagem de tipos de imóveis:
-Casa: 36%
-Apartamento: 30%
-Sala: 33%
+Casa: 19%
+[███████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+Apartamento: 20%
+[████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+Sala: 19%
+[███████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
 Kitnet: 0%
+[░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
 Sobrado: 0%
-Variados: 0%
+[░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+Variados: 40%
+[████████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
 
 Porcentagem de finalidades dos imóveis:
-Venda: 34%
-Locação: 32%
-Temporada: 34%
+Venda: 46%
+[██████████████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+Locação: 0%
+[░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+Temporada: 7%
+[███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+Aluguel: 46%
+[██████████████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
 
 Porcentagem de imóveis com características adicionais:
-Armários embutidos: 54%
-Ar-condicionado: 53%
-Aquecedor: 49%
-Ventilador: 54%
+Armários embutidos: 33%
+[█████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+Ar-condicionado: 35%
+[███████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+Aquecedor: 16%
+[████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
+Ventilador: 28%
+[████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]
 
 Porcentagem de imóveis com cômodos específicos:
-Cozinha: 33%
-Sala: 35%
-Varanda: 41%
-Área de serviço: 33%
+Cozinha: 59%
+Sala: 79%
+Varanda: 33%
+Área de serviço: 59%
 
 Porcentagem de estados de conservação dos imóveis:
 Péssimo: 0%
 Ruim: 0%
-Regular: 33%
-Bom: 32%
-Ótimo: 35%
-Novo: 0%
+Regular: 0%
+Bom: 0%
+Ótimo: 0%
+Novo: 47%
 
 Porcentagem de tipos de piso:
-Cerâmica: 18%
-Madeira: 28%
+Cerâmica: 25%
+Madeira: 0%
 Piso frio: 0%
 Piso quente: 0%
-Vários: 53%
+Vários: 75%

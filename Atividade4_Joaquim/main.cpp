@@ -77,7 +77,6 @@
 #include <fstream>  // Para manipulação de arquivos
 #include <iostream> // Para entrada/saída
 #include <string.h> // Para manipulação de strings
-#include <cmath>    // Para fórmulas matemáticas
 
 using namespace std;
 
@@ -165,13 +164,15 @@ int main()
     float media_valores = 0;                                                                                                                      // Variável para armazenar a média dos valores dos imóveis
     int index_mais_caro = 0;                                                                                                                      // Índice do imóvel mais caro
     int index_mais_barato = 0;                                                                                                                    // Índice do imóvel mais barato
-    int tipo_casa = 0, tipo_apartamento = 0, tipo_sala = 0, tipo_kitnet = 0, tipo_sobrado = 0, tipo_variados = 0;                                 // Contadores para tipos de imóveis
+    int tipo_casa = 0, tipo_apartamento = 0, tipo_sala = 0, tipo_kitnet = 0, tipo_sobrado = 0, tipo_variados = 0, tipo_terreno = 0, tipo_galpao = 0; // Contadores para tipos de imóveis
     int finalidade_venda = 0, finalidade_locacao = 0, finalidade_temporada = 0, finalidade_aluguel = 0;                                           // Contadores para finalidades dos imóveis
     int armarios_embutidos = 0, ar_condicionado = 0, aquecedor = 0, ventilador = 0;                                                               // Contadores para características adicionais dos imóveis
     int cozinha = 0, sala = 0, varanda = 0, area_servico = 0;                                                                                     // Contadores para características de cômodos
     int conservacao_pessimo = 0, conservacao_ruim = 0, conservacao_regular = 0, conservacao_bom = 0, conservacao_otimo = 0, conservacao_novo = 0; // Contadores para estados de conservação
     int piso_ceramica = 0, piso_madeira = 0, piso_piso_frio = 0, piso_piso_quente = 0, piso_varios = 0;                                           // Contadores para tipos de piso
     int soma_area = 0, soma_iptu = 0, soma_quartos = 0, soma_suites = 0, soma_banheiros = 0, soma_vagas = 0;
+    string bairro_temp; // Variável temporária para armazenar o bairro
+    string cidade_temp; // Variável temporária para armazenar a cidade  
 
     // Leitura do arquivo de imóveis
     ifstream arquivo("BD_Imoveis2.txt");
@@ -248,9 +249,10 @@ int main()
             cout << "5. Relatório estatístico" << endl;
             cout << "6. Visualizar um único imóvel" << endl;
             cout << "7. Edição de um imóvel" << endl;
+            cout << "8. Exclusão de um imóvel" << endl;
             cout << "Escolha uma opção: ";
             cin >> choice; // Lê a escolha do usuário
-            while (choice < 1 || choice > 7)
+            while (choice < 1 || choice > 8)
             {                 // Valida a escolha
                 limparTela(); // Limpa a tela para melhor visualização
                 cout << "ERROR - Opção inválida.\nPor favor, escolha uma opção entre 1 e 7.\n\n";
@@ -262,6 +264,7 @@ int main()
                 cout << "5. Relatório estatístico" << endl;
                 cout << "6. Visualizar um único imóvel" << endl;
                 cout << "7. Edição de um imóvel" << endl;
+                cout << "8. Exclusão de um imóvel" << endl;
                 cout << "Escolha uma opção: ";
                 cin >> choice; // Lê a escolha do usuário
             }
@@ -341,7 +344,7 @@ int main()
                 // Tipo do imóvel
                 (limparTela()); // Limpa a tela para melhor visualização
                 cout << "Digite o tipo do imóvel (Casa, Apartamento, Sala, etc.): ";
-                cin.ignore();            // Limpa o buffer do cin antes de getline
+                cin.ignore(); // Limpa o buffer do cin antes do primeiro getline
                 getline(cin, tipo_temp); // Lê o tipo temporariamente
                 // Este laço percorre cada caractere da string endereco_temp
                 // Coloca como minúscula
@@ -376,7 +379,6 @@ int main()
 
                 // Endereço do imóvel
                 cout << "Digite o endereço: ";
-                cin.ignore();                // Limpa o buffer do cin antes de getline
                 getline(cin, endereco_temp); // Lê o endereço temporariamente
                 // Este laço percorre cada caractere da string endereco_temp
                 // Formata o endereço: espaços por sublinhado
@@ -392,8 +394,7 @@ int main()
                 // Bairro
                 string bairro_temp;
                 cout << "Digite o bairro: ";
-                cin.ignore();              // Limpa o buffer do cin antes de getline
-                getline(cin, bairro_temp); // Lê o endereço temporariamente
+                getline(cin, bairro_temp); // Lê o bairro
                 if (!bairro_temp.empty())
                 {
                     bairro_temp[0] = toupper(bairro_temp[0]);
@@ -414,8 +415,7 @@ int main()
                 // Cidade
                 string cidade_temp;
                 cout << "Digite a cidade: ";
-                cin.ignore();              // Limpa o buffer do cin antes de getline
-                getline(cin, cidade_temp); // Lê o endereço temporariamente
+                getline(cin, cidade_temp); // Lê a cidade
                 if (!cidade_temp.empty())
                 {
                     cidade_temp[0] = toupper(cidade_temp[0]);
@@ -736,12 +736,13 @@ int main()
                 cout << "Escolha o número da característica para pesquisar: ";
                 cin >> caract; // Lê novamente a escolha da característica
             }
-            encontrou = false;
-            switch (caract)
+
+            switch(caract)
             {
             case 1:
                 cout << "Digite o tipo: ";
-                cin >> busca_str;
+                cin.ignore();                // Limpa o buffer do cin antes de getline
+                getline(cin, busca_str); // Lê o tipo do imóvel
                 // Formata a string de busca para comparação
                 for (size_t j = 0; j < busca_str.length(); j++)
                 {
@@ -763,7 +764,8 @@ int main()
                 break;
             case 2:
                 cout << "Digite a finalidade: ";
-                cin >> busca_str;
+                cin.ignore();                // Limpa o buffer do cin antes de getline
+                getline(cin, busca_str);
                 while (busca_str != "venda" && busca_str != "locação" && busca_str != "temporada" && busca_str != "aluguel")
                 {                 // Enquanto a finalidade não for válida
                     limparTela(); // Limpa a tela para melhor visualização
@@ -780,7 +782,8 @@ int main()
                 break;
             case 3:
                 cout << "Digite o endereço: ";
-                cin >> busca_str;
+                cin.ignore();                // Limpa o buffer do cin antes de getline
+                getline(cin, busca_str); // Lê o endereço do imóvel
                 // Formata a string de busca para comparação
                 // Formata a string de busca para comparação
                 for (size_t j = 0; j < busca_str.length(); j++)
@@ -799,13 +802,18 @@ int main()
                 break;
             case 4:
                 cout << "Digite o bairro: ";
-                cin >> busca_str;
+                cin.ignore();                // Limpa o buffer do cin antes de getline
+                getline(cin, busca_str);
                 // Formata a string de busca para comparação
-                for (size_t j = 0; j < busca_str.length(); j++)
+                busca_str[0] = toupper(busca_str[0]); // Converte a primeira letra para maiúscula
+                for (size_t j = 1; j < busca_str.length(); j++)
                 {
+
                     if (busca_str[j] == ' ')
                     {
                         busca_str[j] = '_'; // Substitui espaços por sublinhados
+                    } else {
+                        busca_str[j] = tolower(busca_str[j]); // Converte para minúsculas
                     }
                 }
                 for (i = 0; i < num_imoveis; i++)
@@ -817,15 +825,21 @@ int main()
                 break;
             case 5:
                 cout << "Digite a cidade: ";
-                cin >> busca_str;
+                cin.ignore();                // Limpa o buffer do cin antes de getline
+                getline(cin, busca_str); // Lê a cidade do imóvel
                 // Formata a string de busca para comparação
-                for (size_t j = 0; j < busca_str.length(); j++)
+                busca_str[0] = toupper(busca_str[0]); // Converte a primeira letra para maiúscula
+                for (size_t j = 1; j < busca_str.length(); j++)
                 {
+
                     if (busca_str[j] == ' ')
                     {
                         busca_str[j] = '_'; // Substitui espaços por sublinhados
+                    } else {
+                        busca_str[j] = tolower(busca_str[j]); // Converte para minúsculas
                     }
                 }
+                
                 for (i = 0; i < num_imoveis; i++)
                     if (imoveis[i].cidade == busca_str)
                     {
@@ -1147,7 +1161,7 @@ int main()
                 soma_banheiros = 0;
                 soma_vagas = 0;
                 index_mais_caro = 0;
-                tipo_casa = 0, tipo_apartamento = 0, tipo_sala = 0, tipo_kitnet = 0, tipo_sobrado = 0, tipo_variados = 0;
+                tipo_casa = 0, tipo_apartamento = 0, tipo_sala = 0, tipo_kitnet = 0, tipo_sobrado = 0, tipo_variados = 0, tipo_terreno = 0, tipo_galpao = 0;
                 finalidade_venda = 0, finalidade_locacao = 0, finalidade_temporada = 0;
                 armarios_embutidos = 0, ar_condicionado = 0, aquecedor = 0, ventilador = 0;
                 index_mais_barato = 0;
@@ -1163,130 +1177,98 @@ int main()
                     soma_suites += imoveis[i].suites;
                     soma_banheiros += imoveis[i].banheiros;
                     soma_vagas += imoveis[i].vagas;
-                    // Soma os valores de cada característica para calcular a média posteriormente
-                    if (imoveis[i].valor > imoveis[index_mais_caro].valor)
-                    {
+                    
+                    if (imoveis[i].valor > imoveis[index_mais_caro].valor){
                         index_mais_caro = i;
                     }
-                    if (imoveis[i].tipo == "casa")
-                    {
+                    
+                    if (imoveis[i].tipo == "casa"){
                         tipo_casa++;
-                    }
-                    else if (imoveis[i].tipo == "apartamento")
-                    {
+                    }else if (imoveis[i].tipo == "apartamento"){
                         tipo_apartamento++;
-                    }
-                    else if (imoveis[i].tipo == "sala_comercial")
-                    {
+                    }else if (imoveis[i].tipo == "sala_comercial"){
                         tipo_sala++;
-                    }
-                    else if (imoveis[i].tipo == "kitnet")
-                    {
+                    }else if (imoveis[i].tipo == "kitnet"){
                         tipo_kitnet++;
-                    }
-                    else if (imoveis[i].tipo == "sobrado")
-                    {
+                    }else if (imoveis[i].tipo == "sobrado"){
                         tipo_sobrado++;
-                    }
-                    else
-                    {
+                    }else if (imoveis[i].tipo == "terreno"){
+                        tipo_terreno++;
+                    }else if (imoveis[i].tipo == "galpão"){
+                        tipo_galpao++;
+                    }else{
                         tipo_variados++;
                     }
-                    if (imoveis[i].finalidade == "venda")
-                    {
+
+                    if (imoveis[i].finalidade == "venda"){
                         finalidade_venda++;
-                    }
-                    else if (imoveis[i].finalidade == "locação")
-                    {
+                    }else if (imoveis[i].finalidade == "locação"){
                         finalidade_locacao++;
-                    }
-                    else if (imoveis[i].finalidade == "temporada")
-                    {
+                    }else if (imoveis[i].finalidade == "temporada"){
                         finalidade_temporada++;
-                    }
-                    else if (imoveis[i].finalidade == "aluguel")
-                    {
+                    }else if (imoveis[i].finalidade == "aluguel"){
                         finalidade_aluguel++;
                     }
 
-                    if (imoveis[i].armarios_embutidos)
-                    {
+                    if (imoveis[i].armarios_embutidos){
                         armarios_embutidos++;
                     }
-                    if (imoveis[i].ar_condicionado)
-                    {
+
+                    if (imoveis[i].ar_condicionado){
                         ar_condicionado++;
                     }
-                    if (imoveis[i].aquecedor)
-                    {
+
+                    if (imoveis[i].aquecedor){
                         aquecedor++;
                     }
-                    if (imoveis[i].ventilador)
-                    {
+
+                    if (imoveis[i].ventilador){
                         ventilador++;
                     }
-                    if (imoveis[i].valor < imoveis[index_mais_barato].valor)
-                    {
+
+                    if (imoveis[i].valor < imoveis[index_mais_barato].valor){
                         index_mais_barato = i;
                     }
-                    if (imoveis[i].cozinha == "sim")
-                    {
+
+                    if (imoveis[i].cozinha == "sim"){
                         cozinha++;
                     }
-                    if (imoveis[i].sala == "sim")
-                    {
+
+                    if (imoveis[i].sala == "sim"){
                         sala++;
                     }
-                    if (imoveis[i].varanda == "sim")
-                    {
+
+                    if (imoveis[i].varanda == "sim"){
                         varanda++;
                     }
-                    if (imoveis[i].area_servico == "sim")
-                    {
+
+                    if (imoveis[i].area_servico == "sim"){
                         area_servico++;
                     }
-                    if (imoveis[i].conservacao == "péssimo")
-                    {
+
+                    if (imoveis[i].conservacao == "péssimo"){
                         conservacao_pessimo++;
-                    }
-                    else if (imoveis[i].conservacao == "ruim")
-                    {
+                    }else if (imoveis[i].conservacao == "ruim"){
                         conservacao_ruim++;
-                    }
-                    else if (imoveis[i].conservacao == "regular")
-                    {
+                    }else if (imoveis[i].conservacao == "regular"){
                         conservacao_regular++;
-                    }
-                    else if (imoveis[i].conservacao == "bom")
-                    {
+                    }else if (imoveis[i].conservacao == "bom"){
                         conservacao_bom++;
-                    }
-                    else if (imoveis[i].conservacao == "ótimo")
-                    {
+                    }else if (imoveis[i].conservacao == "ótimo"){
                         conservacao_otimo++;
-                    }
-                    else if (imoveis[i].conservacao == "novo")
-                    {
+                    }else if (imoveis[i].conservacao == "novo"){
                         conservacao_novo++;
                     }
-                    if (imoveis[i].piso == "cerâmica")
-                    {
+
+                    if (imoveis[i].piso == "cerâmica"){
                         piso_ceramica++;
-                    }
-                    else if (imoveis[i].piso == "madeira")
-                    {
+                    }else if (imoveis[i].piso == "madeira"){
                         piso_madeira++;
-                    }
-                    else if (imoveis[i].piso == "piso frio")
-                    {
+                    }else if (imoveis[i].piso == "piso frio"){
                         piso_piso_frio++;
-                    }
-                    else if (imoveis[i].piso == "piso quente")
-                    {
+                    }else if (imoveis[i].piso == "piso quente"){
                         piso_piso_quente++;
-                    }
-                    else
-                    {
+                    }else{
                         piso_varios++;
                     }
                 }
@@ -1328,6 +1310,12 @@ int main()
                      << endl;
                 cout << "Sobrado: " << (tipo_sobrado * 100 / num_imoveis) << "%\n";
                 cout << barradeporcentagem(tipo_sobrado * 100 / num_imoveis) << endl
+                     << endl;
+                cout << "Terreno: " << (tipo_terreno * 100 / num_imoveis) << "%\n";
+                cout << barradeporcentagem(tipo_terreno * 100 / num_imoveis) << endl
+                     << endl;
+                cout << "Galpão: " << (tipo_galpao * 100 / num_imoveis) << "%\n";
+                cout << barradeporcentagem(tipo_galpao * 100 / num_imoveis) << endl
                      << endl;
                 cout << "Variados: " << (tipo_variados * 100 / num_imoveis) << "%\n";
                 cout << barradeporcentagem(tipo_variados * 100 / num_imoveis) << endl
@@ -1428,7 +1416,7 @@ int main()
                 {
                     // Abre o arquivo para escrita
                     ofstream arquivo_relatorio("relatorio.txt");
-                    if (arquivo.is_open())
+                    if (arquivo_relatorio.is_open())
                     {
                         // Escreve o relatório no arquivo
                         arquivo_relatorio << "Relatório Estatístico\n\n";
@@ -1457,6 +1445,10 @@ int main()
                         arquivo_relatorio << barradeporcentagem(tipo_kitnet * 100 / num_imoveis) << "\n";
                         arquivo_relatorio << "Sobrado: " << (tipo_sobrado * 100 / num_imoveis) << "%\n";
                         arquivo_relatorio << barradeporcentagem(tipo_sobrado * 100 / num_imoveis) << "\n";
+                        arquivo_relatorio << "Terreno: " << (tipo_terreno * 100 / num_imoveis) << "%\n";
+                        arquivo_relatorio << barradeporcentagem(tipo_terreno * 100 / num_imoveis) << "\n";
+                        arquivo_relatorio << "Galpão: " << (tipo_galpao * 100 / num_imoveis) << "%\n";
+                        arquivo_relatorio << barradeporcentagem(tipo_galpao * 100 / num_imoveis) << "\n";
                         arquivo_relatorio << "Variados: " << (tipo_variados * 100 / num_imoveis) << "%\n";
                         arquivo_relatorio << barradeporcentagem(tipo_variados * 100 / num_imoveis) << "\n";
                         arquivo_relatorio << "\nPorcentagem de finalidades dos imóveis:\n";
@@ -1596,7 +1588,7 @@ int main()
             cout << "Digite o tipo do imóvel (Casa, Apartamento, Sala, etc.): ";
             cin.ignore();            // Limpa o buffer do cin antes de getline
             getline(cin, tipo_temp); // Lê o tipo temporariamente
-            // Este laço percorre cada caractere da string endereco_temp
+            // Este laço percorre cada caractere da string tipo_temp
             // Coloca como minúscula
             if (!tipo_temp.empty())
             {
@@ -1622,8 +1614,8 @@ int main()
                    imoveis[i].finalidade != "aluguel")
             {                 // Enquanto a finalidade não for válida
                 limparTela(); // Limpa a tela para melhor visualização
-                cout << "ERROR - Finalidade inválida. Digite 'venda', 'locação' ou 'temporada'.\n";
-                cout << "Digite a finalidade (venda, locação, temporada): ";
+                cout << "ERROR - Finalidade inválida. Digite 'venda', 'locação', 'aluguel' ou 'temporada'.\n";
+                cout << "Digite a finalidade (venda, locação, temporada, aluguel): ";
                 cin >> imoveis[i].finalidade; // Lê a finalidade do imóvel
             }
 
@@ -1631,7 +1623,6 @@ int main()
             cout << "Digite o endereço: ";
             cin.ignore();                // Limpa o buffer do cin antes de getline
             getline(cin, endereco_temp); // Lê o endereço temporariamente
-            // Este laço percorre cada caractere da string endereco_temp
             // Formata o endereço: espaços por sublinhado
             for (size_t j = 0; j < endereco_temp.length(); j++)
             {
@@ -1643,10 +1634,8 @@ int main()
             imoveis[i].endereco = endereco_temp; // Lê o endereço completo
 
             // Bairro
-            string bairro_temp;
             cout << "Digite o bairro: ";
-            cin.ignore();              // Limpa o buffer do cin antes de getline
-            getline(cin, bairro_temp); // Lê o endereço temporariamente
+            getline(cin, bairro_temp); // Lê o bairro
             if (!bairro_temp.empty())
             {
                 bairro_temp[0] = toupper(bairro_temp[0]);
@@ -1665,10 +1654,8 @@ int main()
             imoveis[i].bairro = bairro_temp;
 
             // Cidade
-            string cidade_temp;
             cout << "Digite a cidade: ";
-            cin.ignore();              // Limpa o buffer do cin antes de getline
-            getline(cin, cidade_temp); // Lê o endereço temporariamente
+            getline(cin, cidade_temp); // Lê a cidade
             if (!cidade_temp.empty())
             {
                 cidade_temp[0] = toupper(cidade_temp[0]);
@@ -1888,6 +1875,29 @@ int main()
             cout << "\nImóvel editado com sucesso!\n"; // Mensagem de sucesso
             choice = 1;                                // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
             break;
+
+        case 9:
+            limparTela(); // Limpa a tela antes de solicitar o número do imóvel
+            cout << "Digite o número do imóvel a ser removido (1 a " << num_imoveis << "): ";
+            cin >> i; // Lê o número do imóvel
+            i--;      // Ajusta o índice para começar de 0
+            while (i < 0 || i >= num_imoveis)
+            {                 // Verifica se o número do imóvel é válido
+                limparTela(); // Limpa a tela para melhor visualização
+                cout << "ERROR - Número de imóvel inválido. Digite um número entre 1 e " << num_imoveis << ".\n";
+                cout << "Digite o número do imóvel a ser removido (1 a " << num_imoveis << "): ";
+                cin >> i; // Lê novamente o número do imóvel
+                i--;      // Ajusta o índice para começar de 0
+            }
+            // Remove o imóvel do vetor
+            for (int j = i; j < num_imoveis - 1; j++)
+            {
+                imoveis[j] = imoveis[j + 1]; // Move os imóveis para preencher o espaço
+            }
+            num_imoveis--; // Decrementa o número de imóveis
+            cout << "\nImóvel removido com sucesso!\n"; // Mensagem de sucesso
+            choice = 1; // Vai para opção 1 para perguntar se deseja voltar ao menu principal ou sair do programa
+            break;
         }
     }
 
@@ -1910,7 +1920,7 @@ int main()
             cerr << "Erro ao abrir o arquivo BD_Imoveis2.txt para escrita." << endl;
             return 1; // Retorna erro se o arquivo não puder ser aberto
         }
-
+        arquivo_saida << "Tipo Finalidade Endereço Bairro Cidade Área Valor IPTU Quartos Suítes Banheiros Vagas Cozinha Sala Varanda Área_de_serviço Piso Conservação Armários Ar-condicionado Aquecedor Ventilador\n"; // Escreve o cabeçalho do arquivo
         // Escreve os dados atualizados no arquivo
         for (i = 0; i < num_imoveis; i++)
         {
