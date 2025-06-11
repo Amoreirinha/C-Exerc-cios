@@ -688,8 +688,9 @@ int main()
                     }
                     else
                     {
-                        cout << "Venda: R$" << imoveis[i].valor << endl;
+                        cout << "Preço: R$" << imoveis[i].valor << endl;
                     }
+                    encontrou = true; // Marca que encontrou pelo menos um imóvel na faixa de valores
                 }
             }
             if (!encontrou)
