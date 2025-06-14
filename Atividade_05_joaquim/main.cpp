@@ -1,66 +1,44 @@
-#include <cstdlib>
-#include <stdio.h>
-#include <iostream>
-
-using namespace std;
-
 /*
+ * Projeto: Métodos de Ordenação com Ponteiros
  * 
+ * Este projeto implementa métodos de ordenação utilizando exclusivamente ponteiros, sem o uso de índices em qualquer situação.
+ * Todos os métodos de ordenação estão implementados em uma biblioteca separada (.h e .cpp).
+ * 
+ * Faça um projeto com os métodos de ordenação implementados com ponteiros. Estes métodos devem estar implementados em uma biblioteca e não podem utilizar índices em qualquer situação.
+ * Na entrega, envie somente os arquivos .h e .cpp dos métodos.
+ * 
+ * Joaquim Pedro do Nascimento Moreira de Jesus
+ * AED's - Prática
+ * Atividade - Ordenação com Ponteiros
+ * Data: 14/06/2025
  */
 
-//Função (void). Corpo da listagem do vetor 
-
-void listagem(int v[], int tam){
-    int *i;
-    for (i = v; i < v + tam; i++){
-        printf("Valor do endereço %p é %d\n", i, *i);
-    }
-}
-
-//Função de Ordenação BubbleSort
-
-void bubblesort(int v[], int tam){
-    int *i, *j, aux;
-    for (i = v + tam - 1; i > v; i--){
-        for (j = v; j < i; j++){
-            if (*j > *(j + 1)){
-                aux = *j;
-                *j = *(j + 1);
-                *(j + 1) = aux;
-            }
-        }
-    }
-}
-
-int barra(int choice){
-    if (choice == 1){
-        printf("\n______________________________________\n");
-    } else if(choice == 2){
-        printf("\n-------------------------------------\n");
-    } else if(choice == 3)
-}
-
-int main(int argc, char** argv) {
-
-
+#include <cstdlib> // Para usar a função system()
+#include <stdio.h> // Para usar a função printf()
+#include <iostream> // Para usar a biblioteca padrão de entrada e saída
+#include "ordenacaofunction.h" // Inclui o cabeçalho com as funções de ordenação e listagem
 
 using namespace std;
 
-//Assinatura da função listagem do vetor, ordenção do vetor
-void listagem(int v[], int tam);
-void bubblesort(int v[], int tam);
- 
+int main() {
+    //Declaração de variáveis
+    const int TAM=10; // Tamanho do vetor
 
-    const int TAM=10;
-    
+    // Vetores de teste    
     int vAlet[] = {17,14,16,12,20,15,19,11,13,18}; //Caso que mais ocorre.
     int vCresc[] = {11,12,13,14,15,16,17,18,19,20}; //melhor caso.
     int vDecre[] = {20,19,18,17,16,15,14,13,12,11}; //Pior caso.
 
 
     //Vetor aleatório
+
+    barra(3);
     
-    cout << "\n\nOrdenação por bubble sort\n\nVetor de ordem aleatória:\n";
+    cout << "\n\nOrdenação por bubble sort\n";
+
+    barra(1);
+
+    cout << "\nVetor de ordem aleatória:\n";
 
     cout<<endl<<"Estado do vetor antes da ordenação"<<endl;
     //Chamada da função listagem do vetor
@@ -73,6 +51,8 @@ void bubblesort(int v[], int tam);
     //Chamada da função listagem do vetor
     listagem (vAlet, TAM);
     
+    barra(2);
+
     cout << "\nVetor de ordem crescente:\n";
     //Vetor crescente
 
@@ -86,6 +66,8 @@ void bubblesort(int v[], int tam);
     cout<<endl<<"Estado do vetor depois da ordenação por bubble sort"<<endl;
     //Chamada da função listagem do vetor
     listagem (vCresc, TAM);
+
+    barra(2);
     
     cout << "\nVetor de ordem decrescente:\n";
 
@@ -102,6 +84,71 @@ void bubblesort(int v[], int tam);
     //Chamada da função listagem do vetor
     listagem (vDecre, TAM);
 
+    barra(3);
+
+    //Restauração do vetor original
+
+    restaurarVetores(vAlet, vCresc, vDecre, TAM);
+
+    cout << "\n\nOrdenação por Insertion Sort\n";
+
+    barra(1);
+
+    cout << "\nVetor de ordem aleatória:\n";
+
+    cout << endl <<"Estado do vetor antes da ordenação"<<endl;
+
+    listagem (vAlet, TAM);
+
+    insertionsort(vAlet, TAM);
+
+    cout << endl <<"Estado do vetor depois da ordenação"<<endl;
+
+    listagem (vAlet, TAM);
+
+    barra(2);
+
+    cout << "\nVetor de ordem crescente:\n";
+
+    cout << endl <<"Estado do vetor antes da ordenação"<<endl;
+
+    listagem (vCresc, TAM);
+
+    insertionsort(vCresc, TAM);
+
+    cout << endl <<"Estado do vetor depois da ordenação"<<endl;
+
+    listagem (vCresc, TAM);
+
+    barra(2);
+
+    cout << "\nVetor de ordem decrescente:\n";
+
+    cout << endl <<"Estado do vetor antes da ordenação"<<endl;
+
+    listagem (vDecre, TAM);
+
+    insertionsort(vDecre, TAM);
+
+    cout << endl <<"Estado do vetor depois da ordenação"<<endl;
+
+    listagem (vDecre, TAM);
+
+    barra(3);
+
+    //Restauração do vetor original
+
+    restaurarVetores(vAlet, vCresc, vDecre, TAM);
+
+    cout << "\n\nOrdenação por Selection Sort\n";
+
+    barra(1);
+
+    cout << "\nVetor de ordem aleatória:\n";
+
+    cout << endl <<"Estado do vetor antes da ordenação"<<endl;
+    
+    listagem (vAlet, TAM);
 
 
 
