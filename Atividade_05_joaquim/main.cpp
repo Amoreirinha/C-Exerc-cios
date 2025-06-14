@@ -30,6 +30,7 @@ int main() {
     int vDecre[] = {20,19,18,17,16,15,14,13,12,11}; //Pior caso.
 
 
+    setColor(1, 32); // Define a cor do texto para verde
     //Vetor aleatório
 
     barra(3);
@@ -86,6 +87,8 @@ int main() {
 
     barra(3);
 
+    setColor(1, 34); // Define a cor do texto para azul
+
     //Restauração do vetor original
 
     restaurarVetores(vAlet, vCresc, vDecre, TAM);
@@ -136,6 +139,8 @@ int main() {
 
     barra(3);
 
+    setColor(1, 31); // Define a cor do texto para vermelho
+
     //Restauração do vetor original
 
     restaurarVetores(vAlet, vCresc, vDecre, TAM);
@@ -147,10 +152,48 @@ int main() {
     cout << "\nVetor de ordem aleatória:\n";
 
     cout << endl <<"Estado do vetor antes da ordenação"<<endl;
-    
+
     listagem (vAlet, TAM);
 
+    selectionsort(vAlet, TAM);
 
+    cout << endl <<"Estado do vetor depois da ordenação"<<endl;
+
+    listagem (vAlet, TAM);
+
+    barra(2);
+
+    cout << "\nVetor de ordem crescente:\n";
+
+    cout << endl <<"Estado do vetor antes da ordenação"<<endl;
+
+    listagem (vCresc, TAM);
+
+    selectionsort(vCresc, TAM);
+
+    cout << endl <<"Estado do vetor depois da ordenação"<<endl;
+
+    listagem (vCresc, TAM);
+
+    barra(2);
+
+    cout << "\nVetor de ordem decrescente:\n";
+
+    cout << endl <<"Estado do vetor antes da ordenação"<<endl;
+
+    listagem (vDecre, TAM);
+
+    selectionsort(vDecre, TAM);
+
+    cout << endl <<"Estado do vetor depois da ordenação"<<endl;
+
+    listagem (vDecre, TAM);
+
+    barra(3);
+
+    cout << "\n\nFim do programa.\n";
+
+    resetColor(); // Reseta a cor do texto para o padrão
 
     return 0;
 }
