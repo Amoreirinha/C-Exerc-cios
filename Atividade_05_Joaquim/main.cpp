@@ -46,7 +46,7 @@ Atividade 05 - Matrizes
 using namespace std;
 
 int main(){
-    const int TAM = 5;
+    const int TAM = 128;
     typedef int Vetor[TAM][TAM];
     Vetor matriz;
     Vetor matriz_multiplicada;
