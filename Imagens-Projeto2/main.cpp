@@ -90,13 +90,13 @@ int main() {
             break;
             case 8:
                 limpartela(); // Limpa a tela
-                RotacaoEsquerda(&imagem[0][0], TAM); // Está errado
+                RotacaoEsquerda(&imagem[0][0], TAM); // Rotaciona a imagem 90° para a esquerda
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
                 choice = 1; // Quest Menu
             break;
             case 9:
                 limpartela(); // Limpa a tela
-                RotacaoDireita(&imagem[0][0], TAM); // Está errado
+                RotacaoDireita(&imagem[0][0], TAM); // Rotaciona a imagem 90° para a direita
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
                 choice = 1; // Quest Menu
             break;
