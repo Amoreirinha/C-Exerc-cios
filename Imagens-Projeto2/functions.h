@@ -192,33 +192,60 @@ void BinarizarImagem(int *imagem, int tam){
 }
 
 void RotacaoEsquerda(int *matriz, int tam) {
-    int rotacao[tam][tam] = {0}; // Matriz auxiliar para armazenar a rotação
-    cout << "Realizando Rotação de 90° sentido anti-horário (Esquerda)..." << endl;
-    for (int *i = matriz, *t = &rotacao[0][0]; i < matriz + tam * tam; i += tam, t++) {
-        for (int *j = i, *k = t; j < i + tam; j++, k += tam) {
-            *k = *j;
+    cout << "Executando rotação 90° anti-horária..." << endl;
+
+    // Matriz temporária para armazenar o resultado
+    int temp[tam][tam];
+    // Ponteiro para a primeira posição da matriz temporária
+    int *pStart = &temp[0][0];
+
+    // Percorre a matriz original coluna por coluna (da direita para esquerda)
+    for (int *colStart = matriz + tam - 1; colStart >= matriz; colStart--) {
+        // Ponteiro que percorre a coluna atual (de cima para baixo)
+        int *src = colStart;
+        // Ponteiro que escreve na linha atual da matriz temporária
+        int *dst = pStart;
+        for (int *end_col = src + tam * tam; src < end_col; src += tam) {
+            *dst++ = *src; // Copia o pixel para a posição rotacionada
         }
+        // Avança para a próxima linha na matriz temporária
+        pStart += tam;
     }
-    // Copia a matriz rotacionada de volta para a matriz original
-    for (int *i = matriz, *k = &rotacao[0][0]; i < matriz + tam * tam; i++, k++) {
-        *i = *k;
+    // Copia de volta para a matriz original
+    int *src = &temp[0][0];
+    int *dst = matriz;
+    for (int *end = src + tam * tam; src < end;) {
+        *dst++ = *src++;
     }
     cout << "Rotação concluída com sucesso!" << endl;
 }
 
 void RotacaoDireita(int *matriz, int tam) {
-    int rotacao[tam][tam] = {0}; // Matriz auxiliar para armazenar a rotação
-    cout << "Realizando Rotação de 90° sentido horário (Direita)..." << endl;
-    for (int *i = matriz, *t = &rotacao[0][0] + tam * tam; i < matriz + tam * tam; i += tam, t--) {
-        for (int *j = i, *k = t; j < i + tam; j++, k -= tam) {
-            *k = *j;
+    cout << "Executando rotação 90° horária..." << endl;
+    // Matriz temporária para armazenar o resultado
+    int temp[tam][tam];
+    // Ponteiro para a primeira posição da matriz temporária
+    int *pStart = &temp[0][0];
+    // Percorre a matriz original coluna por coluna (da esquerda para direita)
+    for (int *colStart = matriz; colStart < matriz + tam; colStart++) {
+        // Ponteiro que percorre a coluna atual (de baixo para cima)
+        int *src = colStart + tam * (tam - 1);
+        // Ponteiro que escreve na linha atual da matriz temporária
+        int *dst = pStart;
+        for (int *colEnd = colStart - tam; src > colEnd; src -= tam) {
+            *dst++ = *src; // Copia o pixel para a posição rotacionada
         }
+        // Avança para a próxima linha na matriz temporária
+        pStart += tam;
     }
-    // Copia a matriz rotacionada de volta para a matriz original
-    for (int *i = matriz, *k = &rotacao[0][0]; i < matriz + tam * tam; i++, k++) {
-        *i = *k;
+    // Copia de volta para a matriz original
+    int *src = &temp[0][0];
+    int *dst = matriz;
+    for (int *end = src + tam * tam; src < end;) {
+        *dst++ = *src++;
     }
-    cout << "Rotação concluída com sucesso!" << endl;
+
+    cout << "Rotação para direita concluída com sucesso!" << endl;
 }
 
 void RotacaoVertical(int *imagem, int tam) {
