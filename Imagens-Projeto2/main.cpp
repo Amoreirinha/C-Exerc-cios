@@ -30,6 +30,7 @@ int main() {
                 cout << "8. Rotacionar imagem 90° para a direita" << endl;
                 cout << "9. Rotação Vertical" << endl;
                 cout << "10. Rotação Horizontal" << endl;
+                cout << "Digite o número da opção desejada (1-10): ";
                 cin >> choice; // Lê a escolha do usuário
                 while (choice < 1 || choice > 10) { // Verifica se a escolha é válida
                     cout << "Escolha inválida. Tente novamente." << endl;
