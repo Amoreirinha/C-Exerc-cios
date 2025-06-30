@@ -17,9 +17,7 @@ int main() {
     LeituraPGM(&imagem[0][0], TAM); // Lê a imagem PGM
 
     while(loop){
-        switch (choice){
-            case 0:
-                limpartela(); // Limpa a tela
+        limpartela(); // Limpa a tela
                 cout << "Bem-vindo ao editor de imagens PGM!" << endl;
                 cout << "Escolha uma opção:" << endl;
                 cout << "1. Redefinir imagem PGM original" << endl;
@@ -33,85 +31,70 @@ int main() {
                 cout << "9. Rotação Vertical" << endl;
                 cout << "10. Rotação Horizontal" << endl;
                 cin >> choice; // Lê a escolha do usuário
-                while (choice < 0 || choice > 10) { // Verifica se a escolha é válida
+                while (choice < 1 || choice > 10) { // Verifica se a escolha é válida
                     cout << "Escolha inválida. Tente novamente." << endl;
                     cin >> choice; // Lê a escolha do usuário novamente
                 }
-                choice ++;
-            break;
+        switch (choice){
             case 1:
-                cout << "Deseja voltar para o menu? Digite 's' para sim e 'n' para não: ";
-                cin >> resposta;
-                while (resposta != "s" && resposta != "n") { // Verifica se a resposta é válida
-                    cout << "Resposta inválida. Digite 's' para sim e 'n' para não: ";
-                    cin >> resposta; // Lê a resposta novamente
-                }
-                if (resposta == "s") {
-                    choice = 0;
-                } else {
-                    loop = false; // Encerra o loop se a resposta for diferente de 's'
-                }
-            break;
-            case 2:
                 limpartela(); // Limpa a tela       
                 LeituraPGM(&imagem[0][0], TAM); // Lê a imagem PGM
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
-            case 3:
+            case 2:
                 limpartela(); // Limpa a tela
                 MostraValorPixel(&imagem[0][0], TAM); // Exibe os valores dos pixels
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
-            case 4:
+            case 3:
                 limpartela(); // Limpa a tela
                 EscurecerImagem(&imagem[0][0], TAM); // Escurece a imagem
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
-            case 5:
+            case 4:
                 limpartela(); // Limpa a tela
                 ClarearImagem(&imagem[0][0], TAM); // Clareia a imagem
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
-            case 6:
+            case 5:
                 limpartela(); // Limpa a tela
                 NegativoImagem(&imagem[0][0], TAM); // Gera o negativo da imagem
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
-            case 7:
+            case 6:
                 limpartela(); // Limpa a tela
                 BinarizarImagem(&imagem[0][0], TAM); // Binariza a imagem
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
-            case 8:
+            case 7:
                 limpartela(); // Limpa a tela
                 RotacaoEsquerda(&imagem[0][0], TAM); // Rotaciona a imagem 90° para a esquerda
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
-            case 9:
+            case 8:
                 limpartela(); // Limpa a tela
                 RotacaoDireita(&imagem[0][0], TAM); // Rotaciona a imagem 90° para a direita
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
-            case 10:
+            case 9:
                 limpartela(); // Limpa a tela
                 RotacaoVertical(&imagem[0][0], TAM); // Inverte as colunas da imagem
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
-            case 11:
+            case 10:
                 limpartela(); // Limpa a tela
                 RotacaoHorizontal(&imagem[0][0], TAM); // Inverte as linhas da imagem
                 SalvandoPGM(&imagem[0][0], TAM); // Salva a imagem
-                choice = 1; // Quest Menu
             break;
+        }
+        cout << "Deseja voltar para o menu? Digite 's' para sim e 'n' para não: ";
+        cin >> resposta;
+        while (resposta != "s" && resposta != "n") { // Verifica se a resposta é válida
+            cout << "Resposta inválida. Digite 's' para sim e 'n' para não: ";
+            cin >> resposta; // Lê a resposta novamente
+        }
+        if (resposta == "n") {
+            loop = false; // Encerra o loop se a resposta for diferente de 's'
         }
     }
 
