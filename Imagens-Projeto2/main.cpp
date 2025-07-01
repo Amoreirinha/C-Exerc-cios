@@ -10,6 +10,8 @@ int main() {
     const int TAM = 1024; // Define o tamanho da imagem
     const int ICON = 64;
     typedef int imagePGM[TAM][TAM];
+    typedef int iconPGM[ICON][ICON];
+    static iconPGM icone;
     static imagePGM imagem;
     int choice = 0;
     bool loop = true;
@@ -130,12 +132,11 @@ int main() {
                 // Iconiza a imagem
                 limpartela(); // Limpa a tela
                 cout << "Iconizando imagem..." << endl;
-                // Aqui você pode implementar a lógica de iconização da imagem
-                // Por enquanto, apenas exibe uma mensagem
+                IconizarImagem(&imagem[0][0],&icone[0][0],TAM,ICON);
                 cout << "Imagem iconizada com sucesso!" << endl;
                 cont_alteracoes++; // Incrementa o contador de alterações
                 alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Iconizada.\n";
-                SalvandoPGM(&imagem[0][0], TAM, alteracoes); // Salva a imagem
+                SalvandoPGM(&icone[0][0], ICON, alteracoes); // Salva a imagem
             break;
             case 12:
                 // Encerra o programa

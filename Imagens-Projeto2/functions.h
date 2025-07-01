@@ -327,4 +327,46 @@ void RotacaoHorizontal(int *imagem, int tam) {
     cout << "Linhas invertidas com sucesso!" << endl;       
 }
 
+// Função para reduzir uma imagem grande para um ícone menor
+// Parâmetros:
+// - imagem: ponteiro para a matriz de pixels da imagem original (formato linear)
+// - icone: ponteiro para armazenar a imagem reduzida
+// - tam: tamanho da imagem original (assume-se quadrada: tam × tam)
+// - icon_tam: tamanho desejado para o ícone (ex: 64 para 64×64)
+void IconizarImagem(int *imagem, int *icone, int tam, int icon_tam) {
+    // Calcula o fator de redução (quantos pixels originais representarão 1 pixel no ícone)
+    // Exemplo: para reduzir 1024×1024 para 64×64, fator = 1024/64 = 16
+    int fator = tam / icon_tam;
+
+    // Loop 1: Percorre as linhas da imagem original em passos de 'fator' linhas
+    // - i avança de bloco em bloco vertical (cada salto = tam*fator pixels)
+    for(int *i = imagem; i < imagem + tam * tam; i += tam * fator) {
+        
+        // Loop 2: Percorre as colunas dentro da linha atual em passos de 'fator' pixels
+        // - j avança horizontalmente dentro do bloco atual
+        for(int *j = i; j < i + tam; j += fator) {
+            int soma = 0; // Zera a soma para cada novo bloco
+            
+            // Loop 3: Percorre as colunas de um bloco fator×fator
+            // - k controla a coluna dentro do bloco atual
+            for(int *k = j; k < j + fator; k++) {
+                
+                // Loop 4: Percorre as linhas dentro do bloco atual
+                // - l avança verticalmente (pula 'tam' pixels para descer uma linha)
+                for(int *l = k; l < k + tam * fator; l += tam) {
+                    soma += *l; // Acumula o valor de cada pixel do bloco
+                }
+            }
+            
+            // Calcula a média dos valores do bloco:
+            // - Divide a soma total pelo número de pixels no bloco (fator²)
+            // - Armazena o resultado no ícone
+            *icone = soma / (fator * fator);
+            
+            // Avança para a próxima posição no array do ícone
+            icone++;
+        }
+    }
+}
+
 #endif // SORTING_H
