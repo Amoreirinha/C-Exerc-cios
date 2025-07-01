@@ -24,26 +24,59 @@ void resetColor() {
     printf("\033[0m");
 }
 
-void LeituraPGM(int *imagem, int tam){
-    ifstream file("cat.pgm");
-    if (!file.is_open()) {
+// Função para ler uma imagem no formato PGM (Portable Graymap)
+// Parâmetros:
+// - imagem: ponteiro para armazenar os pixels da imagem
+// - tam: dimensão da imagem (assume-se imagem quadrada: tam x tam)
+void LeituraPGM(int *imagem, int tam) {
+    // 1. ABERTURA DO ARQUIVO
+    ifstream file("cat.pgm"); // Tenta abrir o arquivo "cat.pgm"
+    if (!file.is_open()) { // Verifica se o arquivo foi aberto com sucesso
         cout << "Erro ao abrir o arquivo" << endl;
+        return; // Sai da função se não conseguir abrir
     }
-    string descarte;
-    getline(file, descarte); // Lê o cabeçalho P2 e descarta
-    getline(file, descarte); // Lê as dimensões da imagem e descarta
-    getline(file, descarte); // Lê o valor máximo de pixel e descarta
 
-    for(int *i = imagem; i < imagem + tam * tam; i++){
-        int pixel;
-        file >> pixel; // Lê o valor do pixel
-        *i = pixel; // Armazena o valor do pixel na imagem
+    string linha; // Variável para armazenar linhas lidas do arquivo
+    bool cabecalho_lido = false; // Flag para controlar quando o cabeçalho foi processado
+
+    // 2. LOOP PRINCIPAL DE LEITURA
+    // Percorre todos os pixels da imagem (tam x tam)
+    for(int *i = imagem; i < imagem + tam * tam; ) {
+        // 2.1. LER PRÓXIMO TOKEN DO ARQUIVO
+        if (!(file >> linha)) { // Tenta ler o próximo elemento
+            break; // Se falhar (fim do arquivo), sai do loop
+        }
+        
+        // 3. PROCESSAMENTO DO CABEÇALHO
+        if (!cabecalho_lido) {
+            // 3.1. VERIFICAÇÃO DO TIPO DE ARQUIVO (P2)
+            if (linha == "P2") { // PGM ASCII deve começar com "P2"
+                // Pula as próximas 3 linhas (dimensões e valor máximo)
+                for(int j = 0; j < 3; j++) 
+                    getline(file, linha); // Lê e descarta a linha completa
+                continue; // Volta para o início do loop
+            }
+            // 3.2. TRATAMENTO DE COMENTÁRIOS
+            else if (linha[0] == '#') {  // Linha começa com '#'
+                getline(file, linha); // Lê e descarta o restante da linha de comentário
+                continue; // Volta para o início do loop
+            }
+            else {
+                cabecalho_lido = true; // Marca que o cabeçalho foi totalmente processado
+            }
+        }
+        
+        // 4. LEITURA DOS PIXELS
+        // Se chegou aqui, deve ser um valor de pixel
+        *i = stoi(linha); // Converte a string para inteiro
+        i++; // Avança o ponteiro somente após ler um pixel válido
     }
-    file.close();
-    cout << "Imagem lida com sucesso!" << endl;
+    
+    // 5. FINALIZAÇÃO
+    file.close(); // Fecha o arquivo
 }
 
-void SalvandoPGM(int *imagem, int tam){
+void SalvandoPGM(int *imagem, int tam, string tipo){
     time_t tempo_atual;
     struct tm *info_tempo;
     char buffer[15];
@@ -76,18 +109,15 @@ void SalvandoPGM(int *imagem, int tam){
 
 
     ofstream file(nome_arquivo);
-    if (!file.is_open()) {
-        cout << "Erro ao abrir o arquivo para escrita" << endl;
-        return;
-    } else {
-        file << "P2\n"; // Cabeçalho PGM
-        file << tam << " " << tam << "\n"; // Dimensões da imagem
-        file << "255\n"; // Valor máximo de pixel
-        for(int *i = imagem; i < imagem + tam * tam; i++){
-            file << *i << " "; // Escreve o valor do pixel
-        }
-        cout << "Imagem salva com sucesso!" << endl;
+
+    file << "P2\n"; // Cabeçalho PGM
+    file << tam << " " << tam << "\n"; // Dimensões da imagem
+    file << "255\n"; // Valor máximo de pixel
+    file << tipo; // Escreve o tipo de imagem no cabeçalho
+    for(int *i = imagem; i < imagem + tam * tam; i++){
+        file << *i << " "; // Escreve o valor do pixel
     }
+    cout << "Imagem salva com sucesso!" << endl;
     
     file.close();
 }
