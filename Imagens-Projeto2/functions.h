@@ -92,19 +92,19 @@ void SalvandoPGM(int *imagem, int tam, string tipo){
     // Formata a data e hora em uma string legível
     strftime(buffer, sizeof(buffer), "%d%m%Y%H%M%S", info_tempo);
 
-    char nome_arquivo[42];
-    for (int i = 0; i < 22; i++){
+    char nome_arquivo[43];
+    for (int i = 0; i < 23; i++){
         nome_arquivo[i] = inicio_nome[i];
     }
 
-    for (int i = 22; i < 36; i++){
-        nome_arquivo[i] = buffer[i-22];
+    for (int i = 23; i < 37; i++){
+        nome_arquivo[i] = buffer[i-23];
     }
 
-    for (int i = 36; i < 41; i++){
-        nome_arquivo[i] = fim_nome[i-36];
+    for (int i = 37; i < 42; i++){
+        nome_arquivo[i] = fim_nome[i-37];
     }
-    nome_arquivo[41] = '\0'; // Garante o final da string
+    nome_arquivo[42] = '\0'; // Garante o final da string
 
 
 
