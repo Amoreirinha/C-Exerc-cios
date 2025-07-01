@@ -128,15 +128,7 @@ void MostraValorPixel(int *imagem, int tam){
     }
 }
 
-void EscurecerImagem(int *imagem, int tam){
-    cout << "Digite o valor de escurecimento (0-255): ";
-    int valor;
-    cin >> valor;
-    while(valor < 0 || valor > 255) {
-        cout << "Valor inválido. Digite um valor entre 0 e 255: ";
-        cin >> valor;
-    }
-    cout << "Escurecendo a imagem..." << endl;
+void EscurecerImagem(int *imagem, int tam, int valor){
     for(int *i = imagem; i < imagem + tam * tam; i++){
         if (*i > 0) {
             if(*i < valor) {
@@ -146,18 +138,9 @@ void EscurecerImagem(int *imagem, int tam){
             }
         }
     }
-    cout << "Imagem escurecida com sucesso!" << endl;
 }
 
-void ClarearImagem(int *imagem, int tam){
-    cout << "Digite o valor de clareamento (0-255): ";
-    int valor;
-    cin >> valor;
-    while(valor < 0 || valor > 255) {
-        cout << "Valor inválido. Digite um valor entre 0 e 255: ";
-        cin >> valor;
-    }
-    cout << "Clareando a imagem..." << endl;
+void ClarearImagem(int *imagem, int tam, int valor){
     for(int *i = imagem; i < imagem + tam * tam; i++){
         if (*i < 255) {
             if(*i + valor > 255) {
@@ -167,63 +150,40 @@ void ClarearImagem(int *imagem, int tam){
             }
         }
     }
-    cout << "Imagem clareada com sucesso!" << endl;
 }
 
 void NegativoImagem(int *imagem, int tam){
-    cout << "Gerando negativo da imagem..." << endl;
     for(int *i = imagem; i < imagem + tam * tam; i++){
         *i = 255 - *i; // Inverte o valor do pixel
     }
-    cout << "Negativo gerado com sucesso!" << endl;
 }
 
-void BinarizarImagem(int *imagem, int tam){
-    cout << "Digite 1 para binarizar de acordo com um valor fixo ou 2 para binarizar de acordo com a média dos pixels: ";
-    int escolha;
-    cin >> escolha;
-    while(escolha != 1 && escolha != 2) {
-        cout << "Escolha inválida. Digite 1 para binarizar de acordo com um valor fixo ou 2 para binarizar de acordo com a média dos pixels: ";
-        cin >> escolha;
+void BinarizarImagemLimiar(int *imagem, int tam, int valor){
+    for(int *i = imagem; i < imagem + tam * tam; i++){
+        if (*i >= valor) {
+            *i = 255; // Se o pixel for maior ou igual ao valor de binarização, torna-o branco
+        } else {
+            *i = 0; // Caso contrário, torna-o preto     
+        }
     }
-    if(escolha == 1){
-        cout << "Digite o valor de binarização (0-255): ";
-        int valor;
-        cin >> valor;
-        while(valor < 0 || valor > 255) {
-            cout << "Valor inválido. Digite um valor entre 0 e 255: ";
-            cin >> valor;
+}
 
-        }
-        cout << "Binarizando a imagem com valor fixo..." << endl;
-        for(int *i = imagem; i < imagem + tam * tam; i++){
-            if (*i >= valor) {
-                *i = 255; // Se o pixel for maior ou igual ao valor de binarização, torna-o branco
-            } else {
-                *i = 0; // Caso contrário, torna-o preto     
-            }
-        }
-    } else {
-        int soma = 0;
-        for(int *i = imagem; i < imagem + tam * tam; i++){
-            soma += *i; // Soma todos os valores dos pixels
-        }
-        int media = soma / (tam * tam); // Calcula a média dos pixels
-        cout << "Média dos pixels: " << media << endl;
-        cout << "Binarizando a imagem com base na média..." << endl;
-        for(int *i = imagem; i < imagem + tam * tam; i++){
-            if (*i >= media) {
-                *i = 255; // Se o pixel for maior ou igual à média, torna-o branco
-            } else {
-                *i = 0; // Caso contrário, torna-o preto     
-            }
+void BinarizarImagemMedia(int *imagem, int tam){
+    int soma = 0;
+    for(int *i = imagem; i < imagem + tam * tam; i++){
+        soma += *i; // Soma todos os valores dos pixels
+    }
+    int media = soma / (tam * tam); // Calcula a média dos pixels
+    for(int *i = imagem; i < imagem + tam * tam; i++){
+        if (*i >= media) {
+            *i = 255; // Se o pixel for maior ou igual à média, torna-o branco
+        } else {
+            *i = 0; // Caso contrário, torna-o preto     
         }
     }
 }
 
 void RotacaoEsquerda(int *matriz, int tam) {
-    cout << "Executando rotação 90° anti-horária..." << endl;
-
     // Matriz temporária para armazenar o resultado
     int temp[tam][tam];
     // Ponteiro para a primeira posição da matriz temporária
@@ -247,11 +207,9 @@ void RotacaoEsquerda(int *matriz, int tam) {
     for (int *end = src + tam * tam; src < end;) {
         *dst++ = *src++;
     }
-    cout << "Rotação concluída com sucesso!" << endl;
 }
 
 void RotacaoDireita(int *matriz, int tam) {
-    cout << "Executando rotação 90° horária..." << endl;
     // Matriz temporária para armazenar o resultado
     int temp[tam][tam];
     // Ponteiro para a primeira posição da matriz temporária
@@ -274,12 +232,9 @@ void RotacaoDireita(int *matriz, int tam) {
     for (int *end = src + tam * tam; src < end;) {
         *dst++ = *src++;
     }
-
-    cout << "Rotação para direita concluída com sucesso!" << endl;
 }
 
 void RotacaoVertical(int *imagem, int tam) {
-    cout << "Rotacionando no eixo vertical..." << endl;
     int rotacao[tam][tam] = {0}; // Matriz auxiliar para armazenar a rotação
     // A matriz original é percorrida linha por linha
     // A matriz de destino é preenchida coluna por coluna, mas invertendo a ordem das colunas
@@ -302,12 +257,10 @@ void RotacaoVertical(int *imagem, int tam) {
     for (int *i = imagem, *k = &rotacao[0][0]; i < imagem + tam * tam; i++, k++) {
         *i = *k;
     }
-    cout << "Colunas invertidas com sucesso!" << endl;
 }
 
 void RotacaoHorizontal(int *imagem, int tam) {
     int rotacao[tam][tam] = {0}; // Matriz auxiliar para armazenar a rotação
-    cout << "Invertendo linhas..." << endl;
     int *dst = &rotacao[0][0] + tam * (tam - 1);
 
     // Percorre cada linha da matriz original
@@ -323,8 +276,7 @@ void RotacaoHorizontal(int *imagem, int tam) {
     // Copia a matriz rotacionada de volta para a matriz original
     for (int *i = imagem, *k = &rotacao[0][0]; i < imagem + tam * tam; i++, k++) {
         *i = *k;
-    }
-    cout << "Linhas invertidas com sucesso!" << endl;       
+    }   
 }
 
 // Função para reduzir uma imagem grande para um ícone menor
