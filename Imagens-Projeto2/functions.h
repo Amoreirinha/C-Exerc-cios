@@ -9,19 +9,24 @@
 
 using namespace std;
 
+// Função para limpar a tela do terminal
 void limpartela(){
-    cout << "\033[2J\033[1;1H";  // Limpa a tela do terminal
+    cout << "\033[2J\033[1;1H"; // Código de escape ANSI:
+                                 // \033[2J limpa toda a tela
+                                 // \033[1;1H posiciona o cursor na linha 1, coluna 1
 }
-
+// Função para definir a cor do texto (e opcionalmente do fundo) no terminal
 void setColor(int estilo, int corTexto, int corFundo = -1) {
     if (corFundo == -1)
+        // Se corFundo não for especificada, define apenas estilo e cor do texto
         printf("\033[%d;%dm", estilo, corTexto);      // Sem fundo
     else
+        // Se corFundo for especificada, define estilo, cor do texto e cor do fundo
         printf("\033[%d;%d;%dm", estilo, corTexto, corFundo); // Com fundo
 }
-
+// Função para resetar as cores do terminal para o padrão
 void resetColor() {
-    printf("\033[0m");
+    printf("\033[0m");// Código ANSI para resetar todas as formatações (cor, estilo etc.)
 }
 
 // Função para ler uma imagem no formato PGM (Portable Graymap)
@@ -75,13 +80,13 @@ void LeituraPGM(int *imagem, int tam) {
     // 5. FINALIZAÇÃO
     file.close(); // Fecha o arquivo
 }
-
+// Função que salva uma imagem no formato PGM
 void SalvandoPGM(int *imagem, int tam, string tipo){
-    time_t tempo_atual;
+    time_t tempo_atual; // Armazena o tempo atual
     struct tm *info_tempo;
-    char buffer[15];
-    char inicio_nome [24]= "ImagensDosProcessos/cat";
-    char fim_nome [5]= ".pgm";
+    char buffer[15]; // Armazena a string com data e hora
+    char inicio_nome [24]= "ImagensDosProcessos/cat"; // Caminho e prefixo do nome do arquivo
+    char fim_nome [5]= ".pgm"; // Sufixo do nome do arquivo (extensão)
 
     // Obtém o tempo atual em segundos desde a época (1970-01-01)
     time(&tempo_atual);
@@ -93,21 +98,22 @@ void SalvandoPGM(int *imagem, int tam, string tipo){
     strftime(buffer, sizeof(buffer), "%d%m%Y%H%M%S", info_tempo);
 
     char nome_arquivo[43];
+    // Copia o início do nome do arquivo
     for (int i = 0; i < 23; i++){
         nome_arquivo[i] = inicio_nome[i];
     }
-
+    // Adiciona a data/hora ao nome do arquivo
     for (int i = 23; i < 37; i++){
         nome_arquivo[i] = buffer[i-23];
     }
-
+    // Adiciona a extensão ".pgm"
     for (int i = 37; i < 42; i++){
         nome_arquivo[i] = fim_nome[i-37];
     }
     nome_arquivo[42] = '\0'; // Garante o final da string
 
 
-
+    // Cria um arquivo para escrita com o nome gerado
     ofstream file(nome_arquivo);
 
     file << "P2\n"; // Cabeçalho PGM
@@ -119,18 +125,18 @@ void SalvandoPGM(int *imagem, int tam, string tipo){
     }
     cout << "Imagem salva com sucesso!" << endl;
     
-    file.close();
+    file.close(); //Fecha o arquivo 
 }
-
+// Função que imprime os valores dos pixels de uma imagem no terminal
 void MostraValorPixel(int *imagem, int tam){
     for(int *i = imagem; i < imagem + tam * tam; i++){
         cout << *i << " "; // Exibe o valor do pixel
     }
 }
-
+// Função para escurecer a imagem
 void EscurecerImagem(int *imagem, int tam, int valor){
     for(int *i = imagem; i < imagem + tam * tam; i++){
-        if (*i > 0) {
+        if (*i > 0) { // Se o pixel já não for preto
             if(*i < valor) {
                 *i = 0; // Se o pixel for menor que o valor de escurecimento, torna-o preto
             } else {
@@ -139,10 +145,10 @@ void EscurecerImagem(int *imagem, int tam, int valor){
         }
     }
 }
-
+// Função para clarear a imagem
 void ClarearImagem(int *imagem, int tam, int valor){
     for(int *i = imagem; i < imagem + tam * tam; i++){
-        if (*i < 255) {
+        if (*i < 255) { // Se o pixel ainda não for branco
             if(*i + valor > 255) {
                 *i = 255; // Se o pixel for menor que o valor de escurecimento, torna-o preto
             } else {
@@ -151,13 +157,13 @@ void ClarearImagem(int *imagem, int tam, int valor){
         }
     }
 }
-
+// Função que inverte a imagem (efeito negativo)
 void NegativoImagem(int *imagem, int tam){
     for(int *i = imagem; i < imagem + tam * tam; i++){
         *i = 255 - *i; // Inverte o valor do pixel
     }
 }
-
+// Função para binarizar a imagem com base em um limiar fornecido
 void BinarizarImagemLimiar(int *imagem, int tam, int valor){
     for(int *i = imagem; i < imagem + tam * tam; i++){
         if (*i >= valor) {
@@ -167,7 +173,7 @@ void BinarizarImagemLimiar(int *imagem, int tam, int valor){
         }
     }
 }
-
+// Função para binarizar a imagem com base na média dos pixels
 void BinarizarImagemMedia(int *imagem, int tam){
     int soma = 0;
     for(int *i = imagem; i < imagem + tam * tam; i++){
