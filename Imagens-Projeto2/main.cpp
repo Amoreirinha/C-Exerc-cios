@@ -1,34 +1,53 @@
+/*
+---------------------------------------------------------------
+  Editor de Imagens PGM - main.cpp
+
+  Objetivo:
+  Programa interativo em terminal para ler, exibir e editar 
+  imagens no formato PGM. Oferece funções de clareamento, 
+  escurecimento, negativo, binarização, rotação e geração 
+  de ícones a partir da imagem original.
+---------------------------------------------------------------
+*/
+
 #include <stdio.h>
 #include <iostream>
 #include <string.h>
 #include <fstream>
-#include "functions.h"
+#include "functions.h" // Arquivo com as funções auxiliares
 
 using namespace std;
 
 int main() {
-    const int TAM = 1024; // Define o tamanho da imagem
+     // Define o tamanho da imagem PGM e do ícone
+    const int TAM = 1024;
     const int ICON = 64;
+
+    // Tipos para armazenar as matrizes de pixels
     typedef int imagePGM[TAM][TAM];
     typedef int iconPGM[ICON][ICON];
-    static iconPGM icone;
-    static imagePGM imagem;
+    static iconPGM icone; // Matriz para imagem reduzida (ícone)
+    static imagePGM imagem; // Matriz para imagem principal
+
+     // Variáveis de controle de fluxo e histórico de alterações
     int choice = 0;
     bool loop = true;
     string resposta;
     string alteracoes = "#Alterações realizadas na imagem PGM\n";
     int cont_alteracoes = 0; // Contador de alterações
-    int valor;
-    int escolha;
+    int valor; // Para valores de ajuste (clarear/escurecer/binarizar)
+    int escolha; // Para decidir tipo de binarização
 
 
     LeituraPGM(&imagem[0][0], TAM); // Lê a imagem PGM
-
+ // Loop principal com menu interativo
     while(loop){
         limpartela(); // Limpa a tela
-                setColor(1,35); // Roxo
+                setColor(1,35); //Define a cor de destaque como roxo
                 cout << "Bem-vindo ao editor de imagens PGM!" << endl;
                 resetColor();
+
+                // Exibe o menu com as opções
                 cout << "Escolha uma opção:" << endl;
                 cout << "1. Redefinir imagem PGM original" << endl;
                 cout << "2. Exibir valores dos pixels" << endl;
@@ -51,6 +70,7 @@ int main() {
                     cout << "Digite o número da opção desejada (1-12): ";
                     cin >> choice; // Lê a escolha do usuário novamente
                 }
+         // Executa ação escolhida
         switch (choice){
             case 1:
                 // Redefine a imagem PGM original
@@ -71,10 +91,11 @@ int main() {
             case 2:
                 // Exibe os valores dos pixels
                 limpartela(); // Limpa a tela
-                setColor(1,35);
+                setColor(1,35); // Define cor roxa para destaque no título
                 cout << "Mostrando Pixels da imagem...\n\n";
                 resetColor();
                 MostraValorPixel(&imagem[0][0], TAM); // Exibe os valores dos pixels
+                // Mensagem de sucesso em verde
                 setColor(1,32);
                 cout << "\n\nPixels da imagem mostrados com sucesso!" << endl << endl;
                 resetColor();
@@ -82,13 +103,16 @@ int main() {
             case 3:
                 // Escurece a imagem
                 limpartela(); // Limpa a tela
+                // Título com destaque em roxo
                 setColor(1,35);
                 cout << "Escurecer imagem...\n";
                 resetColor();
+                // Solicita ao usuário o valor de escurecimento (0-255)
                 cout << "Digite o valor de escurecimento (0-255): ";
                 cin >> valor;
+                 // Verifica se o valor está dentro do intervalo válido
                 while(valor < 0 || valor > 255) {
-                    setColor(1,31); // Vermelho
+                    setColor(1,31); // Vermelho para alerta de erro
                     cout << "Valor inválido.";
                     resetColor();
                     cout << "Digite um valor entre 0 e 255: ";
@@ -96,9 +120,12 @@ int main() {
                 }
                 cout << "Escurecendo a imagem..." << endl;
                 EscurecerImagem(&imagem[0][0], TAM, valor); // Escurece a imagem
+                // Atualiza o histórico de alterações
                 cont_alteracoes++; // Incrementa o contador de alterações
                 alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Escurecida.\n";
-                SalvandoPGM(&imagem[0][0], TAM, alteracoes); // Salva a imagem
+                // Salva a imagem modificada em arquivo
+                SalvandoPGM(&imagem[0][0], TAM, alteracoes); 
+                // Mensagem final de sucesso em verde
                 setColor(1,32);
                 cout << "\n\nImagem escurecida com sucesso!" << endl << endl;
                 resetColor();
@@ -106,11 +133,13 @@ int main() {
             case 4:
                 // Clareia a imagem
                 limpartela(); // Limpa a tela
-                setColor(1,35);
+                setColor(1,35); // Define cor roxa para destaque
                 cout << "Clarear imagem...\n";
                 resetColor();
+                // Solicita ao usuário o valor de clareamento (entre 0 e 255)
                 cout << "Digite o valor de clareamento (0-255): ";
                 cin >> valor;
+                // Valida a entrada do usuário
                 while(valor < 0 || valor > 255) {
                     setColor(1,31); // Vermelho
                     cout << "Valor inválido.";
@@ -118,11 +147,15 @@ int main() {
                     cout << "Digite um valor entre 0 e 255: ";
                     cin >> valor;
                 }
+                
                 cout << "Clareando a imagem..." << endl;
                 ClarearImagem(&imagem[0][0], TAM, valor); // Clareia a imagem
+                // Atualiza histórico de alterações
                 cont_alteracoes++; // Incrementa o contador de alterações
                 alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Clareada.\n";
-                SalvandoPGM(&imagem[0][0], TAM, alteracoes); // Salva a imagem
+                // Salva a imagem modificada
+                SalvandoPGM(&imagem[0][0], TAM, alteracoes);
+                // Mensagem de sucesso em verde
                 setColor(1,32);
                 cout << "\n\nImagem clareada com sucesso!" << endl << endl;
                 resetColor();
@@ -130,14 +163,18 @@ int main() {
             case 5:
                 // Gera o negativo da imagem
                 limpartela(); // Limpa a tela
-                setColor(1,35);
+                setColor(1,35); // Título em roxo
                 cout << "Negativar imagem...\n";
                 resetColor();
                 cout << "Gerando negativo da imagem..." << endl;
-                NegativoImagem(&imagem[0][0], TAM); // Gera o negativo da imagem
+               // Gera o negativo da imagem
+                NegativoImagem(&imagem[0][0], TAM); 
+                // Atualiza histórico
                 cont_alteracoes++; // Incrementa o contador de alterações
                 alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Negativa.\n";
-                SalvandoPGM(&imagem[0][0], TAM, alteracoes); // Salva a imagem
+                // Salva a imagem modificada
+                SalvandoPGM(&imagem[0][0], TAM, alteracoes);
+                // Mensagem de sucesso em verde
                 setColor(1,32);
                 cout << "\n\nImagem negativada com sucesso!" << endl << endl;
                 resetColor();
@@ -148,8 +185,10 @@ int main() {
                 setColor(1,35);
                 cout << "Binarizar imagem...\n";
                 resetColor();
+                // Pergunta ao usuário o tipo de binarização
                 cout << "Digite 1 para binarizar de acordo com um valor limiar ou 2 para binarizar de acordo com a média dos pixels: ";
                 cin >> escolha;
+                // Valida a escolha do usuário
                 while(escolha != 1 && escolha != 2) {
                     setColor(1,31); // Vermelho
                     cout << "Escolha inválida.";
@@ -158,8 +197,10 @@ int main() {
                     cin >> escolha;
                 }
                 if (escolha == 1){
+                     // Binarização com valor fixo escolhido
                     cout << "Digite o valor de binarização (0-255): ";
                     cin >> valor;
+                    // Valida o valor limiar
                     while(valor < 0 || valor > 255) {
                         cout << "Valor inválido.";
                         cout << "Digite um valor entre 0 e 255: ";
@@ -167,14 +208,18 @@ int main() {
                     }
                     cout << "Binarizando a imagem de acordo com limiar..." << endl;
                     BinarizarImagemLimiar(&imagem[0][0], TAM, valor);
+                    // Atualiza histórico
                     cont_alteracoes++; // Incrementa o contador de alterações
                     alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Binarizada Limiar.\n";
                 } else {
+                     // Binarização automática pela média dos pixels
                     cout << "Binarizando a imagem de acordo com a média dos pixels...\n";
                     BinarizarImagemMedia(&imagem[0][0],TAM);
+                    // Atualiza histórico
                     cont_alteracoes++; // Incrementa o contador de alterações
                     alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Binarizada Média.\n";
-                }                
+                }             
+                // Salva a imagem binarizada
                 SalvandoPGM(&imagem[0][0], TAM, alteracoes); // Salva a imagem
                 setColor(1,32);
                 cout << "\n\nImagem binarizada com sucesso!" << endl << endl;
@@ -188,9 +233,11 @@ int main() {
                 resetColor();
                 cout << "Executando rotação 90° anti-horária..." << endl;
                 RotacaoEsquerda(&imagem[0][0], TAM); // Rotaciona a imagem 90° para a esquerda
+                //Atualiza histórico
                 cont_alteracoes++; // Incrementa o contador de alterações
                 alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Rotacionada para a Esquerda.\n";
-                SalvandoPGM(&imagem[0][0], TAM, alteracoes); // Salva a imagem
+                // Salva a imagem
+                SalvandoPGM(&imagem[0][0], TAM, alteracoes); 
                 setColor(1,32);
                 cout << "\n\nImagem rotacionada para a esquerda com sucesso!" << endl << endl;
                 resetColor();
@@ -203,9 +250,11 @@ int main() {
                 resetColor();
                 cout << "Executando rotação 90° horária..." << endl;
                 RotacaoDireita(&imagem[0][0], TAM); // Rotaciona a imagem 90° para a direita
+                //Atualiza histórico
                 cont_alteracoes++; // Incrementa o contador de alterações
                 alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Rotacionada para a Direita.\n";
-                SalvandoPGM(&imagem[0][0], TAM, alteracoes); // Salva a imagem
+                // Salva a imagem
+                SalvandoPGM(&imagem[0][0], TAM, alteracoes); 
                 setColor(1,32);
                 cout << "\n\nImagem rotacionada para a direita com sucesso!" << endl << endl;
                 resetColor();
@@ -218,9 +267,11 @@ int main() {
                 resetColor();
                 cout << "Rotacionando no eixo vertical..." << endl;
                 RotacaoVertical(&imagem[0][0], TAM); // Inverte as colunas da imagem
+                //Atualiza histórico
                 cont_alteracoes++; // Incrementa o contador de alterações
                 alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Rotacionada Verticalmente.\n";
-                SalvandoPGM(&imagem[0][0], TAM, alteracoes); // Salva a imagem
+                // Salva a imagem
+                SalvandoPGM(&imagem[0][0], TAM, alteracoes); 
                 setColor(1,32);
                 cout << "\n\nImagem rotacionada verticalmente com sucesso!" << endl << endl;
                 resetColor();
@@ -233,9 +284,11 @@ int main() {
                 resetColor();
                 cout << "Rotacionando no eixo horizontal..." << endl;
                 RotacaoHorizontal(&imagem[0][0], TAM); // Inverte as linhas da imagem
+                //Atualiza histórico
                 cont_alteracoes++; // Incrementa o contador de alterações
                 alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Rotacionada Horizontalmente.\n";
-                SalvandoPGM(&imagem[0][0], TAM, alteracoes); // Salva a imagem
+                // Salva a imagem
+                SalvandoPGM(&imagem[0][0], TAM, alteracoes); 
                 setColor(1,32);
                 cout << "\n\nImagem rotacionada horizontalmente com sucesso!" << endl << endl;
                 resetColor();
@@ -247,10 +300,13 @@ int main() {
                 cout << "Iconizar a imagem...\n";
                 resetColor();
                 cout << "Iconizando imagem..." << endl;
+                // Gera o ícone da imagem
                 IconizarImagem(&imagem[0][0],&icone[0][0],TAM,ICON);
+                //Atualiza histórico
                 cont_alteracoes++; // Incrementa o contador de alterações
                 alteracoes += "#" + to_string(cont_alteracoes) + " - Imagem Iconizada.\n";
-                SalvandoPGM(&icone[0][0], ICON, alteracoes); // Salva a imagem
+             
+                SalvandoPGM(&icone[0][0], ICON, alteracoes);// Salva a imagem iconizada
                 setColor(1,32);
                 cout << "\n\nImagem iconizada com sucesso!" << endl << endl;
                 resetColor();
@@ -261,7 +317,7 @@ int main() {
                 setColor(1,35);
                 cout << "Obrigado por usar o editor de imagens PGM!" << endl;
                 resetColor();
-                loop = false; // Encerra o loop
+                loop = false; // Encerra o loop principal do programa
             break;
         }
         cout << "Deseja voltar para o menu? Digite 's' para sim e 'n' para não: ";
@@ -282,5 +338,5 @@ int main() {
     cout << "Saindo do programa..." << endl;
     resetColor();
 
-    return 0;
+    return 0;  // Finaliza a execução do programa
 }
